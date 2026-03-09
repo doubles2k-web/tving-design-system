@@ -149,7 +149,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .nav-group.open .chevron { transform: rotate(90deg); }
 
-.nav-group-items { overflow: hidden; }
+.nav-group-items { overflow: hidden; max-height: 600px; transition: max-height 0.25s ease; }
+.nav-group:not(.open) .nav-group-items { max-height: 0; }
 
 .nav-item {
   position: relative;
@@ -593,6 +594,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 </style>
 </head>
 <body>
+<body>
 
 <!-- ───── TOAST ───── -->
 <div class="toast" id="toast"></div>
@@ -634,7 +636,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   </div>
   <nav class="topbar-nav">
     <a class="topbar-link active" onclick="navigate('page-foundation')">Foundation</a>
-    <a class="topbar-link" style="opacity:0.35;pointer-events:none">Components</a>
+    <a class="topbar-link" onclick="navigate('page-components')">Components</a>
     <a class="topbar-link" style="opacity:0.35;pointer-events:none">Patterns</a>
     <a class="topbar-link" style="opacity:0.35;pointer-events:none">Resources</a>
   </nav>
@@ -683,53 +685,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   </div>
 
   <!-- Components group -->
-  <div class="nav-group" id="grp-components">
+  <div class="nav-group open" id="grp-components">
     <div class="nav-group-header" onclick="toggleGroup('grp-components')">
       Components
       <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
     </div>
-    <div class="nav-group-items">
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Button <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Badge <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Input <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Modal <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Toast <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-    </div>
+    <div class="nav-group-items" id="render-nav-components"></div>
   </div>
 
   <!-- Patterns group -->
-  <div class="nav-group" id="grp-patterns">
+  <div class="nav-group open" id="grp-patterns">
     <div class="nav-group-header" onclick="toggleGroup('grp-patterns')">
       Patterns
       <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
     </div>
-    <div class="nav-group-items">
-      <div class="nav-item">
-        <div class="nav-item-header" style="opacity:0.4;pointer-events:none">
-          Navigation <span class="nav-status soon">Soon</span>
-        </div>
-      </div>
-    </div>
+    <div class="nav-group-items" id="render-nav-patterns"></div>
   </div>
 </aside>
 
@@ -826,6 +796,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   <!-- ══════════════════════════════════════
        PAGE: Color
   ══════════════════════════════════════ -->
+
+  <!-- ══════════════════════════════════════
+       PAGE: Color
+  ══════════════════════════════════════ -->
   <div class="page" id="page-color">
     <div class="hero">
       <canvas class="hero-canvas" id="canvas-color"></canvas>
@@ -835,134 +809,54 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
         <div class="hero-desc">tving.red를 중심으로 한 단일 브랜드 컬러 전략. Opacity 변형을 통해 다양한 UI 상태를 표현합니다.</div>
       </div>
     </div>
-
-    <!-- Tabs -->
     <div class="tabs-bar">
       <button class="tab-btn active" onclick="switchTab(this,'tab-color-usage')">Usage</button>
       <button class="tab-btn" onclick="switchTab(this,'tab-color-specs')">Specs</button>
     </div>
-
     <div class="content">
+
       <!-- USAGE TAB -->
       <div class="tab-panel active" id="tab-color-usage">
 
-        <!-- Brand Colors -->
         <div class="section">
           <div class="section-label">Brand Color · Tint</div>
           <div class="section-desc">tving.red (#FF153C)가 유일한 브랜드 컬러입니다. 나머지는 콘텐츠 카테고리 구분 및 서비스별 구분에만 사용합니다.</div>
-          <div class="chip-grid">
-            <div class="chip" onclick="copy('#FF153C')"><div class="chip-swatch" style="background:#FF153C"></div><div class="chip-meta"><div class="chip-name">tving.red</div><div class="chip-hex">#FF153C</div></div></div>
-            <div class="chip" onclick="copy('#CC0028')"><div class="chip-swatch" style="background:#CC0028"></div><div class="chip-meta"><div class="chip-name">tving.dark.red</div><div class="chip-hex">#CC0028</div></div></div>
-            <div class="chip" onclick="copy('#FF4E6A')"><div class="chip-swatch" style="background:#FF4E6A"></div><div class="chip-meta"><div class="chip-name">tving.cherry</div><div class="chip-hex">#FF4E6A</div></div></div>
-            <div class="chip" onclick="copy('#FFC93C')"><div class="chip-swatch" style="background:#FFC93C"></div><div class="chip-meta"><div class="chip-name">tving.yellow</div><div class="chip-hex">#FFC93C</div></div></div>
-            <div class="chip" onclick="copy('#FFE03C')"><div class="chip-swatch" style="background:#FFE03C"></div><div class="chip-meta"><div class="chip-name">tving.light.yellow</div><div class="chip-hex">#FFE03C</div></div></div>
-            <div class="chip" onclick="copy('#0095FF')"><div class="chip-swatch" style="background:#0095FF"></div><div class="chip-meta"><div class="chip-name">tving.blue</div><div class="chip-hex">#0095FF</div></div></div>
-            <div class="chip" onclick="copy('#1A4CAA')"><div class="chip-swatch" style="background:#1A4CAA"></div><div class="chip-meta"><div class="chip-name">tving.dark.blue</div><div class="chip-hex">#1A4CAA</div></div></div>
-            <div class="chip" onclick="copy('#6BE477')"><div class="chip-swatch" style="background:#6BE477"></div><div class="chip-meta"><div class="chip-name">tving.green</div><div class="chip-hex">#6BE477</div></div></div>
-            <div class="chip" onclick="copy('#FF7A45')"><div class="chip-swatch" style="background:#FF7A45"></div><div class="chip-meta"><div class="chip-name">tving.orange</div><div class="chip-hex">#FF7A45</div></div></div>
-            <div class="chip" onclick="copy('#9005FF')"><div class="chip-swatch" style="background:#9005FF"></div><div class="chip-meta"><div class="chip-name">service.primary</div><div class="chip-hex">#9005FF</div></div></div>
-          </div>
-          <div class="chip-grid" style="margin-top:8px">
-            <div class="chip" onclick="copy('#1C1C22')"><div class="chip-swatch" style="background:#1C1C22"></div><div class="chip-meta"><div class="chip-name">tving.dark.charcoal</div><div class="chip-hex">#1C1C22</div></div></div>
-            <div class="chip" onclick="copy('#3C3740')"><div class="chip-swatch" style="background:#3C3740"></div><div class="chip-meta"><div class="chip-name">tving.charcoal</div><div class="chip-hex">#3C3740</div></div></div>
-            <div class="chip" onclick="copy('#4D4742')"><div class="chip-swatch" style="background:#4D4742"></div><div class="chip-meta"><div class="chip-name">tving.light.charcoal</div><div class="chip-hex">#4D4742</div></div></div>
-          </div>
+          <div class="chip-grid" id="brand-colors-grid"></div>
+          <div class="chip-grid" id="brand-colors-grid-2" style="margin-top:8px"></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- Gray Scale -->
         <div class="section">
-          <div class="section-label">Gray Scale · 다크모드 공용</div>
-          <div class="section-desc">gray500 이하는 배경/디바이더에만 사용. 텍스트는 최소 gray600 이상 유지 (WCAG AA 기준 4.5:1).</div>
-          <div class="chip-grid compact">
-            <div class="chip" onclick="copy('#FFFFFF')"><div class="chip-swatch sm" style="background:#FFFFFF;border:1px solid var(--border)"></div><div class="chip-meta"><div class="chip-name">white</div><div class="chip-hex">#FFF</div></div></div>
-            <div class="chip" onclick="copy('#F5F5F5')"><div class="chip-swatch sm" style="background:#F5F5F5"></div><div class="chip-meta"><div class="chip-name">gray900</div><div class="chip-hex">#F5F5F5</div></div></div>
-            <div class="chip" onclick="copy('#E3E3E3')"><div class="chip-swatch sm" style="background:#E3E3E3"></div><div class="chip-meta"><div class="chip-name">gray800</div><div class="chip-hex">#E3E3E3</div></div></div>
-            <div class="chip" onclick="copy('#AAAAAA')"><div class="chip-swatch sm" style="background:#AAAAAA"></div><div class="chip-meta"><div class="chip-name">gray700</div><div class="chip-hex">#AAA</div></div></div>
-            <div class="chip" onclick="copy('#888888')"><div class="chip-swatch sm" style="background:#888888"></div><div class="chip-meta"><div class="chip-name">gray600</div><div class="chip-hex">#888</div></div></div>
-            <div class="chip" onclick="copy('#666666')"><div class="chip-swatch sm" style="background:#666666"></div><div class="chip-meta"><div class="chip-name">gray500</div><div class="chip-hex">#666</div></div></div>
-            <div class="chip" onclick="copy('#444444')"><div class="chip-swatch sm" style="background:#444444"></div><div class="chip-meta"><div class="chip-name">gray400</div><div class="chip-hex">#444</div></div></div>
-            <div class="chip" onclick="copy('#333333')"><div class="chip-swatch sm" style="background:#333333"></div><div class="chip-meta"><div class="chip-name">gray300</div><div class="chip-hex">#333</div></div></div>
-            <div class="chip" onclick="copy('#222222')"><div class="chip-swatch sm" style="background:#222222"></div><div class="chip-meta"><div class="chip-name">gray200</div><div class="chip-hex">#222</div></div></div>
-            <div class="chip" onclick="copy('#111111')"><div class="chip-swatch sm" style="background:#111111"></div><div class="chip-meta"><div class="chip-name">gray100</div><div class="chip-hex">#111</div></div></div>
-            <div class="chip" onclick="copy('#000000')"><div class="chip-swatch sm" style="background:#000000;border:1px solid var(--border)"></div><div class="chip-meta"><div class="chip-name">black</div><div class="chip-hex">#000</div></div></div>
-          </div>
+          <div class="section-label">Gray Color · 다이나믹/제플린 공용 토큰</div>
+          <div class="section-desc">NONE 주의: 아이콘은 원칙적으로 화이트(투명)만 사용합니다. gray500이상만 서비스에 사용 가능합니다. 그 외 4.5이하 비율의 색상은 사용 금지입니다.</div>
+          <div class="chip-grid" id="gray-scale-grid"></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- Opacity Colors -->
         <div class="section">
           <div class="section-label">Opacity Color</div>
-
           <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">Red</p>
-          <div class="opacity-strip" style="margin-bottom:20px">
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,1);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·100</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,0.9);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·90</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,0.7);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·70</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,0.5);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·50</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,0.3);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·30</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,21,60,0.15);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">red·15</div></div></div>
-          </div>
-
+          <div class="opacity-strip" id="opacity-red" style="margin-bottom:20px"></div>
           <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">White</p>
-          <div class="opacity-strip" style="margin-bottom:20px">
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.9);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·90</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.7);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·70</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.5);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·50</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.3);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·30</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.15);border-radius:4px 4px 0 0"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·15</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.07);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·7</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(255,255,255,0.04);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">W·4</div></div></div>
-          </div>
-
+          <div class="opacity-strip" id="opacity-white" style="margin-bottom:20px"></div>
           <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">Black</p>
-          <div class="opacity-strip">
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(0,0,0,0.9);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">B·90</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(0,0,0,0.7);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">B·70</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(0,0,0,0.5);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">B·50</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(0,0,0,0.3);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">B·30</div></div></div>
-            <div class="opacity-cell"><div class="chip-swatch sm" style="background:rgba(0,0,0,0.15);border-radius:4px 4px 0 0;border:1px solid var(--border)"></div><div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">B·15</div></div></div>
-          </div>
+          <div class="opacity-strip" id="opacity-black"></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- Gradient -->
         <div class="section">
           <div class="section-label">Gradient Color · 다목적</div>
-          <div class="gradient-row">
-            <div class="gradient-card">
-              <div class="gradient-swatch" style="background:linear-gradient(90deg,#FFF,#000)"></div>
-              <div class="gradient-meta"><div class="gradient-name">LINEAR 100</div><div class="gradient-val">#FFFFFF → #000000<br>linear-gradient(90deg)</div></div>
-            </div>
-            <div class="gradient-card">
-              <div class="gradient-swatch" style="background:linear-gradient(90deg,transparent,#000)"></div>
-              <div class="gradient-meta"><div class="gradient-name">LINEAR 50</div><div class="gradient-val">transparent → #000000</div></div>
-            </div>
-            <div class="gradient-card">
-              <div class="gradient-swatch" style="background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.7) 60%,#000 100%)"></div>
-              <div class="gradient-meta"><div class="gradient-name">LINEAR_SCRIM</div><div class="gradient-val">transparent → bg<br>콘텐츠 오버레이용</div></div>
-            </div>
-          </div>
+          <div class="gradient-row" id="gradient-row"></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- Do / Don't -->
         <div class="section">
           <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts">
-            <div class="dos-donts-card">
-              <div class="dd-header do">✓ Do</div>
-              <div class="dd-body">tving.red는 CTA 버튼, 브랜드 강조에만 단독 사용. Opacity 변형(red·15, red·10)으로 배경 표현 시 사용합니다.</div>
-            </div>
-            <div class="dos-donts-card">
-              <div class="dd-header dont">✗ Don't</div>
-              <div class="dd-body">tving.red를 일반 텍스트 색상으로 사용하지 않습니다. 흰 배경 위에서 red·50 이하 Opacity는 WCAG 기준 미달이므로 단독 텍스트 사용 금지.</div>
-            </div>
-          </div>
+          <div class="dos-donts" id="dodont-color"></div>
         </div>
 
       </div><!-- /usage tab -->
@@ -975,35 +869,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
             <div class="callout-icon">ℹ</div>
             <div class="callout-text"><strong>AA 기준:</strong> 일반 텍스트 4.5:1 이상 / 대형 텍스트(18px Bold, 24px+) 3:1 이상 / UI 컴포넌트 3:1 이상</div>
           </div>
-          <div class="contrast-grid" style="margin-top:20px">
-            <div class="contrast-chip" style="background:#FFFFFF;color:#000">
-              <div class="ratio">21:1</div><div class="pair">White / Black</div><div class="grade grade-pass">● AA Pass</div>
-            </div>
-            <div class="contrast-chip" style="background:#141414;color:#FFF;border:1px solid #333">
-              <div class="ratio">19:1</div><div class="pair">bg / White</div><div class="grade grade-pass">● AA Pass</div>
-            </div>
-            <div class="contrast-chip" style="background:#141414;color:#888;border:1px solid #333">
-              <div class="ratio">4.8:1</div><div class="pair">bg / Gray600</div><div class="grade grade-pass">● AA Pass</div>
-            </div>
-            <div class="contrast-chip" style="background:#FF153C;color:#000">
-              <div class="ratio">5.9:1</div><div class="pair">Red / Black</div><div class="grade grade-pass">● AA Pass</div>
-            </div>
-            <div class="contrast-chip" style="background:#FF153C;color:#FFF">
-              <div class="ratio">3.5:1</div><div class="pair">Red / White</div><div class="grade grade-fail">✗ AA Fail</div>
-            </div>
-            <div class="contrast-chip" style="background:#141414;color:#666;border:1px solid #333">
-              <div class="ratio">3.3:1</div><div class="pair">bg / Gray500</div><div class="grade grade-fail">✗ AA Fail (body)</div>
-            </div>
-          </div>
-
+          <div class="contrast-grid" id="contrast-grid" style="margin-top:20px"></div>
           <div class="callout warn" style="margin-top:24px">
             <div class="callout-icon">⚠</div>
-            <div class="callout-text">Red on White, Gray500 본문 텍스트는 WCAG AA 기준 미달. 대형 제목(24px+, Bold)에만 사용 가능. <strong>7px 이하 폰트는 어떤 조합도 사용 금지.</strong></div>
+            <div class="callout-text">tving.red(#FF153C)는 흰 배경에서 <strong>3.5:1</strong>로 AA 기준 미달입니다. 흰 배경 레이아웃에서 Red를 텍스트 색상으로 사용하지 마십시오.</div>
           </div>
         </div>
-      </div>
-    </div><!-- /content -->
-  </div>
+      </div><!-- /specs tab -->
+
+    </div>
+  </div><!-- /page-color -->
 
   <!-- ══════════════════════════════════════
        PAGE: Typography
@@ -1014,49 +889,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="hero-content">
         <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Typography</div>
         <div class="hero-title">Typography <span class="hero-badge stable">Stable</span></div>
-        <div class="hero-desc">Bold(임팩트·제목)와 Read(가독성·본문) 두 축으로 구성된 이중 타이포그래피 시스템.</div>
+        <div class="hero-desc">Pretendard Variable 기반의 이중 타이포 시스템. Bold는 헤드라인·스캔용, Read는 본문·가독성용으로 구분됩니다.</div>
       </div>
     </div>
-
     <div class="tabs-bar">
       <button class="tab-btn active" onclick="switchTab(this,'tab-typo-scale')">Scale</button>
       <button class="tab-btn" onclick="switchTab(this,'tab-typo-usage')">Usage</button>
       <button class="tab-btn" onclick="switchTab(this,'tab-typo-specs')">Specs</button>
     </div>
-
     <div class="content">
+
       <!-- SCALE TAB -->
       <div class="tab-panel active" id="tab-typo-scale">
         <div class="section">
           <div class="section-label">Type Scale</div>
-          <div class="callout info" style="margin-bottom:28px">
-            <div class="callout-icon">ℹ</div>
-            <div class="callout-text"><strong>B (Bold)</strong> — 헤드라인, 임팩트, 숫자 강조. Line-height: auto.<br><strong>Read</strong> — 본문, 설명, 자막. Line-height: 130~160%로 장문 가독성 최적화.</div>
-          </div>
-          <table class="typo-table">
+          <table class="type-table">
             <thead>
-              <tr><th style="width:130px">Token</th><th>Style</th><th>Line Height</th><th>Preview</th></tr>
+              <tr>
+                <th>토큰</th><th>스타일</th><th>행간 / 자간</th><th>미리보기</th>
+              </tr>
             </thead>
-            <tbody>
-              <tr><td><span class="t-token">font-42</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:26px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙</span></td></tr>
-              <tr><td><span class="t-token">font-36</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:22px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널</span></td></tr>
-              <tr><td><span class="t-token">font-30</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:18px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마</span></td></tr>
-              <tr><td><span class="t-token">font-32-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">130% / 3</span></td><td><span style="font-size:16px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-24</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:15px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마, 예능, 영화</span></td></tr>
-              <tr><td><span class="t-token">font-24-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">130% / 2</span></td><td><span style="font-size:14px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-20</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:14px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그</span></td></tr>
-              <tr><td><span class="t-token">font-20-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">130% / 2</span></td><td><span style="font-size:13px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-18</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:13px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마, 예능, 영화, KBO</span></td></tr>
-              <tr><td><span class="t-token">font-18-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">150% / 8</span></td><td><span style="font-size:12px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-16</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:12px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그</span></td></tr>
-              <tr><td><span class="t-token">font-16-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">150% / 5</span></td><td><span style="font-size:11px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-14</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:11px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널부터 드라마, 예능, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-14-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">150% / 4</span></td><td><span style="font-size:10px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-12</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:10px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널 드라마, 예능, 영화, KBO 리그</span></td></tr>
-              <tr><td><span class="t-token">font-12-read</span></td><td><span class="t-tag read">Read</span></td><td><span class="t-spec">150% / 4</span></td><td><span style="font-size:9px;font-weight:400;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#e8e8e8">티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지</span></td></tr>
-              <tr><td><span class="t-token">font-10</span></td><td><span class="t-tag bold">Bold</span></td><td><span class="t-spec">Auto</span></td><td><span style="font-size:9px;font-weight:700;font-family:'Pretendard Variable',Pretendard,sans-serif;color:#fff">티빙 오리지널 드라마 예능 영화 KBO</span></td></tr>
-              <tr><td><span class="t-token" style="color:#FF5050">font-7 ⚠</span></td><td><span class="t-tag read">—</span></td><td><span class="t-spec">—</span></td><td><span style="font-size:9px;color:var(--g50)">7px 이하 — WCAG 최소 사이즈 미달, 사용 금지</span></td></tr>
-            </tbody>
+            <tbody id="type-scale-tbody"></tbody>
           </table>
         </div>
       </div>
@@ -1065,16 +918,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="tab-panel" id="tab-typo-usage">
         <div class="section">
           <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts">
-            <div class="dos-donts-card">
-              <div class="dd-header do">✓ Do</div>
-              <div class="dd-body">Bold는 1~2줄 헤드라인에만. Read는 3줄 이상 본문 텍스트에 사용. line-height 차이를 반드시 지킬 것.</div>
-            </div>
-            <div class="dos-donts-card">
-              <div class="dd-header dont">✗ Don't</div>
-              <div class="dd-body">Bold 스타일을 긴 본문에 사용하거나, Read 스타일의 line-height를 임의로 줄이지 않습니다. 최소 폰트 사이즈 10px 미만 사용 금지.</div>
-            </div>
-          </div>
+          <div class="dos-donts" id="dodont-typography"></div>
         </div>
       </div>
 
@@ -1108,7 +952,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /page-typography -->
 
   <!-- ══════════════════════════════════════
        PAGE: Breakpoints
@@ -1122,111 +966,58 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
         <div class="hero-desc">모바일 ~ 4K TV를 아우르는 6단계 반응형 중단점. root font-size를 vw로 유동 제어합니다.</div>
       </div>
     </div>
-
     <div class="tabs-bar">
       <button class="tab-btn active" onclick="switchTab(this,'tab-bp-usage')">Usage</button>
       <button class="tab-btn" onclick="switchTab(this,'tab-bp-specs')">Specs</button>
     </div>
-
     <div class="content">
+
+      <!-- USAGE TAB -->
       <div class="tab-panel active" id="tab-bp-usage">
         <div class="section">
           <div class="section-label">Breakpoint Scale</div>
-          <div class="bp-list">
-            <div class="bp-row">
-              <div><div class="bp-name">Mobile</div></div>
-              <div class="bp-range">~ 600px</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:18%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 3.2</span><span class="bp-x">×</span><span class="bp-badge">가로 3.2</span></div>
-            </div>
-            <div class="bp-row">
-              <div><div class="bp-name">Tablet</div></div>
-              <div class="bp-range">600px +</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:35%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 5</span><span class="bp-x">×</span><span class="bp-badge">가로 3</span></div>
-            </div>
-            <div class="bp-row">
-              <div><div class="bp-name">Desktop S</div></div>
-              <div class="bp-range">1000px +</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:55%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 6</span><span class="bp-x">×</span><span class="bp-badge">가로 4</span></div>
-            </div>
-            <div class="bp-row">
-              <div><div class="bp-name">Desktop L</div></div>
-              <div class="bp-range">1400px +</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:72%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 7</span><span class="bp-x">×</span><span class="bp-badge">가로 5</span></div>
-            </div>
-            <div class="bp-row">
-              <div><div class="bp-name">2K</div></div>
-              <div class="bp-range">2000px +</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:86%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 8</span><span class="bp-x">×</span><span class="bp-badge">가로 6</span></div>
-            </div>
-            <div class="bp-row">
-              <div><div class="bp-name">4K / TV</div></div>
-              <div class="bp-range">2400px +</div>
-              <div class="bp-bar"><div class="bp-fill" style="width:100%"></div></div>
-              <div class="bp-cols"><span class="bp-badge">세로 8</span><span class="bp-x">×</span><span class="bp-badge">가로 6</span></div>
-            </div>
-          </div>
-
-          <div class="callout info" style="margin-top:28px">
-            <div class="callout-icon">ℹ</div>
-            <div class="callout-text"><strong>vw → px 전환 지점:</strong> 2000px 이상부터 vw 대신 고정 px (16px)로 전환. 4K에서 18px 고정. TV 시청 거리 고려한 최소 가독 보장.</div>
-          </div>
+          <div class="bp-list" id="bp-list"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <div class="section-label">Usage Guidance</div>
+          <div class="dos-donts" id="dodont-breakpoints"></div>
         </div>
       </div>
 
+      <!-- SPECS TAB -->
       <div class="tab-panel" id="tab-bp-specs">
         <div class="section">
           <div class="section-label">CSS Media Queries</div>
           <div class="code-block">
             <div class="code-header"><span class="code-lang">CSS · Breakpoints</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body"><span class="c-cmt">/* TDS Web Breakpoints — root font-size 기준 */</span>
-
+            <div class="code-body"><span class="c-cmt">/* TDS Breakpoints — root font-size 유동 제어 */</span>
 <span class="c-prop">@media</span> screen and (max-width: 768px) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">2.5vw</span>; }
-  <span class="c-cmt">/* .is-laptop override */</span>
-  <span class="c-prop">&.is-laptop</span> { <span class="c-prop">font-size</span>: <span class="c-val">calc(6px + 0.5vw)</span>; }
+  html { font-size: <span class="c-val">2.5vw</span>; }
+  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
 }
 <span class="c-prop">@media</span> screen and (min-width: 768px) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">1.2vw</span>; }
+  html { font-size: <span class="c-val">1.2vw</span>; }
+  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
 }
 <span class="c-prop">@media</span> screen and (min-width: 768px) and (orientation: portrait) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">1.5vw</span>; }
+  html { font-size: <span class="c-val">1.5vw</span>; }
 }
 <span class="c-prop">@media</span> screen and (min-width: 1200px) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">1vw</span>; }
+  html { font-size: <span class="c-val">1vw</span>; }
 }
 <span class="c-prop">@media</span> screen and (min-width: 2000px) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">16px</span>; }
+  html { font-size: <span class="c-val">16px</span>; }
 }
 <span class="c-prop">@media</span> screen and (min-width: 2400px) {
-  :root { <span class="c-prop">font-size</span>: <span class="c-val">18px</span>; }
+  html { font-size: <span class="c-val">18px</span>; }
 }</div>
           </div>
-
-          <div class="section-label" style="margin-top:36px">Column System</div>
-          <table class="spec-table" style="margin-top:16px">
-            <thead><tr><th>Breakpoint</th><th>Range</th><th>Columns (V)</th><th>Columns (H)</th><th>font-size</th></tr></thead>
-            <tbody>
-              <tr><td>Mobile</td><td><code>≤600px</code></td><td>3.2</td><td>3.2</td><td><code>2.5vw</code></td></tr>
-              <tr><td>Tablet</td><td><code>600px+</code></td><td>5</td><td>3</td><td><code>1.2vw</code></td></tr>
-              <tr><td>Desktop S</td><td><code>1000px+</code></td><td>6</td><td>4</td><td><code>1.5vw</code></td></tr>
-              <tr><td>Desktop L</td><td><code>1400px+</code></td><td>7</td><td>5</td><td><code>1vw</code></td></tr>
-              <tr><td>2K</td><td><code>2000px+</code></td><td>8</td><td>6</td><td><code>16px</code></td></tr>
-              <tr><td>4K / TV</td><td><code>2400px+</code></td><td>8</td><td>6</td><td><code>18px</code></td></tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /page-breakpoints -->
 
-  <!-- ══════════════════════════════════════
-       PAGE: Tokens
-  ══════════════════════════════════════ -->
   <div class="page" id="page-tokens">
     <div class="hero">
       <canvas class="hero-canvas" id="canvas-tokens"></canvas>
@@ -1311,10 +1102,574 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     </div>
   </div>
 
+
+  <!-- ══════════════════════════════════════
+       PAGE: Components Overview
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-components">
+    <div class="hero">
+      <canvas class="hero-canvas" id="canvas-components"></canvas>
+      <div class="hero-content">
+        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components</div>
+        <div class="hero-title">Components</div>
+        <div class="hero-desc">재사용 가능한 UI 컴포넌트 목록. 각 컴포넌트는 Usage · Specs 탭으로 구성됩니다.</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="section">
+        <div class="section-label">Overview</div>
+        <div class="overview-grid" id="render-components-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: Button -->
+  <div class="page" id="page-button">
+    <div class="hero">
+      <canvas class="hero-canvas" id="canvas-button"></canvas>
+      <div class="hero-content">
+        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components <span class="sep">›</span> Button</div>
+        <div class="hero-title">Button <span class="hero-badge stable">Stable</span></div>
+        <div class="hero-desc">사용자 액션을 트리거하는 기본 인터랙션 컴포넌트. Primary, Secondary, Ghost 3가지 변형을 제공합니다.</div>
+      </div>
+    </div>
+
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-button-usage')">Usage</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-button-specs')">Specs</button>
+    </div>
+
+    <div class="content">
+
+      <!-- USAGE TAB -->
+      <div class="tab-panel active" id="tab-button-usage">
+
+        <div class="section">
+          <div class="section-label">Variants</div>
+          <div class="section-desc">3가지 기본 버튼 변형. 페이지 내 Primary는 1개만 사용합니다.</div>
+
+          <!-- 버튼 미리보기 -->
+          <div style="display:flex; gap:16px; align-items:center; padding:32px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; margin-bottom:16px; flex-wrap:wrap;">
+            <!-- Primary -->
+            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Primary</button>
+            <!-- Secondary -->
+            <button style="background:transparent;color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;letter-spacing:-0.01em;">Secondary</button>
+            <!-- Ghost -->
+            <button style="background:transparent;color:var(--red);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Ghost</button>
+            <!-- Disabled -->
+            <button style="background:var(--bg-hover);color:var(--g50);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:not-allowed;letter-spacing:-0.01em;" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <div class="section-label">Size</div>
+          <div style="display:flex; gap:12px; align-items:center; padding:28px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; flex-wrap:wrap;">
+            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:12px;padding:7px 18px;border-radius:5px;border:none;cursor:pointer;">Small</button>
+            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;">Medium</button>
+            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:16px;padding:13px 32px;border-radius:8px;border:none;cursor:pointer;">Large</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <div class="section-label">Usage Guidance</div>
+          <div class="dos-donts">
+            <div class="dos-donts-card">
+              <div class="dd-header do">✓ Do</div>
+              <div class="dd-body">Primary 버튼은 CTA(Call To Action) 1개에만 사용. 배경색은 tving.red(#FF153C) 고정. 텍스트는 Bold, 14px 이상 유지.</div>
+            </div>
+            <div class="dos-donts-card">
+              <div class="dd-header dont">✗ Don't</div>
+              <div class="dd-body">동일한 화면에 Primary 버튼을 2개 이상 배치하지 않습니다. 버튼 레이블을 아이콘만으로 구성하지 않습니다(접근성 위반).</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /usage tab -->
+
+      <!-- SPECS TAB -->
+      <div class="tab-panel" id="tab-button-specs">
+        <div class="section">
+          <div class="section-label">Design Tokens</div>
+          <table class="spec-table">
+            <thead>
+              <tr><th>속성</th><th>Primary</th><th>Secondary</th><th>Ghost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Background</td><td><code>#FF153C</code></td><td><code>transparent</code></td><td><code>transparent</code></td></tr>
+              <tr><td>Text Color</td><td><code>#FFFFFF</code></td><td><code>#FFFFFF</code></td><td><code>#FF153C</code></td></tr>
+              <tr><td>Border</td><td><code>none</code></td><td><code>rgba(255,255,255,0.2)</code></td><td><code>none</code></td></tr>
+              <tr><td>Border Radius</td><td><code>6px</code></td><td><code>6px</code></td><td><code>6px</code></td></tr>
+              <tr><td>Font Weight</td><td><code>700 (Bold)</code></td><td><code>700 (Bold)</code></td><td><code>700 (Bold)</code></td></tr>
+              <tr><td>Hover State</td><td><code>brightness(1.1)</code></td><td><code>border opacity 0.4</code></td><td><code>opacity 0.7</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section" style="margin-top:40px">
+          <div class="section-label">CSS</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">CSS · Button</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
+            <div class="code-body"><span class="c-cmt">/* TDS Button — Primary */</span>
+.tds-btn {
+  <span class="c-prop">font-family</span>: <span class="c-val">'Pretendard Variable', sans-serif</span>;
+  <span class="c-prop">font-weight</span>: <span class="c-num">700</span>;
+  <span class="c-prop">font-size</span>: <span class="c-val">14px</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">10px 24px</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-val">6px</span>;
+  <span class="c-prop">border</span>: <span class="c-val">none</span>;
+  <span class="c-prop">cursor</span>: <span class="c-val">pointer</span>;
+  <span class="c-prop">transition</span>: <span class="c-val">filter 0.15s ease</span>;
+}
+.tds-btn-primary {
+  <span class="c-prop">background</span>: <span class="c-red">#FF153C</span>;
+  <span class="c-prop">color</span>: <span class="c-val">#FFFFFF</span>;
+}
+.tds-btn-primary:hover {
+  <span class="c-prop">filter</span>: <span class="c-val">brightness(1.12)</span>;
+}
+.tds-btn:disabled {
+  <span class="c-prop">background</span>: <span class="c-val">#222</span>;
+  <span class="c-prop">color</span>: <span class="c-val">#555</span>;
+  <span class="c-prop">cursor</span>: <span class="c-val">not-allowed</span>;
+}</div>
+          </div>
+        </div>
+      </div><!-- /specs tab -->
+
+    </div>
+  </div><!-- /page-button -->
+
+  <!-- ══════════════════════════════════════
+       ✏️  여기에 다음 컴포넌트 페이지 추가
+       위의 page-button 블록 전체를 복사해서
+       id만 바꾸면 됩니다.
+  ══════════════════════════════════════ -->
+
 </main><!-- /main -->
 
 <script>
+/* ═══════════════════════════════════════════════════════════════
+   ✏️  TDS_CONFIG — 디자이너 수정 구역
+   ───────────────────────────────────────────────────────────────
+   여기만 수정하면 전체 사이트에 자동 반영됩니다.
+   
+   💡 팁:
+   • 컬러 추가: 배열에 { name, hex } 객체 한 줄 추가
+   • 컬러 삭제: 해당 줄 삭제 또는 주석 처리 (//)
+   • 타이포 수정: typeScale 배열에서 size, lineHeight 수정
+   • Do/Don't 수정: dodonts 객체에서 텍스트만 수정
+═══════════════════════════════════════════════════════════════ */
+
+const TDS_CONFIG = {
+
+  // ═══════════════════════════════════════════
+  // ✏️  1. BRAND COLORS (Tint)
+  // dark: true → 텍스트를 검정으로 표시 (밝은 색 배경용)
+  // ═══════════════════════════════════════════
+  brandColors: [
+    { name: 'tving.red',          hex: '#FF153C' },
+    { name: 'tving.dark.red',     hex: '#CC0028' },
+    { name: 'tving.cherry',       hex: '#FF4E6A' },
+    { name: 'tving.yellow',       hex: '#FFC93C', dark: true },
+    { name: 'tving.light.yellow', hex: '#FFE03C', dark: true },
+    { name: 'tving.blue',         hex: '#0095FF' },
+    { name: 'tving.dark.blue',    hex: '#1A4CAA' },
+    { name: 'tving.green',        hex: '#6BE477', dark: true },
+    { name: 'tving.orange',       hex: '#FF7A45' },
+    { name: 'service.primary',    hex: '#9005FF' },
+  ],
+
+  // 두 번째 줄 (다크 컬러 계열)
+  brandColorsRow2: [
+    { name: 'tving.dark.charcoal',  hex: '#1C1C22' },
+    { name: 'tving.charcoal',       hex: '#3C3740' },
+    { name: 'tving.light.charcoal', hex: '#4D4742' },
+    { name: 'tving.dark.coal',      hex: '#2D3338' },
+    { name: 'tving.coal',           hex: '#3C4651' },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  2. GRAY SCALE
+  // dark: true → 텍스트를 검정으로 표시
+  // ═══════════════════════════════════════════
+  grayScale: [
+    { name: 'white',    hex: '#FFFFFF', dark: true },
+    { name: 'gray900',  hex: '#F5F5F5', dark: true },
+    { name: 'gray800',  hex: '#CBCBCB', dark: true },
+    { name: 'gray700',  hex: '#959595', dark: true },
+    { name: 'gray600',  hex: '#686868' },
+    { name: 'gray500',  hex: '#505050' },
+    { name: 'gray400',  hex: '#3C3C3C' },
+    { name: 'gray300',  hex: '#292929' },
+    { name: 'gray200',  hex: '#1A1A1A' },
+    { name: 'gray100',  hex: '#131313' },
+    { name: 'black',    hex: '#000000' },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  3. OPACITY COLORS
+  // opacityRedBase: Red 컬러의 RGB 값 (hex 변경 시 함께 수정)
+  // ═══════════════════════════════════════════
+  opacityRedBase: '255, 21, 60',
+  opacityRed: [
+    { name: 'red·100', alpha: 1.0 },
+    { name: 'red·90',  alpha: 0.9 },
+    { name: 'red·70',  alpha: 0.7 },
+    { name: 'red·50',  alpha: 0.5 },
+    { name: 'red·30',  alpha: 0.3 },
+    { name: 'red·15',  alpha: 0.15 },
+  ],
+
+  opacityWhite: [
+    { name: 'W·90', alpha: 0.9 },
+    { name: 'W·70', alpha: 0.7 },
+    { name: 'W·50', alpha: 0.5 },
+    { name: 'W·30', alpha: 0.3 },
+    { name: 'W·15', alpha: 0.15 },
+    { name: 'W·7',  alpha: 0.07, border: true },
+    { name: 'W·4',  alpha: 0.04, border: true },
+  ],
+
+  opacityBlack: [
+    { name: 'B·90', alpha: 0.9 },
+    { name: 'B·70', alpha: 0.7 },
+    { name: 'B·50', alpha: 0.5 },
+    { name: 'B·30', alpha: 0.3 },
+    { name: 'B·15', alpha: 0.15 },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  4. GRADIENTS
+  // desc: 줄바꿈은 \n 사용
+  // ═══════════════════════════════════════════
+  gradients: [
+    {
+      name: 'LINEAR 100',
+      css:  'linear-gradient(90deg, #FFF, #000)',
+      desc: '#FFFFFF → #000000\nlinear-gradient(90deg)',
+    },
+    {
+      name: 'LINEAR 50',
+      css:  'linear-gradient(90deg, transparent, #000)',
+      desc: 'transparent → #000000',
+    },
+    {
+      name: 'LINEAR_SCRIM',
+      css:  'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 60%, #000 100%)',
+      desc: 'transparent → bg\n콘텐츠 오버레이용',
+    },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  5. CONTRAST RATIOS (WCAG)
+  // pass: true → AA Pass / false → Fail
+  // note: 추가 설명 텍스트 (선택)
+  // ═══════════════════════════════════════════
+  contrastChips: [
+    { bg: '#FFFFFF', fg: '#000000', ratio: '21:1',  pair: 'White / Black',  pass: true  },
+    { bg: '#141414', fg: '#FFFFFF', ratio: '19:1',  pair: 'bg / White',     pass: true,  border: true },
+    { bg: '#141414', fg: '#888888', ratio: '4.8:1', pair: 'bg / Gray600',   pass: true,  border: true },
+    { bg: '#FF153C', fg: '#000000', ratio: '5.9:1', pair: 'Red / Black',    pass: true  },
+    { bg: '#FF153C', fg: '#FFFFFF', ratio: '3.5:1', pair: 'Red / White',    pass: false },
+    { bg: '#141414', fg: '#666666', ratio: '3.3:1', pair: 'bg / Gray500',   pass: false, border: true, note: ' (body)' },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  6. TYPOGRAPHY SCALE
+  // token: CSS 토큰명
+  // size: px 값 (숫자)
+  // style: 'bold' | 'read'
+  // lineHeight: 행간/자간 표시 문자열
+  // warning: true → 사용 금지 경고 표시
+  // ─────────────────────────────────────────── 
+  // 행 추가: 아래 배열에 객체 한 줄 추가
+  // 행 삭제: 해당 줄 삭제
+  // ═══════════════════════════════════════════
+  typeScale: [
+    { token: 'font-42',       size: 42, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-36',       size: 36, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-30',       size: 30, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-30-read',  size: 30, style: 'read', lineHeight: '130% / 4' },
+    { token: 'font-24',       size: 24, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-20',       size: 20, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-20-read',  size: 20, style: 'read', lineHeight: '130% / 2' },
+    { token: 'font-18',       size: 18, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-18-read',  size: 18, style: 'read', lineHeight: '150% / 8' },
+    { token: 'font-17',       size: 17, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-17-read',  size: 17, style: 'read', lineHeight: '150% / 8' },
+    { token: 'font-16',       size: 16, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-16-read',  size: 16, style: 'read', lineHeight: '150% / 5' },
+    { token: 'font-15',       size: 15, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-14',       size: 14, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-14-read',  size: 14, style: 'read', lineHeight: '150% / 4' },
+    { token: 'font-13',       size: 13, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-13-read',  size: 13, style: 'read', lineHeight: '150% / 5' },
+    { token: 'font-12',       size: 12, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-12-read',  size: 12, style: 'read', lineHeight: '150% / 4' },
+    { token: 'font-10',       size: 10, style: 'bold', lineHeight: 'Auto' },
+    { token: 'font-10-read',  size: 10, style: 'read', lineHeight: '150% / 3' },
+    { token: 'font-7',        size: 7,  style: 'read', lineHeight: 'Auto', warning: true },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  7. BREAKPOINTS
+  // barW: 비주얼 바 너비 (%) — 시각적 비례 표현용
+  // fontSize: 해당 뷰포트의 root font-size
+  // ═══════════════════════════════════════════
+  breakpoints: [
+    { name: 'Mobile',    range: '~ 600px',  colV: '3.2', colH: '3.2', barW: '18%',  fontSize: '2.5vw' },
+    { name: 'Tablet',    range: '600px +',  colV: '5',   colH: '3',   barW: '35%',  fontSize: '1.2vw' },
+    { name: 'Desktop S', range: '1000px +', colV: '6',   colH: '4',   barW: '55%',  fontSize: '1.5vw (portrait)' },
+    { name: 'Desktop L', range: '1400px +', colV: '7',   colH: '5',   barW: '70%',  fontSize: '1vw' },
+    { name: 'Wide',      range: '2000px +', colV: '8',   colH: '6',   barW: '85%',  fontSize: '16px' },
+    { name: '4K / TV',   range: '2400px +', colV: '8',   colH: '6',   barW: '100%', fontSize: '18px' },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  8. DO / DON'T 가이드 텍스트
+  // ═══════════════════════════════════════════
+  dodonts: {
+    color: {
+      do:   'tving.red는 CTA 버튼, 브랜드 강조에만 단독 사용. Opacity 변형(red·15, red·10)으로 배경 표현 시 사용합니다.',
+      dont: 'tving.red를 일반 텍스트 색상으로 사용하지 않습니다. 흰 배경 위에서 red·50 이하 Opacity는 WCAG 기준 미달이므로 단독 텍스트 사용 금지.',
+    },
+    typography: {
+      do:   'Bold는 1~2줄 헤드라인에만. Read는 3줄 이상 본문 텍스트에 사용. line-height 차이를 반드시 지킬 것.',
+      dont: 'Bold 스타일을 긴 본문에 사용하거나, Read 스타일의 line-height를 임의로 줄이지 않습니다. 최소 폰트 사이즈 10px 미만 사용 금지.',
+    },
+    breakpoints: {
+      do:   '각 중단점에서 정의된 column grid를 준수합니다. root font-size는 vw 단위로 유동 적용되며 2000px 이상에서는 px 고정됩니다.',
+      dont: 'breakpoint 사이 임의의 중간 값을 추가하거나, column 수를 줄여 레이아웃을 단순화하지 않습니다.',
+    },
+  },
+
+  // ═══════════════════════════════════════════
+  // ✏️  9. NAVIGATION — 컴포넌트 목록
+  // status: 'stable' | 'beta' | 'soon'
+  // pageId: 연결할 페이지 id (없으면 null)
+  // ─────────────────────────────────────────── 
+  // 항목 추가: 배열에 객체 한 줄 추가
+  // 항목 삭제: 해당 줄 삭제
+  // ═══════════════════════════════════════════
+  components: [
+    { name: 'Button',   status: 'stable', pageId: 'page-button' },  // ✏️ pageId 연결됨
+    { name: 'Badge',    status: 'soon',   pageId: null },            // ✏️ 페이지 만들면 여기 수정
+    { name: 'Input',    status: 'soon',   pageId: null },
+    { name: 'Modal',    status: 'soon',   pageId: null },
+    { name: 'Toast',    status: 'soon',   pageId: null },
+    { name: 'Chip',     status: 'soon',   pageId: null },
+    { name: 'Carousel', status: 'soon',   pageId: null },
+  ],
+
+  // ═══════════════════════════════════════════
+  // ✏️  10. NAVIGATION — 패턴 목록
+  // ═══════════════════════════════════════════
+  patterns: [
+    { name: 'Navigation', status: 'soon', pageId: null },
+    { name: 'Card Grid',  status: 'soon', pageId: null },
+    { name: 'Hero Banner',status: 'soon', pageId: null },
+  ],
+
+}; // ← TDS_CONFIG 끝
+
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER FUNCTIONS — 수정 불필요
+   (CONFIG 값을 읽어 HTML을 자동 생성합니다)
+═══════════════════════════════════════════════════════════════ */
+
+function renderAll() {
+  renderBrandColors();
+  renderGrayScale();
+  renderOpacityColors();
+  renderGradients();
+  renderContrastChips();
+  renderTypeScale();
+  renderBreakpoints();
+  renderDoDonts();
+  renderNavItems();
+  renderComponentsGrid();
+}
+
+function renderBrandColors() {
+  const grid = document.getElementById('brand-colors-grid');
+  if (grid) grid.innerHTML = TDS_CONFIG.brandColors.map(c => chipHTML(c)).join('');
+
+  const grid2 = document.getElementById('brand-colors-grid-2');
+  if (grid2 && TDS_CONFIG.brandColorsRow2)
+    grid2.innerHTML = TDS_CONFIG.brandColorsRow2.map(c => chipHTML(c)).join('');
+}
+
+function chipHTML(c) {
+  const textColor = c.dark ? '#000' : '#fff';
+  return `<div class="chip" onclick="copy('${c.hex}')">
+    <div class="chip-swatch" style="background:${c.hex}"></div>
+    <div class="chip-meta">
+      <div class="chip-name" style="color:inherit">${c.name}</div>
+      <div class="chip-hex">${c.hex}</div>
+    </div>
+  </div>`;
+}
+
+function renderGrayScale() {
+  const grid = document.getElementById('gray-scale-grid');
+  if (!grid) return;
+  grid.innerHTML = TDS_CONFIG.grayScale.map(c => chipHTML(c)).join('');
+}
+
+function renderOpacityColors() {
+  const redBase = TDS_CONFIG.opacityRedBase;
+
+  const redStrip = document.getElementById('opacity-red');
+  if (redStrip) redStrip.innerHTML = TDS_CONFIG.opacityRed.map(item =>
+    `<div class="opacity-cell">
+      <div class="chip-swatch sm" style="background:rgba(${redBase},${item.alpha});border-radius:4px 4px 0 0"></div>
+      <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
+    </div>`
+  ).join('');
+
+  const whiteStrip = document.getElementById('opacity-white');
+  if (whiteStrip) whiteStrip.innerHTML = TDS_CONFIG.opacityWhite.map(item =>
+    `<div class="opacity-cell">
+      <div class="chip-swatch sm" style="background:rgba(255,255,255,${item.alpha});border-radius:4px 4px 0 0${item.border?';border:1px solid var(--border)':''}"></div>
+      <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
+    </div>`
+  ).join('');
+
+  const blackStrip = document.getElementById('opacity-black');
+  if (blackStrip) blackStrip.innerHTML = TDS_CONFIG.opacityBlack.map(item =>
+    `<div class="opacity-cell">
+      <div class="chip-swatch sm" style="background:rgba(0,0,0,${item.alpha});border-radius:4px 4px 0 0;border:1px solid var(--border)"></div>
+      <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
+    </div>`
+  ).join('');
+}
+
+function renderGradients() {
+  const row = document.getElementById('gradient-row');
+  if (!row) return;
+  row.innerHTML = TDS_CONFIG.gradients.map(g =>
+    `<div class="gradient-card">
+      <div class="gradient-swatch" style="background:${g.css}"></div>
+      <div class="gradient-meta">
+        <div class="gradient-name">${g.name}</div>
+        <div class="gradient-val">${g.desc.replace(/\n/g, '<br>')}</div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function renderContrastChips() {
+  const grid = document.getElementById('contrast-grid');
+  if (!grid) return;
+  grid.innerHTML = TDS_CONFIG.contrastChips.map(c =>
+    `<div class="contrast-chip" style="background:${c.bg};color:${c.fg}${c.border?';border:1px solid #333':''}">
+      <div class="ratio">${c.ratio}</div>
+      <div class="pair">${c.pair}</div>
+      <div class="grade ${c.pass ? 'grade-pass' : 'grade-fail'}">${c.pass ? '● AA Pass' : '✗ AA Fail'}${c.note||''}</div>
+    </div>`
+  ).join('');
+}
+
+function renderTypeScale() {
+  const tbody = document.getElementById('type-scale-tbody');
+  if (!tbody) return;
+  const SAMPLE = '티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지';
+  tbody.innerHTML = TDS_CONFIG.typeScale.map(row => {
+    if (row.warning) return `<tr>
+      <td><span class="t-token" style="color:#FF5050">${row.token} ⚠</span></td>
+      <td><span class="t-tag read">—</span></td>
+      <td><span class="t-spec">—</span></td>
+      <td><span style="font-size:9px;color:var(--g50)">${row.size}px 이하 — WCAG 최소 사이즈 미달, 사용 금지</span></td>
+    </tr>`;
+    const isBold = row.style === 'bold';
+    const cap = Math.min(row.size, 18);
+    const wt = isBold ? 700 : 400;
+    const cl = isBold ? '#fff' : '#e8e8e8';
+    return `<tr>
+      <td><span class="t-token">${row.token}</span></td>
+      <td><span class="t-tag ${row.style}">${isBold ? 'Bold' : 'Read'}</span></td>
+      <td><span class="t-spec">${row.lineHeight}</span></td>
+      <td><span style="font-size:${cap}px;font-weight:${wt};font-family:'Pretendard Variable',Pretendard,sans-serif;color:${cl}">${SAMPLE}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderBreakpoints() {
+  const list = document.getElementById('bp-list');
+  if (!list) return;
+  list.innerHTML = TDS_CONFIG.breakpoints.map(bp =>
+    `<div class="bp-row">
+      <div><div class="bp-name">${bp.name}</div></div>
+      <div class="bp-range">${bp.range}</div>
+      <div class="bp-bar"><div class="bp-fill" style="width:${bp.barW}"></div></div>
+      <div class="bp-cols">
+        <span class="bp-badge">세로 ${bp.colV}</span>
+        <span class="bp-x">×</span>
+        <span class="bp-badge">가로 ${bp.colH}</span>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function renderDoDonts() {
+  Object.entries(TDS_CONFIG.dodonts).forEach(([page, dd]) => {
+    const el = document.getElementById(`dodont-${page}`);
+    if (!el) return;
+    el.innerHTML = `
+      <div class="dos-donts-card">
+        <div class="dd-header do">✓ Do</div>
+        <div class="dd-body">${dd.do}</div>
+      </div>
+      <div class="dos-donts-card">
+        <div class="dd-header dont">✗ Don't</div>
+        <div class="dd-body">${dd.dont}</div>
+      </div>`;
+  });
+}
+
 /* ─────────────────── NAVIGATION ─────────────────── */
+
+function renderNavItems() {
+  function navItemHTML(item) {
+    const isSoon = item.status === 'soon';
+    const disabledStyle = isSoon ? ' style="opacity:0.4;pointer-events:none"' : '';
+    const onclick = item.pageId ? ` onclick="navigate('${item.pageId}'); setNavActive(this)"` : '';
+    return `<div class="nav-item">
+      <div class="nav-item-header"${disabledStyle}${onclick}>
+        ${item.name}
+        <span class="nav-status ${item.status}">${item.status.charAt(0).toUpperCase() + item.status.slice(1)}</span>
+      </div>
+    </div>`;
+  }
+
+  const compEl = document.getElementById('render-nav-components');
+  if (compEl) compEl.innerHTML = TDS_CONFIG.components.map(navItemHTML).join('');
+
+  const patEl = document.getElementById('render-nav-patterns');
+  if (patEl) patEl.innerHTML = TDS_CONFIG.patterns.map(navItemHTML).join('');
+}
+
+function renderComponentsGrid() {
+  const grid = document.getElementById('render-components-grid');
+  if (!grid) return;
+  grid.innerHTML = TDS_CONFIG.components.map(c => {
+    const isSoon = c.status === 'soon';
+    const clickable = c.pageId ? `onclick="navigate('${c.pageId}')"` : '';
+    const style = isSoon ? 'opacity:0.45;cursor:default' : 'cursor:pointer';
+    return `<div class="overview-card" ${clickable} style="${style}">
+      <div class="overview-card-art" style="background:#0A0A0A;flex-direction:column;gap:6px">
+        <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:800;font-size:28px;color:rgba(255,255,255,0.08);letter-spacing:-0.02em">${c.name[0]}</div>
+        <span style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:${isSoon ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,100,0.12)'};color:${isSoon ? '#555' : '#00C864'};border:1px solid ${isSoon ? 'rgba(255,255,255,0.08)' : 'rgba(0,200,100,0.2)'}">${c.status}</span>
+      </div>
+      <div class="overview-card-label">${c.name}</div>
+    </div>`;
+  }).join('');
+}
 function navigate(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById(pageId);
@@ -1325,6 +1680,8 @@ function navigate(pageId) {
   topLinks.forEach(l => l.classList.remove('active'));
   if (['page-color','page-typography','page-breakpoints','page-tokens','page-foundation'].includes(pageId)) {
     topLinks[0].classList.add('active');
+  } else if (pageId === 'page-components' || TDS_CONFIG.components.some(c => c.pageId === pageId)) {
+    topLinks[1].classList.add('active');
   }
 
   // draw hero canvas for page
@@ -1476,6 +1833,7 @@ function drawHero(pageId) {
 
 /* ─────────────────── INIT ─────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
+  renderAll();
   navigate('page-foundation');
   setTimeout(() => drawHero('page-foundation'), 100);
 });
@@ -1484,6 +1842,7 @@ window.addEventListener('resize', () => {
   const activePage = document.querySelector('.page.active');
   if (activePage) drawHero(activePage.id);
 });
+
 </script>
 </body>
 </html>
