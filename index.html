@@ -1,1625 +1,2629 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDS — TVING Design System</title>
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
-<style>
-/* ─────────────────────────────────────────
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDS — TVING Design System</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    rel="stylesheet">
+  <style>
+    /* ─────────────────────────────────────────
    TOKENS
 ───────────────────────────────────────── */
-:root {
-  --red:        #FF153C;
-  --red-dim:    rgba(255,21,60,0.1);
-  --red-mid:    rgba(255,21,60,0.2);
-  --bg:         #141414;
-  --bg-sidebar: #0F0F0F;
-  --bg-card:    #1C1C1C;
-  --bg-hover:   #222222;
-  --bg-active:  #1A1A1A;
-  --border:     rgba(255,255,255,0.08);
-  --border-md:  rgba(255,255,255,0.14);
-  --white:      #FFFFFF;
-  --g90:        #E8E8E8;
-  --g70:        #B0B0B0;
-  --g50:        #777777;
-  --g30:        #444444;
-  --g15:        #282828;
-  --mono:       'Pretendard Variable', Pretendard, sans-serif;
-  --sans:       'Pretendard Variable', Pretendard, sans-serif;
-  --syne:       'Pretendard Variable', Pretendard, sans-serif;
-  --sidebar:    240px;
-  --topbar:     52px;
-  --transition: 0.15s ease;
-}
+    :root {
+      --red: #FF153C;
+      --red-dim: rgba(255, 21, 60, 0.1);
+      --red-mid: rgba(255, 21, 60, 0.2);
+      --bg: #141414;
+      --bg-sidebar: #0F0F0F;
+      --bg-card: #1C1C1C;
+      --bg-hover: #222222;
+      --bg-active: #1A1A1A;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-md: rgba(255, 255, 255, 0.14);
+      --white: #FFFFFF;
+      --g90: #E8E8E8;
+      --g70: #B0B0B0;
+      --g50: #777777;
+      --g30: #444444;
+      --g15: #282828;
+      --mono: 'Pretendard Variable', Pretendard, sans-serif;
+      --sans: 'Pretendard Variable', Pretendard, sans-serif;
+      --syne: 'Pretendard Variable', Pretendard, sans-serif;
+      --sidebar: 240px;
+      --topbar: 52px;
+      --transition: 0.15s ease;
+    }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 14px; }
-body { background: var(--bg); color: var(--g90); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-::-webkit-scrollbar { width: 3px; height: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--g30); border-radius: 2px; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 14px;
+    }
 
-/* ─────────────────────────────────────────
+    body {
+      background: var(--bg);
+      color: var(--g90);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--g30);
+      border-radius: 2px;
+    }
+
+    /* ─────────────────────────────────────────
    LAYOUT
 ───────────────────────────────────────── */
-.app { display: flex; min-height: 100vh; }
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
 
-/* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
    TOPBAR
 ───────────────────────────────────────── */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; height: var(--topbar);
-  background: rgba(15,15,15,0.92); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; z-index: 100;
-  padding: 0 20px 0 0;
-}
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--topbar);
+      background: rgba(15, 15, 15, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      padding: 0 20px 0 0;
+    }
 
-.topbar-logo {
-  width: var(--sidebar); flex-shrink: 0;
-  display: flex; align-items: center; gap: 10px;
-  padding: 0 20px; height: 100%;
-  border-right: 1px solid var(--border);
-}
+    .topbar-logo {
+      width: var(--sidebar);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px;
+      height: 100%;
+      border-right: 1px solid var(--border);
+    }
 
-.logo-wordmark {
-  display: flex;
-  align-items: center;
-}
-.logo-wordmark span { color: var(--red); }
+    .logo-wordmark {
+      display: flex;
+      align-items: center;
+    }
 
-.logo-ver {
-  font-family: var(--mono); font-size: 9px; color: var(--g50);
-  letter-spacing: 0.08em;
-  background: var(--bg-card); border: 1px solid var(--border);
-  padding: 2px 6px; border-radius: 3px;
-}
+    .logo-wordmark span {
+      color: var(--red);
+    }
 
-.topbar-nav {
-  display: flex; align-items: center; gap: 2px;
-  margin-left: 28px; flex: 1;
-}
+    .logo-ver {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--g50);
+      letter-spacing: 0.08em;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
 
-.topbar-link {
-  font-size: 13px; font-weight: 400; color: var(--g70);
-  padding: 6px 14px; border-radius: 6px;
-  transition: var(--transition);
-  font-family: var(--sans);
-}
-.topbar-link:hover { color: var(--white); background: var(--bg-hover); }
-.topbar-link.active { color: var(--white); }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: 28px;
+      flex: 1;
+    }
 
-.topbar-right {
-  display: flex; align-items: center; gap: 10px; margin-left: auto;
-}
+    .topbar-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--g70);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: var(--transition);
+      font-family: var(--sans);
+    }
 
-.topbar-search {
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 14px; border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--g50); font-size: 12px; font-family: var(--mono);
-  transition: var(--transition); cursor: pointer;
-}
-.topbar-search:hover { border-color: var(--border-md); color: var(--g70); }
-.topbar-search kbd { font-size: 10px; opacity: 0.5; }
+    .topbar-link:hover {
+      color: var(--white);
+      background: var(--bg-hover);
+    }
 
-.theme-toggle {
-  display: flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 6px;
-  border: 1px solid var(--border); background: var(--bg-card);
-  font-size: 12px; color: var(--g70); font-family: var(--mono);
-  transition: var(--transition);
-}
-.theme-toggle:hover { border-color: var(--border-md); color: var(--white); }
+    .topbar-link.active {
+      color: var(--white);
+    }
 
-/* ─────────────────────────────────────────
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .topbar-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--g50);
+      font-size: 12px;
+      font-family: var(--mono);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .topbar-search:hover {
+      border-color: var(--border-md);
+      color: var(--g70);
+    }
+
+    .topbar-search kbd {
+      font-size: 10px;
+      opacity: 0.5;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-size: 12px;
+      color: var(--g70);
+      font-family: var(--mono);
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--border-md);
+      color: var(--white);
+    }
+
+    /* ─────────────────────────────────────────
    SIDEBAR
 ───────────────────────────────────────── */
-.sidebar {
-  width: var(--sidebar); flex-shrink: 0;
-  position: fixed; top: var(--topbar); bottom: 0; left: 0;
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border);
-  overflow-y: auto; overflow-x: hidden;
-  z-index: 50;
-}
+    .sidebar {
+      width: var(--sidebar);
+      flex-shrink: 0;
+      position: fixed;
+      top: var(--topbar);
+      bottom: 0;
+      left: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 50;
+    }
 
-.nav-group { padding: 16px 0 8px; }
-.nav-group + .nav-group { border-top: 1px solid var(--border); }
+    .nav-group {
+      padding: 16px 0 8px;
+    }
 
-.nav-group-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 16px; cursor: pointer;
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--g50);
-  transition: var(--transition);
-}
-.nav-group-header:hover { color: var(--g70); }
+    .nav-group+.nav-group {
+      border-top: 1px solid var(--border);
+    }
 
-.nav-group-header .chevron {
-  width: 14px; height: 14px; transition: transform 0.2s ease;
-  color: var(--g30);
-}
-.nav-group.open .chevron { transform: rotate(90deg); }
+    .nav-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--g50);
+      transition: var(--transition);
+    }
 
-.nav-group-items { overflow: hidden; max-height: 600px; transition: max-height 0.25s ease; }
-.nav-group:not(.open) .nav-group-items { max-height: 0; }
+    .nav-group-header:hover {
+      color: var(--g70);
+    }
 
-.nav-item {
-  position: relative;
-}
+    .nav-group-header .chevron {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+      color: var(--g30);
+    }
 
-.nav-item-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 7px 16px; cursor: pointer;
-  font-size: 13px; color: var(--g70);
-  transition: var(--transition); border-radius: 0;
-}
-.nav-item-header:hover { color: var(--white); background: rgba(255,255,255,0.03); }
-.nav-item-header.active { color: var(--white); background: var(--red-dim); }
-.nav-item-header.active::before {
-  content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
-  width: 2px; background: var(--red); border-radius: 0 2px 2px 0;
-}
+    .nav-group.open .chevron {
+      transform: rotate(90deg);
+    }
 
-.nav-item-chevron {
-  width: 12px; height: 12px; color: var(--g30); transition: transform 0.18s;
-  flex-shrink: 0;
-}
-.nav-item.open .nav-item-chevron { transform: rotate(90deg); }
+    .nav-group-items {
+      overflow: hidden;
+      max-height: 600px;
+      transition: max-height 0.25s ease;
+    }
 
-.nav-sub { overflow: hidden; max-height: 0; transition: max-height 0.25s ease; }
-.nav-sub.open { max-height: 300px; }
+    .nav-group:not(.open) .nav-group-items {
+      max-height: 0;
+    }
 
-.nav-sub-item {
-  display: block; padding: 5px 16px 5px 30px;
-  font-size: 12px; color: var(--g50);
-  transition: var(--transition); cursor: pointer;
-}
-.nav-sub-item:hover { color: var(--g70); background: rgba(255,255,255,0.02); }
-.nav-sub-item.active { color: var(--white); }
+    .nav-item {
+      position: relative;
+    }
 
-.nav-status {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
-  padding: 2px 5px; border-radius: 3px; flex-shrink: 0;
-}
-.nav-status.stable { background: rgba(0,200,100,0.12); color: #00C864; border: 1px solid rgba(0,200,100,0.2); }
-.nav-status.beta { background: rgba(255,180,0,0.12); color: #FFB400; border: 1px solid rgba(255,180,0,0.2); }
-.nav-status.soon { background: var(--bg-card); color: var(--g50); border: 1px solid var(--border); }
+    .nav-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--g70);
+      transition: var(--transition);
+      border-radius: 0;
+    }
 
-/* ─────────────────────────────────────────
+    .nav-item-header:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-item-header.active {
+      color: var(--white);
+      background: var(--red-dim);
+    }
+
+    .nav-item-header.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--red);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .nav-item-chevron {
+      width: 12px;
+      height: 12px;
+      color: var(--g30);
+      transition: transform 0.18s;
+      flex-shrink: 0;
+    }
+
+    .nav-item.open .nav-item-chevron {
+      transform: rotate(90deg);
+    }
+
+    .nav-sub {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.25s ease;
+    }
+
+    .nav-sub.open {
+      max-height: 300px;
+    }
+
+    .nav-sub-item {
+      display: block;
+      padding: 5px 16px 5px 30px;
+      font-size: 12px;
+      color: var(--g50);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-sub-item:hover {
+      color: var(--g70);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .nav-sub-item.active {
+      color: var(--white);
+    }
+
+    .nav-status {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      padding: 2px 5px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .nav-status.stable {
+      background: rgba(0, 200, 100, 0.12);
+      color: #00C864;
+      border: 1px solid rgba(0, 200, 100, 0.2);
+    }
+
+    .nav-status.beta {
+      background: rgba(255, 180, 0, 0.12);
+      color: #FFB400;
+      border: 1px solid rgba(255, 180, 0, 0.2);
+    }
+
+    .nav-status.soon {
+      background: var(--bg-card);
+      color: var(--g50);
+      border: 1px solid var(--border);
+    }
+
+    /* ─────────────────────────────────────────
    MAIN
 ───────────────────────────────────────── */
-.main {
-  margin-left: var(--sidebar);
-  padding-top: var(--topbar);
-  flex: 1; min-width: 0;
-}
+    .main {
+      margin-left: var(--sidebar);
+      padding-top: var(--topbar);
+      flex: 1;
+      min-width: 0;
+    }
 
-/* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
    PAGE: screen router
 ───────────────────────────────────────── */
-.page { display: none; }
-.page.active { display: block; }
+    .page {
+      display: none;
+    }
 
-/* ─────────────────────────────────────────
+    .page.active {
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
    HERO
 ───────────────────────────────────────── */
-.hero {
-  background: #0A0A0A;
-  height: 220px; overflow: hidden;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-}
+    .hero {
+      background: #0A0A0A;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
 
-.hero-canvas {
-  position: absolute; inset: 0;
-}
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+    }
 
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 40px 48px;
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 48px;
+    }
 
-.hero-breadcrumb {
-  font-family: var(--mono); font-size: 11px;
-  color: var(--g50); letter-spacing: 0.08em;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.hero-breadcrumb .sep { color: var(--g30); }
+    .hero-breadcrumb {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--g50);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.hero-title {
-  font-family: var(--syne); font-weight: 800;
-  font-size: clamp(32px, 3.5vw, 48px);
-  color: var(--white); letter-spacing: -0.02em;
-  display: flex; align-items: center; gap: 14px;
-  line-height: 1.1;
-}
+    .hero-breadcrumb .sep {
+      color: var(--g30);
+    }
 
-.hero-badge {
-  font-family: var(--mono); font-size: 10px; font-weight: 400;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 4px;
-  align-self: flex-end; margin-bottom: 4px;
-}
-.hero-badge.stable { background: rgba(0,200,100,0.15); color: #00C864; border: 1px solid rgba(0,200,100,0.25); }
-.hero-badge.beta { background: rgba(255,180,0,0.15); color: #FFB400; border: 1px solid rgba(255,180,0,0.25); }
+    .hero-title {
+      font-family: var(--syne);
+      font-weight: 800;
+      font-size: clamp(32px, 3.5vw, 48px);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      line-height: 1.1;
+    }
 
-.hero-desc {
-  margin-top: 12px; font-size: 13px; color: var(--g70); max-width: 480px;
-  font-weight: 300; line-height: 1.7;
-}
+    .hero-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      align-self: flex-end;
+      margin-bottom: 4px;
+    }
 
-/* ─────────────────────────────────────────
+    .hero-badge.stable {
+      background: rgba(0, 200, 100, 0.15);
+      color: #00C864;
+      border: 1px solid rgba(0, 200, 100, 0.25);
+    }
+
+    .hero-badge.beta {
+      background: rgba(255, 180, 0, 0.15);
+      color: #FFB400;
+      border: 1px solid rgba(255, 180, 0, 0.25);
+    }
+
+    .hero-desc {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--g70);
+      max-width: 480px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ─────────────────────────────────────────
    TABS
 ───────────────────────────────────────── */
-.tabs-bar {
-  display: flex; align-items: center; gap: 0;
-  border-bottom: 1px solid var(--border);
-  padding: 0 48px;
-  background: var(--bg);
-  position: sticky; top: var(--topbar); z-index: 20;
-}
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      background: var(--bg);
+      position: sticky;
+      top: var(--topbar);
+      z-index: 20;
+    }
 
-.tab-btn {
-  font-size: 13px; color: var(--g50); padding: 14px 18px;
-  border-bottom: 2px solid transparent; margin-bottom: -1px;
-  transition: var(--transition); font-family: var(--sans);
-  white-space: nowrap;
-}
-.tab-btn:hover { color: var(--g90); }
-.tab-btn.active { color: var(--white); border-bottom-color: var(--red); }
+    .tab-btn {
+      font-size: 13px;
+      color: var(--g50);
+      padding: 14px 18px;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: var(--transition);
+      font-family: var(--sans);
+      white-space: nowrap;
+    }
 
-/* ─────────────────────────────────────────
+    .tab-btn:hover {
+      color: var(--g90);
+    }
+
+    .tab-btn.active {
+      color: var(--white);
+      border-bottom-color: var(--red);
+    }
+
+    /* ─────────────────────────────────────────
    CONTENT AREA
 ───────────────────────────────────────── */
-.content { padding: 40px 48px 80px; max-width: 1080px; }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+    .content {
+      padding: 40px 48px 80px;
+      max-width: 1080px;
+    }
 
-/* ─────────────────────────────────────────
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
    SECTION
 ───────────────────────────────────────── */
-.section { margin-bottom: 52px; }
+    .section {
+      margin-bottom: 52px;
+    }
 
-.section-label {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--g50);
-  margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
-}
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--g50);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.section-title {
-  font-family: var(--syne); font-weight: 700; font-size: 20px;
-  color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px;
-}
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
-.section-desc {
-  font-size: 13px; color: var(--g70); line-height: 1.7;
-  max-width: 560px; font-weight: 300; margin-bottom: 24px;
-}
+    .section-title {
+      font-family: var(--syne);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
 
-/* ─────────────────────────────────────────
+    .section-desc {
+      font-size: 13px;
+      color: var(--g70);
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    /* ─────────────────────────────────────────
    OVERVIEW GRID (like Uber's component cards)
 ───────────────────────────────────────── */
-.overview-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-  margin-bottom: 48px;
-}
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 48px;
+    }
 
-.overview-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 10px; overflow: hidden; cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.overview-card:hover { border-color: var(--border-md); transform: translateY(-2px); }
+    .overview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
 
-.overview-card-art {
-  height: 140px; position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
+    .overview-card:hover {
+      border-color: var(--border-md);
+      transform: translateY(-2px);
+    }
 
-.overview-card-label {
-  padding: 14px 18px 16px;
-  font-family: var(--syne); font-weight: 600; font-size: 15px;
-  color: var(--white);
-}
+    .overview-card-art {
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* ─────────────────────────────────────────
+    .overview-card-label {
+      padding: 14px 18px 16px;
+      font-family: var(--syne);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    /* ─────────────────────────────────────────
    COLOR CHIPS
 ───────────────────────────────────────── */
-.chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
-.chip-grid.compact { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 7px; }
+    .chip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+      gap: 10px;
+    }
 
-.chip {
-  border-radius: 6px; overflow: hidden; cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.chip:hover { transform: translateY(-3px); box-shadow: 0 10px 30px -8px rgba(0,0,0,0.5); }
-.chip:active { transform: translateY(0); }
+    .chip-grid.compact {
+      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: 7px;
+    }
 
-.chip-swatch { height: 56px; }
-.chip-swatch.sm { height: 40px; }
+    .chip {
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
 
-.chip-meta {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-top: none; padding: 8px 10px;
-}
-.chip-name { font-family: var(--mono); font-size: 9px; color: var(--g70); letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.chip-hex { font-family: var(--mono); font-size: 9px; color: var(--g30); margin-top: 2px; }
+    .chip:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.5);
+    }
 
-/* ─────────────────────────────────────────
+    .chip:active {
+      transform: translateY(0);
+    }
+
+    .chip-swatch {
+      height: 56px;
+    }
+
+    .chip-swatch.sm {
+      height: 40px;
+    }
+
+    .chip-meta {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 8px 10px;
+    }
+
+    .chip-name {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--g70);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chip-hex {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--g30);
+      margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────
    OPACITY STRIP
 ───────────────────────────────────────── */
-.opacity-strip { display: flex; gap: 6px; }
-.opacity-cell { flex: 1; }
-.opacity-cell .chip-swatch { height: 36px; border-radius: 4px 4px 0 0; }
-.opacity-cell .chip-meta { border-radius: 0 0 4px 4px; }
+    .opacity-strip {
+      display: flex;
+      gap: 6px;
+    }
 
-/* ─────────────────────────────────────────
+    .opacity-cell {
+      flex: 1;
+    }
+
+    .opacity-cell .chip-swatch {
+      height: 36px;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .opacity-cell .chip-meta {
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* ─────────────────────────────────────────
    GRADIENT CARDS
 ───────────────────────────────────────── */
-.gradient-row { display: flex; gap: 12px; }
-.gradient-card { flex: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-.gradient-swatch { height: 96px; }
-.gradient-meta { padding: 12px 14px; background: var(--bg-card); }
-.gradient-name { font-family: var(--mono); font-size: 10px; color: var(--white); letter-spacing: 0.06em; margin-bottom: 4px; }
-.gradient-val { font-family: var(--mono); font-size: 9px; color: var(--g50); line-height: 1.7; }
+    .gradient-row {
+      display: flex;
+      gap: 12px;
+    }
 
-/* ─────────────────────────────────────────
+    .gradient-card {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .gradient-swatch {
+      height: 96px;
+    }
+
+    .gradient-meta {
+      padding: 12px 14px;
+      background: var(--bg-card);
+    }
+
+    .gradient-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .gradient-val {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--g50);
+      line-height: 1.7;
+    }
+
+    /* ─────────────────────────────────────────
    CONTRAST CHIPS
 ───────────────────────────────────────── */
-.contrast-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.contrast-chip {
-  padding: 12px 16px; border-radius: 6px;
-  font-family: var(--mono); display: flex; flex-direction: column; gap: 3px;
-  min-width: 120px;
-}
-.contrast-chip .ratio { font-size: 20px; font-weight: 500; line-height: 1; }
-.contrast-chip .pair { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.65; }
-.contrast-chip .grade { font-size: 9px; letter-spacing: 0.1em; margin-top: 4px; }
-.grade-pass { color: #00C864; }
-.grade-fail { color: #FF5050; }
+    .contrast-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-/* ─────────────────────────────────────────
+    .contrast-chip {
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 120px;
+    }
+
+    .contrast-chip .ratio {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .contrast-chip .pair {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .contrast-chip .grade {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    .grade-pass {
+      color: #00C864;
+    }
+
+    .grade-fail {
+      color: #FF5050;
+    }
+
+    /* ─────────────────────────────────────────
    TYPOGRAPHY TABLE
 ───────────────────────────────────────── */
-.typo-table { width: 100%; border-collapse: collapse; }
-.typo-table th {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--g50); text-align: left;
-  padding: 0 20px 12px 0; border-bottom: 1px solid var(--border);
-}
-.typo-table td { padding: 13px 20px 13px 0; border-bottom: 1px solid var(--border); vertical-align: middle; }
-.typo-table tr:last-child td { border-bottom: none; }
-.typo-table tr:hover td { background: rgba(255,255,255,0.015); }
+    .typo-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-.t-token { font-family: var(--mono); font-size: 11px; color: var(--g70); white-space: nowrap; }
-.t-spec { font-family: var(--mono); font-size: 10px; color: var(--g50); }
-.t-tag {
-  display: inline-flex; align-items: center;
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 2px 7px; border-radius: 3px;
-}
-.t-tag.bold { background: var(--red-dim); color: var(--red); border: 1px solid var(--red-mid); }
-.t-tag.read { background: var(--bg-card); color: var(--g50); border: 1px solid var(--border); }
+    .typo-table th {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--g50);
+      text-align: left;
+      padding: 0 20px 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-/* ─────────────────────────────────────────
+    .typo-table td {
+      padding: 13px 20px 13px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .typo-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .typo-table tr:hover td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .t-token {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--g70);
+      white-space: nowrap;
+    }
+
+    .t-spec {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g50);
+    }
+
+    .t-tag {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .t-tag.bold {
+      background: var(--red-dim);
+      color: var(--red);
+      border: 1px solid var(--red-mid);
+    }
+
+    .t-tag.read {
+      background: var(--bg-card);
+      color: var(--g50);
+      border: 1px solid var(--border);
+    }
+
+    /* ─────────────────────────────────────────
    BREAKPOINT BARS
 ───────────────────────────────────────── */
-.bp-list { display: flex; flex-direction: column; gap: 8px; }
-.bp-row {
-  display: grid; grid-template-columns: 130px 70px 1fr 200px;
-  align-items: center; gap: 20px;
-  padding: 14px 20px; background: var(--bg-card);
-  border: 1px solid var(--border); border-radius: 8px;
-  transition: border-color 0.15s;
-}
-.bp-row:hover { border-color: var(--border-md); }
-.bp-name { font-family: var(--syne); font-size: 13px; font-weight: 600; color: var(--white); }
-.bp-range { font-family: var(--mono); font-size: 10px; color: var(--red); }
-.bp-bar { height: 3px; background: var(--g15); border-radius: 2px; overflow: hidden; }
-.bp-fill { height: 100%; background: linear-gradient(90deg, var(--red), rgba(255,21,60,0.3)); border-radius: 2px; }
-.bp-cols { display: flex; gap: 6px; align-items: center; }
-.bp-badge {
-  font-family: var(--mono); font-size: 9px; color: var(--g70);
-  background: var(--bg); border: 1px solid var(--border); padding: 3px 8px; border-radius: 3px;
-}
-.bp-x { font-size: 9px; color: var(--g30); }
+    .bp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-/* ─────────────────────────────────────────
+    .bp-row {
+      display: grid;
+      grid-template-columns: 130px 70px 1fr 200px;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.15s;
+    }
+
+    .bp-row:hover {
+      border-color: var(--border-md);
+    }
+
+    .bp-name {
+      font-family: var(--syne);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .bp-range {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--red);
+    }
+
+    .bp-bar {
+      height: 3px;
+      background: var(--g15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .bp-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), rgba(255, 21, 60, 0.3));
+      border-radius: 2px;
+    }
+
+    .bp-cols {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .bp-badge {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--g70);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .bp-x {
+      font-size: 9px;
+      color: var(--g30);
+    }
+
+    /* ─────────────────────────────────────────
    CODE BLOCK
 ───────────────────────────────────────── */
-.code-block { background: #0A0A0A; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 16px; }
-.code-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 18px; border-bottom: 1px solid var(--border);
-  background: rgba(255,255,255,0.02);
-}
-.code-lang { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--g50); }
-.code-copy {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 3px; border: 1px solid var(--border); color: var(--g50);
-  transition: var(--transition);
-}
-.code-copy:hover { color: var(--white); border-color: var(--border-md); }
-.code-body { padding: 20px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.85; color: var(--g70); overflow-x: auto; white-space: pre; }
-.c-cmt { color: var(--g30); }
-.c-prop { color: #7EC8E3; }
-.c-val { color: #A8E6A3; }
-.c-red { color: #FF8FAB; }
-.c-num { color: #FFD580; }
+    .code-block {
+      background: #0A0A0A;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
 
-/* ─────────────────────────────────────────
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .code-lang {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--g50);
+    }
+
+    .code-copy {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--g50);
+      transition: var(--transition);
+    }
+
+    .code-copy:hover {
+      color: var(--white);
+      border-color: var(--border-md);
+    }
+
+    .code-body {
+      padding: 20px 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.85;
+      color: var(--g70);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .c-cmt {
+      color: var(--g30);
+    }
+
+    .c-prop {
+      color: #7EC8E3;
+    }
+
+    .c-val {
+      color: #A8E6A3;
+    }
+
+    .c-red {
+      color: #FF8FAB;
+    }
+
+    .c-num {
+      color: #FFD580;
+    }
+
+    /* ─────────────────────────────────────────
    USAGE CALLOUT
 ───────────────────────────────────────── */
-.callout {
-  display: flex; gap: 14px; padding: 16px 20px;
-  border-radius: 8px; margin: 20px 0;
-  border: 1px solid;
-}
-.callout.info { background: rgba(0,149,255,0.06); border-color: rgba(0,149,255,0.2); }
-.callout.warn { background: rgba(255,180,0,0.06); border-color: rgba(255,180,0,0.2); }
-.callout.danger { background: rgba(255,21,60,0.06); border-color: rgba(255,21,60,0.2); }
-.callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.callout-text { font-size: 13px; color: var(--g70); line-height: 1.65; }
-.callout-text strong { color: var(--white); font-weight: 500; }
+    .callout {
+      display: flex;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 1px solid;
+    }
 
-/* ─────────────────────────────────────────
+    .callout.info {
+      background: rgba(0, 149, 255, 0.06);
+      border-color: rgba(0, 149, 255, 0.2);
+    }
+
+    .callout.warn {
+      background: rgba(255, 180, 0, 0.06);
+      border-color: rgba(255, 180, 0, 0.2);
+    }
+
+    .callout.danger {
+      background: rgba(255, 21, 60, 0.06);
+      border-color: rgba(255, 21, 60, 0.2);
+    }
+
+    .callout-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .callout-text {
+      font-size: 13px;
+      color: var(--g70);
+      line-height: 1.65;
+    }
+
+    .callout-text strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    /* ─────────────────────────────────────────
    DO / DON'T
 ───────────────────────────────────────── */
-.dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
-.dos-donts-card { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-.dd-header {
-  padding: 10px 16px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
-  text-transform: uppercase; display: flex; align-items: center; gap: 8px;
-}
-.dd-header.do { background: rgba(0,200,100,0.08); color: #00C864; border-bottom: 1px solid rgba(0,200,100,0.15); }
-.dd-header.dont { background: rgba(255,21,60,0.08); color: var(--red); border-bottom: 1px solid var(--red-mid); }
-.dd-body { padding: 16px; font-size: 13px; color: var(--g70); line-height: 1.65; background: var(--bg-card); }
+    .dos-donts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
 
-/* ─────────────────────────────────────────
+    .dos-donts-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .dd-header {
+      padding: 10px 16px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dd-header.do {
+      background: rgba(0, 200, 100, 0.08);
+      color: #00C864;
+      border-bottom: 1px solid rgba(0, 200, 100, 0.15);
+    }
+
+    .dd-header.dont {
+      background: rgba(255, 21, 60, 0.08);
+      color: var(--red);
+      border-bottom: 1px solid var(--red-mid);
+    }
+
+    .dd-body {
+      padding: 16px;
+      font-size: 13px;
+      color: var(--g70);
+      line-height: 1.65;
+      background: var(--bg-card);
+    }
+
+    /* ─────────────────────────────────────────
    SPEC TABLE
 ───────────────────────────────────────── */
-.spec-table { width: 100%; border-collapse: collapse; }
-.spec-table th {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--g50); text-align: left;
-  padding: 0 20px 10px 0; border-bottom: 1px solid var(--border);
-}
-.spec-table td { padding: 11px 20px 11px 0; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
-.spec-table tr:last-child td { border-bottom: none; }
-.spec-table code { font-family: var(--mono); font-size: 11px; background: var(--bg-card); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; color: var(--g70); }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-/* ─────────────────────────────────────────
+    .spec-table th {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--g50);
+      text-align: left;
+      padding: 0 20px 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-table td {
+      padding: 11px 20px 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    .spec-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .spec-table code {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 3px;
+      color: var(--g70);
+    }
+
+    /* ─────────────────────────────────────────
    DIVIDER
 ───────────────────────────────────────── */
-.divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
 
-/* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
    HERO ARTWORK – CSS-drawn
 ───────────────────────────────────────── */
-.art-color { /* color page hero */ }
-.art-typo  { /* typo page hero */ }
-.art-bp    { /* breakpoint hero */ }
+    .art-color {
+      /* color page hero */
+    }
 
-/* ─────────────────────────────────────────
+    .art-typo {
+      /* typo page hero */
+    }
+
+    .art-bp {
+      /* breakpoint hero */
+    }
+
+    /* ─────────────────────────────────────────
    TOAST
 ───────────────────────────────────────── */
-.toast {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(8px);
-  background: var(--bg-card); border: 1px solid var(--border-md);
-  padding: 10px 20px; border-radius: 6px; font-family: var(--mono);
-  font-size: 12px; color: var(--white); letter-spacing: 0.05em;
-  opacity: 0; transition: opacity 0.2s, transform 0.2s;
-  pointer-events: none; z-index: 999; white-space: nowrap;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: var(--bg-card);
+      border: 1px solid var(--border-md);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+    }
 
-/* ─────────────────────────────────────────
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ─────────────────────────────────────────
    SEARCH OVERLAY
 ───────────────────────────────────────── */
-.search-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
-  z-index: 200; display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 120px; opacity: 0; pointer-events: none; transition: opacity 0.2s;
-}
-.search-overlay.open { opacity: 1; pointer-events: all; }
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 120px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
 
-.search-box {
-  width: 560px; background: var(--bg-card); border: 1px solid var(--border-md);
-  border-radius: 12px; overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-}
+    .search-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-.search-input-row { display: flex; align-items: center; gap: 12px; padding: 16px 20px; }
-.search-icon { color: var(--g50); font-size: 16px; }
-.search-input {
-  flex: 1; background: none; border: none; outline: none;
-  font-size: 15px; color: var(--white); font-family: var(--sans);
-}
-.search-input::placeholder { color: var(--g30); }
-.search-esc {
-  font-family: var(--mono); font-size: 10px; color: var(--g30);
-  background: var(--bg); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px;
-}
-.search-results { border-top: 1px solid var(--border); max-height: 320px; overflow-y: auto; }
-.search-result-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 20px; cursor: pointer; transition: background 0.1s;
-}
-.search-result-item:hover { background: rgba(255,255,255,0.04); }
-.result-icon { width: 32px; height: 32px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-.result-text .r-name { font-size: 13px; color: var(--white); }
-.result-text .r-cat { font-family: var(--mono); font-size: 10px; color: var(--g50); letter-spacing: 0.08em; margin-top: 2px; }
+    .search-box {
+      width: 560px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+    }
 
-/* ─────────────────────────────────────────
+    .search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+    }
+
+    .search-icon {
+      color: var(--g50);
+      font-size: 16px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      color: var(--white);
+      font-family: var(--sans);
+    }
+
+    .search-input::placeholder {
+      color: var(--g30);
+    }
+
+    .search-esc {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g30);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .search-results {
+      border-top: 1px solid var(--border);
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .search-result-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .result-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .result-text .r-name {
+      font-size: 13px;
+      color: var(--white);
+    }
+
+    .result-text .r-cat {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g50);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
-@media (max-width: 900px) {
-  .sidebar { transform: translateX(-100%); }
-  .main { margin-left: 0; }
-  .topbar-logo { width: auto; border-right: none; }
-  .content { padding: 28px 20px 60px; }
-  .tabs-bar { padding: 0 20px; overflow-x: auto; }
-  .bp-row { grid-template-columns: 1fr 1fr; }
-  .overview-grid { grid-template-columns: 1fr 1fr; }
-  .dos-donts { grid-template-columns: 1fr; }
-}
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
 
-/* ─────────────────────────────────────────
+      .main {
+        margin-left: 0;
+      }
+
+      .topbar-logo {
+        width: auto;
+        border-right: none;
+      }
+
+      .content {
+        padding: 28px 20px 60px;
+      }
+
+      .tabs-bar {
+        padding: 0 20px;
+        overflow-x: auto;
+      }
+
+      .bp-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dos-donts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─────────────────────────────────────────
    ANIMATIONS
 ───────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.page.active .content > * {
-  animation: fadeUp 0.4s ease both;
-}
-.page.active .content > *:nth-child(1) { animation-delay: 0.00s; }
-.page.active .content > *:nth-child(2) { animation-delay: 0.04s; }
-.page.active .content > *:nth-child(3) { animation-delay: 0.08s; }
-.page.active .content > *:nth-child(4) { animation-delay: 0.12s; }
-.page.active .content > *:nth-child(5) { animation-delay: 0.16s; }
-.page.active .content > *:nth-child(6) { animation-delay: 0.20s; }
-</style>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page.active .content>* {
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .page.active .content>*:nth-child(1) {
+      animation-delay: 0.00s;
+    }
+
+    .page.active .content>*:nth-child(2) {
+      animation-delay: 0.04s;
+    }
+
+    .page.active .content>*:nth-child(3) {
+      animation-delay: 0.08s;
+    }
+
+    .page.active .content>*:nth-child(4) {
+      animation-delay: 0.12s;
+    }
+
+    .page.active .content>*:nth-child(5) {
+      animation-delay: 0.16s;
+    }
+
+    .page.active .content>*:nth-child(6) {
+      animation-delay: 0.20s;
+    }
+  </style>
 </head>
+
 <body>
-<body>
 
-<!-- ───── TOAST ───── -->
-<div class="toast" id="toast"></div>
+  <body>
 
-<!-- ───── SEARCH OVERLAY ───── -->
-<div class="search-overlay" id="searchOverlay">
-  <div class="search-box">
-    <div class="search-input-row">
-      <span class="search-icon">⌕</span>
-      <input class="search-input" id="searchInput" placeholder="Foundation, Components 검색…">
-      <span class="search-esc">ESC</span>
-    </div>
-    <div class="search-results">
-      <div class="search-result-item" onclick="navigate('page-color'); closeSearch()">
-        <div class="result-icon">🎨</div>
-        <div class="result-text"><div class="r-name">Color</div><div class="r-cat">Foundation</div></div>
-      </div>
-      <div class="search-result-item" onclick="navigate('page-typography'); closeSearch()">
-        <div class="result-icon">Aa</div>
-        <div class="result-text"><div class="r-name">Typography</div><div class="r-cat">Foundation</div></div>
-      </div>
-      <div class="search-result-item" onclick="navigate('page-breakpoints'); closeSearch()">
-        <div class="result-icon">⊞</div>
-        <div class="result-text"><div class="r-name">Breakpoints</div><div class="r-cat">Foundation</div></div>
-      </div>
-      <div class="search-result-item" onclick="navigate('page-tokens'); closeSearch()">
-        <div class="result-icon">{}</div>
-        <div class="result-text"><div class="r-name">Design Tokens</div><div class="r-cat">Foundation</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- ───── TOAST ───── -->
+    <div class="toast" id="toast"></div>
 
-<!-- ───── TOPBAR ───── -->
-<header class="topbar">
-  <div class="topbar-logo">
-    <div class="logo-wordmark">
-      <svg width="88" height="11" viewBox="0 0 175 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16.996 0L12.9806 12.9966C12.9559 13.0781 12.9041 13.1476 12.8344 13.1926C12.7647 13.2375 12.6819 13.255 12.6009 13.2417C12.5199 13.2285 12.4462 13.1854 12.3931 13.1204C12.34 13.0553 12.3111 12.9726 12.3116 12.8872V0H0V5.84612H5.94981V19.5921H17.6421L24 0H16.996Z" fill="#FF153C"/>
-        <path d="M158.758 16.6667V6.06122H161.883V7.99481H162C162.449 6.70575 163.543 5.9245 165.008 5.9245C166.473 5.9245 167.605 6.72528 167.879 7.99481H167.996C168.406 6.74481 169.637 5.9245 171.199 5.9245C173.191 5.9245 174.578 7.27216 174.578 9.51825V16.6667H171.277V10.2604C171.277 9.18622 170.652 8.60028 169.773 8.60028C168.816 8.60028 168.25 9.28387 168.25 10.2995V16.6667H165.086V10.2214C165.086 9.22528 164.48 8.60028 163.602 8.60028C162.684 8.60028 162.059 9.30341 162.059 10.3776V16.6667H158.758Z" fill="white"/>
-        <path d="M152.059 16.862C148.738 16.862 146.707 14.7917 146.707 11.4128C146.707 8.13153 148.758 5.9245 151.941 5.9245C154.91 5.9245 157.059 7.81903 157.059 11.3347V12.1745H149.949V12.2331C149.949 13.6003 150.789 14.4792 152.117 14.4792C153.016 14.4792 153.68 14.0886 153.953 13.4636H157.02C156.629 15.5339 154.812 16.862 152.059 16.862ZM149.949 10.2409H153.992C153.973 9.10809 153.152 8.30731 152.02 8.30731C150.848 8.30731 149.998 9.13739 149.949 10.2409Z" fill="white"/>
-        <path d="M145.535 6.06122V8.48309H143.602V13.3464C143.602 14.0104 143.934 14.2057 144.5 14.2253C144.773 14.2448 145.301 14.2057 145.672 14.1862V16.7057C145.359 16.7448 144.812 16.8229 144.031 16.8229C141.707 16.8229 140.301 15.8659 140.32 13.7175V8.48309H138.895V6.06122H140.32V3.52216H143.602V6.06122H145.535Z" fill="white"/>
-        <path d="M134.676 9.34247C134.578 8.63934 133.953 8.19012 133.074 8.19012C132.254 8.19012 131.609 8.56122 131.629 9.10809C131.609 9.51825 131.922 9.85028 132.84 10.0261L134.852 10.4167C136.961 10.8268 137.977 11.7448 137.996 13.2878C137.977 15.4557 135.984 16.862 133.113 16.862C130.086 16.862 128.309 15.5143 128.094 13.405H131.375C131.492 14.1667 132.156 14.5768 133.133 14.5768C134.031 14.5768 134.637 14.2253 134.656 13.6393C134.637 13.1706 134.227 12.8776 133.309 12.6823L131.492 12.3503C129.402 11.9597 128.348 10.905 128.367 9.28387C128.348 7.1745 130.145 5.9245 133.016 5.9245C135.867 5.9245 137.605 7.23309 137.742 9.34247H134.676Z" fill="white"/>
-        <path d="M118.992 20.6511C118.367 20.6511 117.781 20.6315 117.352 20.5925V18.0925C117.781 18.1315 118.25 18.1315 118.641 18.1315C119.188 18.1315 119.598 18.0729 119.891 17.3698L120.008 17.0378L116.238 6.06122H119.676L121.688 13.6784H121.805L123.816 6.06122H127.293L123.27 17.7018C122.684 19.4401 121.473 20.6511 118.992 20.6511Z" fill="white"/>
-        <path d="M111.98 6.72528C111.902 5.69012 111.141 5.08466 109.773 5.08466C108.426 5.08466 107.742 5.67059 107.723 6.47137C107.703 7.35028 108.562 7.77997 109.832 8.05341L111.062 8.34637C113.777 8.95184 115.359 10.2995 115.379 12.5651C115.359 15.2409 113.289 16.862 109.773 16.862C106.258 16.862 103.973 15.2604 103.914 12.0182H107.117C107.195 13.3854 108.211 14.0886 109.734 14.0886C111.141 14.0886 111.98 13.4636 112 12.5651C111.98 11.7448 111.258 11.3151 109.695 10.9636L108.211 10.612C105.77 10.0456 104.285 8.83466 104.285 6.70575C104.266 4.08856 106.59 2.33075 109.793 2.33075C113.055 2.33075 115.145 4.10809 115.184 6.72528H111.98Z" fill="white"/>
-        <path d="M90.9453 10.5925V16.6667H87.6445V6.06122H90.7695V7.99481H90.8867C91.375 6.70575 92.5469 5.9245 94.1094 5.9245C96.3359 5.9245 97.8008 7.50653 97.7812 9.90887V16.6667H94.5V10.5339C94.5 9.34247 93.8555 8.61981 92.7617 8.61981C91.668 8.61981 90.9453 9.362 90.9453 10.5925Z" fill="white"/>
-        <path d="M80.2031 20.8659C77.1562 20.8659 75.3398 19.4792 75.1836 17.4675H78.3867C78.5234 18.2292 79.2461 18.5612 80.2812 18.5612C81.4727 18.5612 82.293 18.0729 82.293 16.6862V14.8112H82.1758C81.7656 15.7682 80.75 16.53 79.168 16.53C76.8242 16.53 74.9102 14.9089 74.9102 11.3347C74.9102 7.62372 76.9219 5.9245 79.1484 5.9245C80.8477 5.9245 81.7656 6.92059 82.1562 7.87762H82.2539V6.06122H85.5352V16.7253C85.5352 19.4206 83.3672 20.8659 80.2031 20.8659ZM80.2812 14.1081C81.5508 14.1081 82.293 13.0729 82.293 11.3347C82.293 9.59637 81.5703 8.50262 80.2812 8.50262C78.9922 8.50262 78.2891 9.63544 78.2891 11.3347C78.2891 13.0729 79.0117 14.1081 80.2812 14.1081Z" fill="white"/>
-        <path d="M69.8711 16.6667V6.06122H73.1719V16.6667H69.8711ZM71.5312 4.79169C70.5938 4.79169 69.832 4.08856 69.832 3.20966C69.832 2.33075 70.5938 1.62762 71.5312 1.62762C72.4688 1.62762 73.25 2.33075 73.25 3.20966C73.25 4.08856 72.4688 4.79169 71.5312 4.79169Z" fill="white"/>
-        <path d="M64.9297 9.34247C64.832 8.63934 64.207 8.19012 63.3281 8.19012C62.5078 8.19012 61.8633 8.56122 61.8828 9.10809C61.8633 9.51825 62.1758 9.85028 63.0938 10.0261L65.1055 10.4167C67.2148 10.8268 68.2305 11.7448 68.25 13.2878C68.2305 15.4557 66.2383 16.862 63.3672 16.862C60.3398 16.862 58.5625 15.5143 58.3477 13.405H61.6289C61.7461 14.1667 62.4102 14.5768 63.3867 14.5768C64.2852 14.5768 64.8906 14.2253 64.9102 13.6393C64.8906 13.1706 64.4805 12.8776 63.5625 12.6823L61.7461 12.3503C59.6562 11.9597 58.6016 10.905 58.6211 9.28387C58.6016 7.1745 60.3984 5.9245 63.2695 5.9245C66.1211 5.9245 67.8594 7.23309 67.9961 9.34247H64.9297Z" fill="white"/>
-        <path d="M52.1172 16.862C48.7969 16.862 46.7656 14.7917 46.7656 11.4128C46.7656 8.13153 48.8164 5.9245 52 5.9245C54.9688 5.9245 57.1172 7.81903 57.1172 11.3347V12.1745H50.0078V12.2331C50.0078 13.6003 50.8477 14.4792 52.1758 14.4792C53.0742 14.4792 53.7383 14.0886 54.0117 13.4636H57.0781C56.6875 15.5339 54.8711 16.862 52.1172 16.862ZM50.0078 10.2409H54.0508C54.0312 9.10809 53.2109 8.30731 52.0781 8.30731C50.9062 8.30731 50.0566 9.13739 50.0078 10.2409Z" fill="white"/>
-        <path d="M38.25 16.6667H33.0742V2.52606H38.25C42.5664 2.52606 45.2227 5.18231 45.2227 9.59637C45.2227 14.0104 42.5664 16.6667 38.25 16.6667ZM36.3945 13.8151H38.1328C40.5547 13.8151 41.8828 12.6628 41.8828 9.59637C41.8828 6.52997 40.5547 5.35809 38.0938 5.35809H36.3945V13.8151Z" fill="white"/>
-      </svg>
-    </div>
-
-  </div>
-  <nav class="topbar-nav">
-    <a class="topbar-link active" onclick="navigate('page-foundation')">Foundation</a>
-    <a class="topbar-link" onclick="navigate('page-components')">Components</a>
-    <a class="topbar-link" style="opacity:0.35;pointer-events:none">Patterns</a>
-    <a class="topbar-link" style="opacity:0.35;pointer-events:none">Resources</a>
-  </nav>
-  <div class="topbar-right">
-    <button class="topbar-search" onclick="openSearch()">
-      <span>🔍</span> Quick search <kbd>⌘K</kbd>
-    </button>
-    <div class="theme-toggle">● Dark</div>
-  </div>
-</header>
-
-<!-- ───── SIDEBAR ───── -->
-<aside class="sidebar">
-  <!-- Foundation group -->
-  <div class="nav-group open" id="grp-foundation">
-    <div class="nav-group-header" onclick="toggleGroup('grp-foundation')">
-      Foundation
-      <svg class="chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M6 4l4 4-4 4"/></svg>
-    </div>
-    <div class="nav-group-items">
-      <div class="nav-item open">
-        <div class="nav-item-header active" onclick="navigate('page-color'); setNavActive(this)">
-          Color
-          <span class="nav-status stable">Stable</span>
+    <!-- ───── SEARCH OVERLAY ───── -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-box">
+        <div class="search-input-row">
+          <span class="search-icon">⌕</span>
+          <input class="search-input" id="searchInput" placeholder="Foundation, Components 검색…">
+          <span class="search-esc">ESC</span>
         </div>
-      </div>
-      <div class="nav-item open">
-        <div class="nav-item-header" onclick="navigate('page-typography'); setNavActive(this)">
-          Typography
-          <span class="nav-status stable">Stable</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" onclick="navigate('page-breakpoints'); setNavActive(this)">
-          Breakpoints
-          <span class="nav-status stable">Stable</span>
-        </div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-item-header" onclick="navigate('page-tokens'); setNavActive(this)">
-          Design Tokens
-          <span class="nav-status beta">Beta</span>
+        <div class="search-results">
+          <div class="search-result-item" onclick="navigate('page-color'); closeSearch()">
+            <div class="result-icon">🎨</div>
+            <div class="result-text">
+              <div class="r-name">Color</div>
+              <div class="r-cat">Foundation</div>
+            </div>
+          </div>
+          <div class="search-result-item" onclick="navigate('page-typography'); closeSearch()">
+            <div class="result-icon">Aa</div>
+            <div class="result-text">
+              <div class="r-name">Typography</div>
+              <div class="r-cat">Foundation</div>
+            </div>
+          </div>
+          <div class="search-result-item" onclick="navigate('page-breakpoints'); closeSearch()">
+            <div class="result-icon">⊞</div>
+            <div class="result-text">
+              <div class="r-name">Breakpoints</div>
+              <div class="r-cat">Foundation</div>
+            </div>
+          </div>
+          <div class="search-result-item" onclick="navigate('page-tokens'); closeSearch()">
+            <div class="result-icon">{}</div>
+            <div class="result-text">
+              <div class="r-name">Design Tokens</div>
+              <div class="r-cat">Foundation</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Components group -->
-  <div class="nav-group open" id="grp-components">
-    <div class="nav-group-header" onclick="toggleGroup('grp-components')">
-      Components
-      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
-    </div>
-    <div class="nav-group-items" id="render-nav-components"></div>
-  </div>
+    <!-- ───── TOPBAR ───── -->
+    <header class="topbar">
+      <div class="topbar-logo">
+        <div class="logo-wordmark">
+          <svg width="174" height="20" viewBox="0 0 175 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.996 0L12.9806 12.9966C12.9559 13.0781 12.9041 13.1476 12.8344 13.1926C12.7647 13.2375 12.6819 13.255 12.6009 13.2417C12.5199 13.2285 12.4462 13.1854 12.3931 13.1204C12.34 13.0553 12.3111 12.9726 12.3116 12.8872V0H0V5.84612H5.94981V19.5921H17.6421L24 0H16.996Z"
+              fill="#FF153C" />
+            <path
+              d="M158.758 16.6667V6.06122H161.883V7.99481H162C162.449 6.70575 163.543 5.9245 165.008 5.9245C166.473 5.9245 167.605 6.72528 167.879 7.99481H167.996C168.406 6.74481 169.637 5.9245 171.199 5.9245C173.191 5.9245 174.578 7.27216 174.578 9.51825V16.6667H171.277V10.2604C171.277 9.18622 170.652 8.60028 169.773 8.60028C168.816 8.60028 168.25 9.28387 168.25 10.2995V16.6667H165.086V10.2214C165.086 9.22528 164.48 8.60028 163.602 8.60028C162.684 8.60028 162.059 9.30341 162.059 10.3776V16.6667H158.758Z"
+              fill="white" />
+            <path
+              d="M152.059 16.862C148.738 16.862 146.707 14.7917 146.707 11.4128C146.707 8.13153 148.758 5.9245 151.941 5.9245C154.91 5.9245 157.059 7.81903 157.059 11.3347V12.1745H149.949V12.2331C149.949 13.6003 150.789 14.4792 152.117 14.4792C153.016 14.4792 153.68 14.0886 153.953 13.4636H157.02C156.629 15.5339 154.812 16.862 152.059 16.862ZM149.949 10.2409H153.992C153.973 9.10809 153.152 8.30731 152.02 8.30731C150.848 8.30731 149.998 9.13739 149.949 10.2409Z"
+              fill="white" />
+            <path
+              d="M145.535 6.06122V8.48309H143.602V13.3464C143.602 14.0104 143.934 14.2057 144.5 14.2253C144.773 14.2448 145.301 14.2057 145.672 14.1862V16.7057C145.359 16.7448 144.812 16.8229 144.031 16.8229C141.707 16.8229 140.301 15.8659 140.32 13.7175V8.48309H138.895V6.06122H140.32V3.52216H143.602V6.06122H145.535Z"
+              fill="white" />
+            <path
+              d="M134.676 9.34247C134.578 8.63934 133.953 8.19012 133.074 8.19012C132.254 8.19012 131.609 8.56122 131.629 9.10809C131.609 9.51825 131.922 9.85028 132.84 10.0261L134.852 10.4167C136.961 10.8268 137.977 11.7448 137.996 13.2878C137.977 15.4557 135.984 16.862 133.113 16.862C130.086 16.862 128.309 15.5143 128.094 13.405H131.375C131.492 14.1667 132.156 14.5768 133.133 14.5768C134.031 14.5768 134.637 14.2253 134.656 13.6393C134.637 13.1706 134.227 12.8776 133.309 12.6823L131.492 12.3503C129.402 11.9597 128.348 10.905 128.367 9.28387C128.348 7.1745 130.145 5.9245 133.016 5.9245C135.867 5.9245 137.605 7.23309 137.742 9.34247H134.676Z"
+              fill="white" />
+            <path
+              d="M118.992 20.6511C118.367 20.6511 117.781 20.6315 117.352 20.5925V18.0925C117.781 18.1315 118.25 18.1315 118.641 18.1315C119.188 18.1315 119.598 18.0729 119.891 17.3698L120.008 17.0378L116.238 6.06122H119.676L121.688 13.6784H121.805L123.816 6.06122H127.293L123.27 17.7018C122.684 19.4401 121.473 20.6511 118.992 20.6511Z"
+              fill="white" />
+            <path
+              d="M111.98 6.72528C111.902 5.69012 111.141 5.08466 109.773 5.08466C108.426 5.08466 107.742 5.67059 107.723 6.47137C107.703 7.35028 108.562 7.77997 109.832 8.05341L111.062 8.34637C113.777 8.95184 115.359 10.2995 115.379 12.5651C115.359 15.2409 113.289 16.862 109.773 16.862C106.258 16.862 103.973 15.2604 103.914 12.0182H107.117C107.195 13.3854 108.211 14.0886 109.734 14.0886C111.141 14.0886 111.98 13.4636 112 12.5651C111.98 11.7448 111.258 11.3151 109.695 10.9636L108.211 10.612C105.77 10.0456 104.285 8.83466 104.285 6.70575C104.266 4.08856 106.59 2.33075 109.793 2.33075C113.055 2.33075 115.145 4.10809 115.184 6.72528H111.98Z"
+              fill="white" />
+            <path
+              d="M90.9453 10.5925V16.6667H87.6445V6.06122H90.7695V7.99481H90.8867C91.375 6.70575 92.5469 5.9245 94.1094 5.9245C96.3359 5.9245 97.8008 7.50653 97.7812 9.90887V16.6667H94.5V10.5339C94.5 9.34247 93.8555 8.61981 92.7617 8.61981C91.668 8.61981 90.9453 9.362 90.9453 10.5925Z"
+              fill="white" />
+            <path
+              d="M80.2031 20.8659C77.1562 20.8659 75.3398 19.4792 75.1836 17.4675H78.3867C78.5234 18.2292 79.2461 18.5612 80.2812 18.5612C81.4727 18.5612 82.293 18.0729 82.293 16.6862V14.8112H82.1758C81.7656 15.7682 80.75 16.53 79.168 16.53C76.8242 16.53 74.9102 14.9089 74.9102 11.3347C74.9102 7.62372 76.9219 5.9245 79.1484 5.9245C80.8477 5.9245 81.7656 6.92059 82.1562 7.87762H82.2539V6.06122H85.5352V16.7253C85.5352 19.4206 83.3672 20.8659 80.2031 20.8659ZM80.2812 14.1081C81.5508 14.1081 82.293 13.0729 82.293 11.3347C82.293 9.59637 81.5703 8.50262 80.2812 8.50262C78.9922 8.50262 78.2891 9.63544 78.2891 11.3347C78.2891 13.0729 79.0117 14.1081 80.2812 14.1081Z"
+              fill="white" />
+            <path
+              d="M69.8711 16.6667V6.06122H73.1719V16.6667H69.8711ZM71.5312 4.79169C70.5938 4.79169 69.832 4.08856 69.832 3.20966C69.832 2.33075 70.5938 1.62762 71.5312 1.62762C72.4688 1.62762 73.25 2.33075 73.25 3.20966C73.25 4.08856 72.4688 4.79169 71.5312 4.79169Z"
+              fill="white" />
+            <path
+              d="M64.9297 9.34247C64.832 8.63934 64.207 8.19012 63.3281 8.19012C62.5078 8.19012 61.8633 8.56122 61.8828 9.10809C61.8633 9.51825 62.1758 9.85028 63.0938 10.0261L65.1055 10.4167C67.2148 10.8268 68.2305 11.7448 68.25 13.2878C68.2305 15.4557 66.2383 16.862 63.3672 16.862C60.3398 16.862 58.5625 15.5143 58.3477 13.405H61.6289C61.7461 14.1667 62.4102 14.5768 63.3867 14.5768C64.2852 14.5768 64.8906 14.2253 64.9102 13.6393C64.8906 13.1706 64.4805 12.8776 63.5625 12.6823L61.7461 12.3503C59.6562 11.9597 58.6016 10.905 58.6211 9.28387C58.6016 7.1745 60.3984 5.9245 63.2695 5.9245C66.1211 5.9245 67.8594 7.23309 67.9961 9.34247H64.9297Z"
+              fill="white" />
+            <path
+              d="M52.1172 16.862C48.7969 16.862 46.7656 14.7917 46.7656 11.4128C46.7656 8.13153 48.8164 5.9245 52 5.9245C54.9688 5.9245 57.1172 7.81903 57.1172 11.3347V12.1745H50.0078V12.2331C50.0078 13.6003 50.8477 14.4792 52.1758 14.4792C53.0742 14.4792 53.7383 14.0886 54.0117 13.4636H57.0781C56.6875 15.5339 54.8711 16.862 52.1172 16.862ZM50.0078 10.2409H54.0508C54.0312 9.10809 53.2109 8.30731 52.0781 8.30731C50.9062 8.30731 50.0566 9.13739 50.0078 10.2409Z"
+              fill="white" />
+            <path
+              d="M38.25 16.6667H33.0742V2.52606H38.25C42.5664 2.52606 45.2227 5.18231 45.2227 9.59637C45.2227 14.0104 42.5664 16.6667 38.25 16.6667ZM36.3945 13.8151H38.1328C40.5547 13.8151 41.8828 12.6628 41.8828 9.59637C41.8828 6.52997 40.5547 5.35809 38.0938 5.35809H36.3945V13.8151Z"
+              fill="white" />
+          </svg>
+        </div>
 
-  <!-- Patterns group -->
-  <div class="nav-group open" id="grp-patterns">
-    <div class="nav-group-header" onclick="toggleGroup('grp-patterns')">
-      Patterns
-      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
-    </div>
-    <div class="nav-group-items" id="render-nav-patterns"></div>
-  </div>
-</aside>
+      </div>
+      <nav class="topbar-nav">
+        <a class="topbar-link active" onclick="navigate('page-foundation')">Foundation</a>
+        <a class="topbar-link" onclick="navigate('page-components')">Components</a>
+        <a class="topbar-link" style="opacity:0.35;pointer-events:none">Patterns</a>
+        <a class="topbar-link" style="opacity:0.35;pointer-events:none">Resources</a>
+      </nav>
+      <div class="topbar-right">
+        <button class="topbar-search" onclick="openSearch()">
+          <span>🔍</span> Quick search <kbd>⌘K</kbd>
+        </button>
+        <div class="theme-toggle">● Dark</div>
+      </div>
+    </header>
 
-<!-- ───── MAIN ───── -->
-<main class="main">
+    <!-- ───── SIDEBAR ───── -->
+    <aside class="sidebar">
+      <!-- Foundation group -->
+      <div class="nav-group open" id="grp-foundation">
+        <div class="nav-group-header" onclick="toggleGroup('grp-foundation')">
+          Foundation
+          <svg class="chevron" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M6 4l4 4-4 4" />
+          </svg>
+        </div>
+        <div class="nav-group-items">
+          <div class="nav-item open">
+            <div class="nav-item-header active" onclick="navigate('page-color'); setNavActive(this)">
+              Color
+              <span class="nav-status stable">Stable</span>
+            </div>
+          </div>
+          <div class="nav-item open">
+            <div class="nav-item-header" onclick="navigate('page-typography'); setNavActive(this)">
+              Typography
+              <span class="nav-status stable">Stable</span>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-item-header" onclick="navigate('page-breakpoints'); setNavActive(this)">
+              Breakpoints
+              <span class="nav-status stable">Stable</span>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-item-header" onclick="navigate('page-tokens'); setNavActive(this)">
+              Design Tokens
+              <span class="nav-status beta">Beta</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- ══════════════════════════════════════
+      <!-- Components group -->
+      <div class="nav-group open" id="grp-components">
+        <div class="nav-group-header" onclick="toggleGroup('grp-components')">
+          Components
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 4l4 4-4 4" />
+          </svg>
+        </div>
+        <div class="nav-group-items" id="render-nav-components"></div>
+      </div>
+
+      <!-- Patterns group -->
+      <div class="nav-group open" id="grp-patterns">
+        <div class="nav-group-header" onclick="toggleGroup('grp-patterns')">
+          Patterns
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 4l4 4-4 4" />
+          </svg>
+        </div>
+        <div class="nav-group-items" id="render-nav-patterns"></div>
+      </div>
+    </aside>
+
+    <!-- ───── MAIN ───── -->
+    <main class="main">
+
+      <!-- ══════════════════════════════════════
        PAGE: Foundation Overview
   ══════════════════════════════════════ -->
-  <div class="page active" id="page-foundation">
-    <!-- Hero -->
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-foundation"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation</div>
-        <div class="hero-title">Foundation</div>
-        <div class="hero-desc">컬러, 타이포그래피, 반응형 중단점. TDS를 구성하는 핵심 설계 원칙의 집합.</div>
-      </div>
-    </div>
+      <div class="page active" id="page-foundation">
+        <!-- Hero -->
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-foundation"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation</div>
+            <div class="hero-title">Foundation</div>
+            <div class="hero-desc">컬러, 타이포그래피, 반응형 중단점. TDS를 구성하는 핵심 설계 원칙의 집합.</div>
+          </div>
+        </div>
 
-    <div class="content">
-      <div class="section">
-        <div class="section-label">Overview</div>
-        <div class="overview-grid">
-          <!-- Color Card -->
-          <div class="overview-card" onclick="navigate('page-color')">
-            <div class="overview-card-art" style="background:#0A0A0A">
-              <svg width="160" height="100" viewBox="0 0 160 100">
-                <circle cx="55" cy="50" r="32" fill="#FF153C" opacity="0.9"/>
-                <circle cx="85" cy="50" r="32" fill="#FFC93C" opacity="0.75"/>
-                <circle cx="70" cy="30" r="28" fill="#0095FF" opacity="0.65"/>
-                <!-- white outlines -->
-                <circle cx="55" cy="50" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                <circle cx="85" cy="50" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-              </svg>
-            </div>
-            <div class="overview-card-label">Color</div>
-          </div>
-          <!-- Typography Card -->
-          <div class="overview-card" onclick="navigate('page-typography')">
-            <div class="overview-card-art" style="background:#0A0A0A; flex-direction:column; gap:4px; padding:0 20px">
-              <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:800;font-size:32px;color:white;letter-spacing:-0.02em;line-height:1">Aa</div>
-              <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:10px;color:#777;letter-spacing:0.1em">42 / 36 / 30 / 24 / 20…</div>
-              <div style="font-size:11px;color:#555;font-weight:300">Bold · Read</div>
-            </div>
-            <div class="overview-card-label">Typography</div>
-          </div>
-          <!-- Breakpoints Card -->
-          <div class="overview-card" onclick="navigate('page-breakpoints')">
-            <div class="overview-card-art" style="background:#0A0A0A; padding: 16px 24px; flex-direction:column; gap:5px; align-items:flex-start">
-              <div style="display:flex;flex-direction:column;gap:4px;width:100%">
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">600px</div>
-                  <div style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px"></div>
+        <div class="content">
+          <div class="section">
+            <div class="section-label">Overview</div>
+            <div class="overview-grid">
+              <!-- Color Card -->
+              <div class="overview-card" onclick="navigate('page-color')">
+                <div class="overview-card-art" style="background:#0A0A0A">
+                  <svg width="160" height="100" viewBox="0 0 160 100">
+                    <circle cx="55" cy="50" r="32" fill="#FF153C" opacity="0.9" />
+                    <circle cx="85" cy="50" r="32" fill="#FFC93C" opacity="0.75" />
+                    <circle cx="70" cy="30" r="28" fill="#0095FF" opacity="0.65" />
+                    <!-- white outlines -->
+                    <circle cx="55" cy="50" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                    <circle cx="85" cy="50" r="32" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                  </svg>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">1000px</div>
-                  <div style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:60%"></div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">1400px</div>
-                  <div style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:78%"></div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">2000px</div>
-                  <div style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:90%"></div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">2400px</div>
-                  <div style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px"></div>
-                </div>
+                <div class="overview-card-label">Color</div>
               </div>
-            </div>
-            <div class="overview-card-label">Breakpoints</div>
-          </div>
-          <!-- Tokens Card -->
-          <div class="overview-card" onclick="navigate('page-tokens')">
-            <div class="overview-card-art" style="background:#0A0A0A; padding:16px; align-items:flex-start">
-              <pre style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:10px;color:#444;line-height:1.7;overflow:hidden">{
+              <!-- Typography Card -->
+              <div class="overview-card" onclick="navigate('page-typography')">
+                <div class="overview-card-art"
+                  style="background:#0A0A0A; flex-direction:column; gap:4px; padding:0 20px">
+                  <div
+                    style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:800;font-size:32px;color:white;letter-spacing:-0.02em;line-height:1">
+                    Aa</div>
+                  <div
+                    style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:10px;color:#777;letter-spacing:0.1em">
+                    42 / 36 / 30 / 24 / 20…</div>
+                  <div style="font-size:11px;color:#555;font-weight:300">Bold · Read</div>
+                </div>
+                <div class="overview-card-label">Typography</div>
+              </div>
+              <!-- Breakpoints Card -->
+              <div class="overview-card" onclick="navigate('page-breakpoints')">
+                <div class="overview-card-art"
+                  style="background:#0A0A0A; padding: 16px 24px; flex-direction:column; gap:5px; align-items:flex-start">
+                  <div style="display:flex;flex-direction:column;gap:4px;width:100%">
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div
+                        style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">
+                        600px</div>
+                      <div
+                        style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px">
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div
+                        style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">
+                        1000px</div>
+                      <div
+                        style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:60%">
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div
+                        style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">
+                        1400px</div>
+                      <div
+                        style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:78%">
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div
+                        style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">
+                        2000px</div>
+                      <div
+                        style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px;width:90%">
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div
+                        style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;color:#555;width:52px">
+                        2400px</div>
+                      <div
+                        style="flex:1;height:2px;background:linear-gradient(90deg,#FF153C,rgba(255,21,60,0.2));border-radius:1px">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="overview-card-label">Breakpoints</div>
+              </div>
+              <!-- Tokens Card -->
+              <div class="overview-card" onclick="navigate('page-tokens')">
+                <div class="overview-card-art" style="background:#0A0A0A; padding:16px; align-items:flex-start">
+                  <pre
+                    style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:10px;color:#444;line-height:1.7;overflow:hidden">{
   <span style="color:#7EC8E3">"color"</span>: {
     <span style="color:#7EC8E3">"brand"</span>: {
       <span style="color:#7EC8E3">"red"</span>: <span style="color:#A8E6A3">"#FF153C"</span>
     }
   }
 }</pre>
+                </div>
+                <div class="overview-card-label">Design Tokens</div>
+              </div>
             </div>
-            <div class="overview-card-label">Design Tokens</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
        PAGE: Color
   ══════════════════════════════════════ -->
 
-  <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
        PAGE: Color
   ══════════════════════════════════════ -->
-  <div class="page" id="page-color">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-color"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Color</div>
-        <div class="hero-title">Color <span class="hero-badge stable">Stable</span></div>
-        <div class="hero-desc">tving.red를 중심으로 한 단일 브랜드 컬러 전략. Opacity 변형을 통해 다양한 UI 상태를 표현합니다.</div>
-      </div>
-    </div>
-    <div class="tabs-bar">
-      <button class="tab-btn active" onclick="switchTab(this,'tab-color-usage')">Usage</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-color-specs')">Specs</button>
-    </div>
-    <div class="content">
-
-      <!-- USAGE TAB -->
-      <div class="tab-panel active" id="tab-color-usage">
-
-        <div class="section">
-          <div class="section-label">Brand Color · Tint</div>
-          <div class="section-desc">tving.red (#FF153C)가 유일한 브랜드 컬러입니다. 나머지는 콘텐츠 카테고리 구분 및 서비스별 구분에만 사용합니다.</div>
-          <div class="chip-grid" id="brand-colors-grid"></div>
-          <div class="chip-grid" id="brand-colors-grid-2" style="margin-top:8px"></div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Gray Color · 다이나믹/제플린 공용 토큰</div>
-          <div class="section-desc">NONE 주의: 아이콘은 원칙적으로 화이트(투명)만 사용합니다. gray500이상만 서비스에 사용 가능합니다. 그 외 4.5이하 비율의 색상은 사용 금지입니다.</div>
-          <div class="chip-grid" id="gray-scale-grid"></div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Opacity Color</div>
-          <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">Red</p>
-          <div class="opacity-strip" id="opacity-red" style="margin-bottom:20px"></div>
-          <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">White</p>
-          <div class="opacity-strip" id="opacity-white" style="margin-bottom:20px"></div>
-          <p style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">Black</p>
-          <div class="opacity-strip" id="opacity-black"></div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Gradient Color · 다목적</div>
-          <div class="gradient-row" id="gradient-row"></div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts" id="dodont-color"></div>
-        </div>
-
-      </div><!-- /usage tab -->
-
-      <!-- SPECS TAB -->
-      <div class="tab-panel" id="tab-color-specs">
-        <div class="section">
-          <div class="section-label">Contrast Ratio · WCAG 2.1</div>
-          <div class="callout info">
-            <div class="callout-icon">ℹ</div>
-            <div class="callout-text"><strong>AA 기준:</strong> 일반 텍스트 4.5:1 이상 / 대형 텍스트(18px Bold, 24px+) 3:1 이상 / UI 컴포넌트 3:1 이상</div>
-          </div>
-          <div class="contrast-grid" id="contrast-grid" style="margin-top:20px"></div>
-          <div class="callout warn" style="margin-top:24px">
-            <div class="callout-icon">⚠</div>
-            <div class="callout-text">tving.red(#FF153C)는 흰 배경에서 <strong>3.5:1</strong>로 AA 기준 미달입니다. 흰 배경 레이아웃에서 Red를 텍스트 색상으로 사용하지 마십시오.</div>
+      <div class="page" id="page-color">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-color"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Color
+            </div>
+            <div class="hero-title">Color <span class="hero-badge stable">Stable</span></div>
+            <div class="hero-desc">tving.red를 중심으로 한 단일 브랜드 컬러 전략. Opacity 변형을 통해 다양한 UI 상태를 표현합니다.</div>
           </div>
         </div>
-      </div><!-- /specs tab -->
+        <div class="tabs-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-color-usage')">Usage</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-color-specs')">Specs</button>
+        </div>
+        <div class="content">
 
-    </div>
-  </div><!-- /page-color -->
+          <!-- USAGE TAB -->
+          <div class="tab-panel active" id="tab-color-usage">
 
-  <!-- ══════════════════════════════════════
+            <div class="section">
+              <div class="section-label">Brand Color · Tint</div>
+              <div class="section-desc">tving.red (#FF153C)가 유일한 브랜드 컬러입니다. 나머지는 콘텐츠 카테고리 구분 및 서비스별 구분에만 사용합니다.</div>
+              <div class="chip-grid" id="brand-colors-grid"></div>
+              <div class="chip-grid" id="brand-colors-grid-2" style="margin-top:8px"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Gray Color · 다이나믹/제플린 공용 토큰</div>
+              <div class="section-desc">NONE 주의: 아이콘은 원칙적으로 화이트(투명)만 사용합니다. gray500이상만 서비스에 사용 가능합니다. 그 외 4.5이하 비율의 색상은
+                사용 금지입니다.</div>
+              <div class="chip-grid" id="gray-scale-grid"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Opacity Color</div>
+              <p
+                style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">
+                Red</p>
+              <div class="opacity-strip" id="opacity-red" style="margin-bottom:20px"></div>
+              <p
+                style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">
+                White</p>
+              <div class="opacity-strip" id="opacity-white" style="margin-bottom:20px"></div>
+              <p
+                style="font-family:var(--mono);font-size:9px;color:var(--g50);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px">
+                Black</p>
+              <div class="opacity-strip" id="opacity-black"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Gradient Color · 다목적</div>
+              <div class="gradient-row" id="gradient-row"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Usage Guidance</div>
+              <div class="dos-donts" id="dodont-color"></div>
+            </div>
+
+          </div><!-- /usage tab -->
+
+          <!-- SPECS TAB -->
+          <div class="tab-panel" id="tab-color-specs">
+            <div class="section">
+              <div class="section-label">Contrast Ratio · WCAG 2.1</div>
+              <div class="callout info">
+                <div class="callout-icon">ℹ</div>
+                <div class="callout-text"><strong>AA 기준:</strong> 일반 텍스트 4.5:1 이상 / 대형 텍스트(18px Bold, 24px+) 3:1 이상 / UI
+                  컴포넌트 3:1 이상</div>
+              </div>
+              <div class="contrast-grid" id="contrast-grid" style="margin-top:20px"></div>
+              <div class="callout warn" style="margin-top:24px">
+                <div class="callout-icon">⚠</div>
+                <div class="callout-text">tving.red(#FF153C)는 흰 배경에서 <strong>3.5:1</strong>로 AA 기준 미달입니다. 흰 배경 레이아웃에서
+                  Red를 텍스트 색상으로 사용하지 마십시오.</div>
+              </div>
+            </div>
+          </div><!-- /specs tab -->
+
+        </div>
+      </div><!-- /page-color -->
+
+      <!-- ══════════════════════════════════════
        PAGE: Typography
   ══════════════════════════════════════ -->
-  <div class="page" id="page-typography">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-typo"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Typography</div>
-        <div class="hero-title">Typography <span class="hero-badge stable">Stable</span></div>
-        <div class="hero-desc">Pretendard Variable 기반의 이중 타이포 시스템. Bold는 헤드라인·스캔용, Read는 본문·가독성용으로 구분됩니다.</div>
-      </div>
-    </div>
-    <div class="tabs-bar">
-      <button class="tab-btn active" onclick="switchTab(this,'tab-typo-scale')">Scale</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-typo-usage')">Usage</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-typo-specs')">Specs</button>
-    </div>
-    <div class="content">
-
-      <!-- SCALE TAB -->
-      <div class="tab-panel active" id="tab-typo-scale">
-        <div class="section">
-          <div class="section-label">Type Scale</div>
-          <table class="type-table">
-            <thead>
-              <tr>
-                <th>토큰</th><th>스타일</th><th>행간 / 자간</th><th>미리보기</th>
-              </tr>
-            </thead>
-            <tbody id="type-scale-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- USAGE TAB -->
-      <div class="tab-panel" id="tab-typo-usage">
-        <div class="section">
-          <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts" id="dodont-typography"></div>
-        </div>
-      </div>
-
-      <!-- SPECS TAB -->
-      <div class="tab-panel" id="tab-typo-specs">
-        <div class="section">
-          <div class="section-label">CSS Variables</div>
-          <div class="code-block">
-            <div class="code-header"><span class="code-lang">CSS · Typography Tokens</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body"><span class="c-cmt">/* TDS Typography Tokens — rem 기준 (root: vw 유동) */</span>
-:root {
-  <span class="c-cmt">/* Size */</span>
-  <span class="c-prop">--tds-42</span>: <span class="c-val">2.625rem</span>;
-  <span class="c-prop">--tds-36</span>: <span class="c-val">2.25rem</span>;
-  <span class="c-prop">--tds-30</span>: <span class="c-val">1.875rem</span>;
-  <span class="c-prop">--tds-24</span>: <span class="c-val">1.5rem</span>;
-  <span class="c-prop">--tds-20</span>: <span class="c-val">1.25rem</span>;
-  <span class="c-prop">--tds-18</span>: <span class="c-val">1.125rem</span>;
-  <span class="c-prop">--tds-16</span>: <span class="c-val">1rem</span>;
-  <span class="c-prop">--tds-14</span>: <span class="c-val">0.875rem</span>;
-  <span class="c-prop">--tds-12</span>: <span class="c-val">0.75rem</span>;
-  <span class="c-prop">--tds-10</span>: <span class="c-val">0.625rem</span>;
-
-  <span class="c-cmt">/* Line Height */</span>
-  <span class="c-prop">--tds-lh-bold</span>:    <span class="c-num">normal</span>;
-  <span class="c-prop">--tds-lh-read-sm</span>: <span class="c-num">1.3</span>;
-  <span class="c-prop">--tds-lh-read-md</span>: <span class="c-num">1.5</span>;
-  <span class="c-prop">--tds-lh-read-lg</span>: <span class="c-num">1.6</span>;
-}</div>
+      <div class="page" id="page-typography">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-typo"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Typography
+            </div>
+            <div class="hero-title">Typography <span class="hero-badge stable">Stable</span></div>
+            <div class="hero-desc">Pretendard Variable 기반의 이중 타이포 시스템. Bold는 헤드라인·스캔용, Read는 본문·가독성용으로 구분됩니다.</div>
           </div>
         </div>
-      </div>
-    </div>
-  </div><!-- /page-typography -->
+        <div class="tabs-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-typo-scale')">Scale</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-typo-usage')">Usage</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-typo-specs')">Specs</button>
+        </div>
+        <div class="content">
 
-  <!-- ══════════════════════════════════════
+          <!-- SCALE TAB -->
+          <div class="tab-panel active" id="tab-typo-scale">
+            <div class="section">
+              <div class="section-label">Type Scale</div>
+              <table class="type-table">
+                <thead>
+                  <tr>
+                    <th>토큰</th>
+                    <th>스타일</th>
+                    <th>행간 / 자간</th>
+                    <th>미리보기</th>
+                  </tr>
+                </thead>
+                <tbody id="type-scale-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- USAGE TAB -->
+          <div class="tab-panel" id="tab-typo-usage">
+            <div class="section">
+              <div class="section-label">Usage Guidance</div>
+              <div class="dos-donts" id="dodont-typography"></div>
+            </div>
+          </div>
+
+          <!-- SPECS TAB -->
+          <div class="tab-panel" id="tab-typo-specs">
+            <div class="section">
+              <div class="section-label">CSS Variables</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">CSS · Typography Tokens</span><button class="code-copy"
+                    onclick="copyCode(this)">Copy</button></div>
+                <div class="code-body"><span class="c-cmt">/* TDS Typography Tokens — rem 기준 (root: vw 유동) */</span>
+                  :root {
+                  <span class="c-cmt">/* Size */</span>
+                  <span class="c-prop">--tds-42</span>: <span class="c-val">2.625rem</span>;
+                  <span class="c-prop">--tds-36</span>: <span class="c-val">2.25rem</span>;
+                  <span class="c-prop">--tds-30</span>: <span class="c-val">1.875rem</span>;
+                  <span class="c-prop">--tds-24</span>: <span class="c-val">1.5rem</span>;
+                  <span class="c-prop">--tds-20</span>: <span class="c-val">1.25rem</span>;
+                  <span class="c-prop">--tds-18</span>: <span class="c-val">1.125rem</span>;
+                  <span class="c-prop">--tds-16</span>: <span class="c-val">1rem</span>;
+                  <span class="c-prop">--tds-14</span>: <span class="c-val">0.875rem</span>;
+                  <span class="c-prop">--tds-12</span>: <span class="c-val">0.75rem</span>;
+                  <span class="c-prop">--tds-10</span>: <span class="c-val">0.625rem</span>;
+
+                  <span class="c-cmt">/* Line Height */</span>
+                  <span class="c-prop">--tds-lh-bold</span>: <span class="c-num">normal</span>;
+                  <span class="c-prop">--tds-lh-read-sm</span>: <span class="c-num">1.3</span>;
+                  <span class="c-prop">--tds-lh-read-md</span>: <span class="c-num">1.5</span>;
+                  <span class="c-prop">--tds-lh-read-lg</span>: <span class="c-num">1.6</span>;
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /page-typography -->
+
+      <!-- ══════════════════════════════════════
        PAGE: Breakpoints
   ══════════════════════════════════════ -->
-  <div class="page" id="page-breakpoints">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-bp"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Breakpoints</div>
-        <div class="hero-title">Breakpoints <span class="hero-badge stable">Stable</span></div>
-        <div class="hero-desc">모바일 ~ 4K TV를 아우르는 6단계 반응형 중단점. root font-size를 vw로 유동 제어합니다.</div>
-      </div>
-    </div>
-    <div class="tabs-bar">
-      <button class="tab-btn active" onclick="switchTab(this,'tab-bp-usage')">Usage</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-bp-specs')">Specs</button>
-    </div>
-    <div class="content">
-
-      <!-- USAGE TAB -->
-      <div class="tab-panel active" id="tab-bp-usage">
-        <div class="section">
-          <div class="section-label">Breakpoint Scale</div>
-          <div class="bp-list" id="bp-list"></div>
+      <div class="page" id="page-breakpoints">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-bp"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span>
+              Breakpoints</div>
+            <div class="hero-title">Breakpoints <span class="hero-badge stable">Stable</span></div>
+            <div class="hero-desc">모바일 ~ 4K TV를 아우르는 6단계 반응형 중단점. root font-size를 vw로 유동 제어합니다.</div>
+          </div>
         </div>
-        <div class="divider"></div>
-        <div class="section">
-          <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts" id="dodont-breakpoints"></div>
+        <div class="tabs-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-bp-usage')">Usage</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-bp-specs')">Specs</button>
         </div>
-      </div>
+        <div class="content">
 
-      <!-- SPECS TAB -->
-      <div class="tab-panel" id="tab-bp-specs">
-        <div class="section">
-          <div class="section-label">CSS Media Queries</div>
-          <div class="code-block">
-            <div class="code-header"><span class="code-lang">CSS · Breakpoints</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body"><span class="c-cmt">/* TDS Breakpoints — root font-size 유동 제어 */</span>
-<span class="c-prop">@media</span> screen and (max-width: 768px) {
-  html { font-size: <span class="c-val">2.5vw</span>; }
-  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
-}
-<span class="c-prop">@media</span> screen and (min-width: 768px) {
-  html { font-size: <span class="c-val">1.2vw</span>; }
-  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
-}
-<span class="c-prop">@media</span> screen and (min-width: 768px) and (orientation: portrait) {
-  html { font-size: <span class="c-val">1.5vw</span>; }
-}
-<span class="c-prop">@media</span> screen and (min-width: 1200px) {
-  html { font-size: <span class="c-val">1vw</span>; }
-}
-<span class="c-prop">@media</span> screen and (min-width: 2000px) {
-  html { font-size: <span class="c-val">16px</span>; }
-}
-<span class="c-prop">@media</span> screen and (min-width: 2400px) {
-  html { font-size: <span class="c-val">18px</span>; }
-}</div>
+          <!-- USAGE TAB -->
+          <div class="tab-panel active" id="tab-bp-usage">
+            <div class="section">
+              <div class="section-label">Breakpoint Scale</div>
+              <div class="bp-list" id="bp-list"></div>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <div class="section-label">Usage Guidance</div>
+              <div class="dos-donts" id="dodont-breakpoints"></div>
+            </div>
+          </div>
+
+          <!-- SPECS TAB -->
+          <div class="tab-panel" id="tab-bp-specs">
+            <div class="section">
+              <div class="section-label">CSS Media Queries</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">CSS · Breakpoints</span><button class="code-copy"
+                    onclick="copyCode(this)">Copy</button></div>
+                <div class="code-body"><span class="c-cmt">/* TDS Breakpoints — root font-size 유동 제어 */</span>
+                  <span class="c-prop">@media</span> screen and (max-width: 768px) {
+                  html { font-size: <span class="c-val">2.5vw</span>; }
+                  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
+                  }
+                  <span class="c-prop">@media</span> screen and (min-width: 768px) {
+                  html { font-size: <span class="c-val">1.2vw</span>; }
+                  html.is-laptop { font-size: <span class="c-val">calc(6px + 0.5vw)</span>; }
+                  }
+                  <span class="c-prop">@media</span> screen and (min-width: 768px) and (orientation: portrait) {
+                  html { font-size: <span class="c-val">1.5vw</span>; }
+                  }
+                  <span class="c-prop">@media</span> screen and (min-width: 1200px) {
+                  html { font-size: <span class="c-val">1vw</span>; }
+                  }
+                  <span class="c-prop">@media</span> screen and (min-width: 2000px) {
+                  html { font-size: <span class="c-val">16px</span>; }
+                  }
+                  <span class="c-prop">@media</span> screen and (min-width: 2400px) {
+                  html { font-size: <span class="c-val">18px</span>; }
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /page-breakpoints -->
+
+      <div class="page" id="page-tokens">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-tokens"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Design
+              Tokens</div>
+            <div class="hero-title">Design Tokens <span class="hero-badge beta">Beta</span></div>
+            <div class="hero-desc">DTCG(Design Tokens Community Group) 포맷 기반. Style Dictionary로 CSS / JS / iOS / Android
+              멀티플랫폼 자동 변환.</div>
+          </div>
+        </div>
+
+        <div class="tabs-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-tokens-color')">Color</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-tokens-typo')">Typography</button>
+        </div>
+
+        <div class="content">
+          <div class="tab-panel active" id="tab-tokens-color">
+            <div class="section">
+              <div class="section-label">Color Tokens · DTCG Format</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">JSON · Color Tokens (DTCG)</span><button
+                    class="code-copy" onclick="copyCode(this)">Copy</button></div>
+                <div class="code-body">{
+                  <span class="c-prop">"color"</span>: {
+                  <span class="c-prop">"brand"</span>: {
+                  <span class="c-prop">"red"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#FF153C"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"red-dark"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#CC0028"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"cherry"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#FF4E6A"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"yellow"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#FFC93C"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"blue"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#0095FF"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"green"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#6BE477"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> }
+                  },
+                  <span class="c-prop">"gray"</span>: {
+                  <span class="c-prop">"white"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#FFFFFF"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"900"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#F5F5F5"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"700"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#AAAAAA"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"500"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#666666"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"300"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#333333"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"black"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"#000000"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> }
+                  },
+                  <span class="c-prop">"opacity"</span>: {
+                  <span class="c-prop">"red-30"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"rgba(255,21,60,0.3)"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"red-15"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"rgba(255,21,60,0.15)"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"white-30"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"rgba(255,255,255,0.3)"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> },
+                  <span class="c-prop">"black-70"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"rgba(0,0,0,0.7)"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"color"</span> }
+                  }
+                  }
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="tab-tokens-typo">
+            <div class="section">
+              <div class="section-label">Typography Tokens</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">JSON · Typography Tokens (DTCG)</span><button
+                    class="code-copy" onclick="copyCode(this)">Copy</button></div>
+                <div class="code-body">{
+                  <span class="c-prop">"typography"</span>: {
+                  <span class="c-prop">"size"</span>: {
+                  <span class="c-prop">"42"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"42px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"36"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"36px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"30"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"30px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"24"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"24px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"20"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"20px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"18"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"18px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"16"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"16px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"14"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"14px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"12"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"12px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> },
+                  <span class="c-prop">"10"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">"10px"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"dimension"</span> }
+                  },
+                  <span class="c-prop">"lineHeight"</span>: {
+                  <span class="c-prop">"bold"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-val">"normal"</span>, <span class="c-prop">"$type"</span>: <span
+                    class="c-val">"number"</span> },
+                  <span class="c-prop">"read-sm"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">1.3</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span>
+                  },
+                  <span class="c-prop">"read-md"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">1.5</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span>
+                  },
+                  <span class="c-prop">"read-lg"</span>: { <span class="c-prop">"$value"</span>: <span
+                    class="c-num">1.6</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span> }
+                  }
+                  }
+                  }
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div><!-- /page-breakpoints -->
-
-  <div class="page" id="page-tokens">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-tokens"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Design Tokens</div>
-        <div class="hero-title">Design Tokens <span class="hero-badge beta">Beta</span></div>
-        <div class="hero-desc">DTCG(Design Tokens Community Group) 포맷 기반. Style Dictionary로 CSS / JS / iOS / Android 멀티플랫폼 자동 변환.</div>
-      </div>
-    </div>
-
-    <div class="tabs-bar">
-      <button class="tab-btn active" onclick="switchTab(this,'tab-tokens-color')">Color</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-tokens-typo')">Typography</button>
-    </div>
-
-    <div class="content">
-      <div class="tab-panel active" id="tab-tokens-color">
-        <div class="section">
-          <div class="section-label">Color Tokens · DTCG Format</div>
-          <div class="code-block">
-            <div class="code-header"><span class="code-lang">JSON · Color Tokens (DTCG)</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body">{
-  <span class="c-prop">"color"</span>: {
-    <span class="c-prop">"brand"</span>: {
-      <span class="c-prop">"red"</span>:         { <span class="c-prop">"$value"</span>: <span class="c-val">"#FF153C"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"red-dark"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"#CC0028"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"cherry"</span>:      { <span class="c-prop">"$value"</span>: <span class="c-val">"#FF4E6A"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"yellow"</span>:      { <span class="c-prop">"$value"</span>: <span class="c-val">"#FFC93C"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"blue"</span>:        { <span class="c-prop">"$value"</span>: <span class="c-val">"#0095FF"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"green"</span>:       { <span class="c-prop">"$value"</span>: <span class="c-val">"#6BE477"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> }
-    },
-    <span class="c-prop">"gray"</span>: {
-      <span class="c-prop">"white"</span>:  { <span class="c-prop">"$value"</span>: <span class="c-val">"#FFFFFF"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"900"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"#F5F5F5"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"700"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"#AAAAAA"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"500"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"#666666"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"300"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"#333333"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"black"</span>:  { <span class="c-prop">"$value"</span>: <span class="c-val">"#000000"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> }
-    },
-    <span class="c-prop">"opacity"</span>: {
-      <span class="c-prop">"red-30"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"rgba(255,21,60,0.3)"</span>,   <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"red-15"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"rgba(255,21,60,0.15)"</span>,  <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"white-30"</span>:  { <span class="c-prop">"$value"</span>: <span class="c-val">"rgba(255,255,255,0.3)"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> },
-      <span class="c-prop">"black-70"</span>:  { <span class="c-prop">"$value"</span>: <span class="c-val">"rgba(0,0,0,0.7)"</span>,       <span class="c-prop">"$type"</span>: <span class="c-val">"color"</span> }
-    }
-  }
-}</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="tab-tokens-typo">
-        <div class="section">
-          <div class="section-label">Typography Tokens</div>
-          <div class="code-block">
-            <div class="code-header"><span class="code-lang">JSON · Typography Tokens (DTCG)</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body">{
-  <span class="c-prop">"typography"</span>: {
-    <span class="c-prop">"size"</span>: {
-      <span class="c-prop">"42"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"42px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"36"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"36px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"30"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"30px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"24"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"24px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"20"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"20px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"18"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"18px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"16"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"16px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"14"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"14px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"12"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"12px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> },
-      <span class="c-prop">"10"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">"10px"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"dimension"</span> }
-    },
-    <span class="c-prop">"lineHeight"</span>: {
-      <span class="c-prop">"bold"</span>:    { <span class="c-prop">"$value"</span>: <span class="c-val">"normal"</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span> },
-      <span class="c-prop">"read-sm"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">1.3</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span> },
-      <span class="c-prop">"read-md"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">1.5</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span> },
-      <span class="c-prop">"read-lg"</span>: { <span class="c-prop">"$value"</span>: <span class="c-num">1.6</span>, <span class="c-prop">"$type"</span>: <span class="c-val">"number"</span> }
-    }
-  }
-}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
        PAGE: Components Overview
   ══════════════════════════════════════ -->
-  <div class="page" id="page-components">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-components"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components</div>
-        <div class="hero-title">Components</div>
-        <div class="hero-desc">재사용 가능한 UI 컴포넌트 목록. 각 컴포넌트는 Usage · Specs 탭으로 구성됩니다.</div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="section">
-        <div class="section-label">Overview</div>
-        <div class="overview-grid" id="render-components-grid"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE: Button -->
-  <div class="page" id="page-button">
-    <div class="hero">
-      <canvas class="hero-canvas" id="canvas-button"></canvas>
-      <div class="hero-content">
-        <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components <span class="sep">›</span> Button</div>
-        <div class="hero-title">Button <span class="hero-badge stable">Stable</span></div>
-        <div class="hero-desc">사용자 액션을 트리거하는 기본 인터랙션 컴포넌트. Primary, Secondary, Ghost 3가지 변형을 제공합니다.</div>
-      </div>
-    </div>
-
-    <div class="tabs-bar">
-      <button class="tab-btn active" onclick="switchTab(this,'tab-button-usage')">Usage</button>
-      <button class="tab-btn" onclick="switchTab(this,'tab-button-specs')">Specs</button>
-    </div>
-
-    <div class="content">
-
-      <!-- USAGE TAB -->
-      <div class="tab-panel active" id="tab-button-usage">
-
-        <div class="section">
-          <div class="section-label">Variants</div>
-          <div class="section-desc">3가지 기본 버튼 변형. 페이지 내 Primary는 1개만 사용합니다.</div>
-
-          <!-- 버튼 미리보기 -->
-          <div style="display:flex; gap:16px; align-items:center; padding:32px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; margin-bottom:16px; flex-wrap:wrap;">
-            <!-- Primary -->
-            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Primary</button>
-            <!-- Secondary -->
-            <button style="background:transparent;color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;letter-spacing:-0.01em;">Secondary</button>
-            <!-- Ghost -->
-            <button style="background:transparent;color:var(--red);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Ghost</button>
-            <!-- Disabled -->
-            <button style="background:var(--bg-hover);color:var(--g50);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:not-allowed;letter-spacing:-0.01em;" disabled>Disabled</button>
+      <div class="page" id="page-components">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-components"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components</div>
+            <div class="hero-title">Components</div>
+            <div class="hero-desc">재사용 가능한 UI 컴포넌트 목록. 각 컴포넌트는 Usage · Specs 탭으로 구성됩니다.</div>
           </div>
         </div>
-
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Size</div>
-          <div style="display:flex; gap:12px; align-items:center; padding:28px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; flex-wrap:wrap;">
-            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:12px;padding:7px 18px;border-radius:5px;border:none;cursor:pointer;">Small</button>
-            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;">Medium</button>
-            <button style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:16px;padding:13px 32px;border-radius:8px;border:none;cursor:pointer;">Large</button>
+        <div class="content">
+          <div class="section">
+            <div class="section-label">Overview</div>
+            <div class="overview-grid" id="render-components-grid"></div>
           </div>
         </div>
+      </div>
 
-        <div class="divider"></div>
-
-        <div class="section">
-          <div class="section-label">Usage Guidance</div>
-          <div class="dos-donts">
-            <div class="dos-donts-card">
-              <div class="dd-header do">✓ Do</div>
-              <div class="dd-body">Primary 버튼은 CTA(Call To Action) 1개에만 사용. 배경색은 tving.red(#FF153C) 고정. 텍스트는 Bold, 14px 이상 유지.</div>
+      <!-- PAGE: Button -->
+      <div class="page" id="page-button">
+        <div class="hero">
+          <canvas class="hero-canvas" id="canvas-button"></canvas>
+          <div class="hero-content">
+            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components <span class="sep">›</span> Button
             </div>
-            <div class="dos-donts-card">
-              <div class="dd-header dont">✗ Don't</div>
-              <div class="dd-body">동일한 화면에 Primary 버튼을 2개 이상 배치하지 않습니다. 버튼 레이블을 아이콘만으로 구성하지 않습니다(접근성 위반).</div>
+            <div class="hero-title">Button <span class="hero-badge stable">Stable</span></div>
+            <div class="hero-desc">사용자 액션을 트리거하는 기본 인터랙션 컴포넌트. Primary, Secondary, Ghost 3가지 변형을 제공합니다.</div>
+          </div>
+        </div>
+
+        <div class="tabs-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-button-usage')">Usage</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-button-specs')">Specs</button>
+        </div>
+
+        <div class="content">
+
+          <!-- USAGE TAB -->
+          <div class="tab-panel active" id="tab-button-usage">
+
+            <div class="section">
+              <div class="section-label">Variants</div>
+              <div class="section-desc">3가지 기본 버튼 변형. 페이지 내 Primary는 1개만 사용합니다.</div>
+
+              <!-- 버튼 미리보기 -->
+              <div
+                style="display:flex; gap:16px; align-items:center; padding:32px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; margin-bottom:16px; flex-wrap:wrap;">
+                <!-- Primary -->
+                <button
+                  style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Primary</button>
+                <!-- Secondary -->
+                <button
+                  style="background:transparent;color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;letter-spacing:-0.01em;">Secondary</button>
+                <!-- Ghost -->
+                <button
+                  style="background:transparent;color:var(--red);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;letter-spacing:-0.01em;">Ghost</button>
+                <!-- Disabled -->
+                <button
+                  style="background:var(--bg-hover);color:var(--g50);font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:not-allowed;letter-spacing:-0.01em;"
+                  disabled>Disabled</button>
+              </div>
             </div>
-          </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Size</div>
+              <div
+                style="display:flex; gap:12px; align-items:center; padding:28px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; flex-wrap:wrap;">
+                <button
+                  style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:12px;padding:7px 18px;border-radius:5px;border:none;cursor:pointer;">Small</button>
+                <button
+                  style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;">Medium</button>
+                <button
+                  style="background:var(--red);color:#fff;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700;font-size:16px;padding:13px 32px;border-radius:8px;border:none;cursor:pointer;">Large</button>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <div class="section-label">Usage Guidance</div>
+              <div class="dos-donts">
+                <div class="dos-donts-card">
+                  <div class="dd-header do">✓ Do</div>
+                  <div class="dd-body">Primary 버튼은 CTA(Call To Action) 1개에만 사용. 배경색은 tving.red(#FF153C) 고정. 텍스트는 Bold,
+                    14px 이상 유지.</div>
+                </div>
+                <div class="dos-donts-card">
+                  <div class="dd-header dont">✗ Don't</div>
+                  <div class="dd-body">동일한 화면에 Primary 버튼을 2개 이상 배치하지 않습니다. 버튼 레이블을 아이콘만으로 구성하지 않습니다(접근성 위반).</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /usage tab -->
+
+          <!-- SPECS TAB -->
+          <div class="tab-panel" id="tab-button-specs">
+            <div class="section">
+              <div class="section-label">Design Tokens</div>
+              <table class="spec-table">
+                <thead>
+                  <tr>
+                    <th>속성</th>
+                    <th>Primary</th>
+                    <th>Secondary</th>
+                    <th>Ghost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Background</td>
+                    <td><code>#FF153C</code></td>
+                    <td><code>transparent</code></td>
+                    <td><code>transparent</code></td>
+                  </tr>
+                  <tr>
+                    <td>Text Color</td>
+                    <td><code>#FFFFFF</code></td>
+                    <td><code>#FFFFFF</code></td>
+                    <td><code>#FF153C</code></td>
+                  </tr>
+                  <tr>
+                    <td>Border</td>
+                    <td><code>none</code></td>
+                    <td><code>rgba(255,255,255,0.2)</code></td>
+                    <td><code>none</code></td>
+                  </tr>
+                  <tr>
+                    <td>Border Radius</td>
+                    <td><code>6px</code></td>
+                    <td><code>6px</code></td>
+                    <td><code>6px</code></td>
+                  </tr>
+                  <tr>
+                    <td>Font Weight</td>
+                    <td><code>700 (Bold)</code></td>
+                    <td><code>700 (Bold)</code></td>
+                    <td><code>700 (Bold)</code></td>
+                  </tr>
+                  <tr>
+                    <td>Hover State</td>
+                    <td><code>brightness(1.1)</code></td>
+                    <td><code>border opacity 0.4</code></td>
+                    <td><code>opacity 0.7</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="section" style="margin-top:40px">
+              <div class="section-label">CSS</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">CSS · Button</span><button class="code-copy"
+                    onclick="copyCode(this)">Copy</button></div>
+                <div class="code-body"><span class="c-cmt">/* TDS Button — Primary */</span>
+                  .tds-btn {
+                  <span class="c-prop">font-family</span>: <span class="c-val">'Pretendard Variable', sans-serif</span>;
+                  <span class="c-prop">font-weight</span>: <span class="c-num">700</span>;
+                  <span class="c-prop">font-size</span>: <span class="c-val">14px</span>;
+                  <span class="c-prop">padding</span>: <span class="c-val">10px 24px</span>;
+                  <span class="c-prop">border-radius</span>: <span class="c-val">6px</span>;
+                  <span class="c-prop">border</span>: <span class="c-val">none</span>;
+                  <span class="c-prop">cursor</span>: <span class="c-val">pointer</span>;
+                  <span class="c-prop">transition</span>: <span class="c-val">filter 0.15s ease</span>;
+                  }
+                  .tds-btn-primary {
+                  <span class="c-prop">background</span>: <span class="c-red">#FF153C</span>;
+                  <span class="c-prop">color</span>: <span class="c-val">#FFFFFF</span>;
+                  }
+                  .tds-btn-primary:hover {
+                  <span class="c-prop">filter</span>: <span class="c-val">brightness(1.12)</span>;
+                  }
+                  .tds-btn:disabled {
+                  <span class="c-prop">background</span>: <span class="c-val">#222</span>;
+                  <span class="c-prop">color</span>: <span class="c-val">#555</span>;
+                  <span class="c-prop">cursor</span>: <span class="c-val">not-allowed</span>;
+                  }
+                </div>
+              </div>
+            </div>
+          </div><!-- /specs tab -->
+
         </div>
+      </div><!-- /page-button -->
 
-      </div><!-- /usage tab -->
-
-      <!-- SPECS TAB -->
-      <div class="tab-panel" id="tab-button-specs">
-        <div class="section">
-          <div class="section-label">Design Tokens</div>
-          <table class="spec-table">
-            <thead>
-              <tr><th>속성</th><th>Primary</th><th>Secondary</th><th>Ghost</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Background</td><td><code>#FF153C</code></td><td><code>transparent</code></td><td><code>transparent</code></td></tr>
-              <tr><td>Text Color</td><td><code>#FFFFFF</code></td><td><code>#FFFFFF</code></td><td><code>#FF153C</code></td></tr>
-              <tr><td>Border</td><td><code>none</code></td><td><code>rgba(255,255,255,0.2)</code></td><td><code>none</code></td></tr>
-              <tr><td>Border Radius</td><td><code>6px</code></td><td><code>6px</code></td><td><code>6px</code></td></tr>
-              <tr><td>Font Weight</td><td><code>700 (Bold)</code></td><td><code>700 (Bold)</code></td><td><code>700 (Bold)</code></td></tr>
-              <tr><td>Hover State</td><td><code>brightness(1.1)</code></td><td><code>border opacity 0.4</code></td><td><code>opacity 0.7</code></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="section" style="margin-top:40px">
-          <div class="section-label">CSS</div>
-          <div class="code-block">
-            <div class="code-header"><span class="code-lang">CSS · Button</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
-            <div class="code-body"><span class="c-cmt">/* TDS Button — Primary */</span>
-.tds-btn {
-  <span class="c-prop">font-family</span>: <span class="c-val">'Pretendard Variable', sans-serif</span>;
-  <span class="c-prop">font-weight</span>: <span class="c-num">700</span>;
-  <span class="c-prop">font-size</span>: <span class="c-val">14px</span>;
-  <span class="c-prop">padding</span>: <span class="c-val">10px 24px</span>;
-  <span class="c-prop">border-radius</span>: <span class="c-val">6px</span>;
-  <span class="c-prop">border</span>: <span class="c-val">none</span>;
-  <span class="c-prop">cursor</span>: <span class="c-val">pointer</span>;
-  <span class="c-prop">transition</span>: <span class="c-val">filter 0.15s ease</span>;
-}
-.tds-btn-primary {
-  <span class="c-prop">background</span>: <span class="c-red">#FF153C</span>;
-  <span class="c-prop">color</span>: <span class="c-val">#FFFFFF</span>;
-}
-.tds-btn-primary:hover {
-  <span class="c-prop">filter</span>: <span class="c-val">brightness(1.12)</span>;
-}
-.tds-btn:disabled {
-  <span class="c-prop">background</span>: <span class="c-val">#222</span>;
-  <span class="c-prop">color</span>: <span class="c-val">#555</span>;
-  <span class="c-prop">cursor</span>: <span class="c-val">not-allowed</span>;
-}</div>
-          </div>
-        </div>
-      </div><!-- /specs tab -->
-
-    </div>
-  </div><!-- /page-button -->
-
-  <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
        ✏️  여기에 다음 컴포넌트 페이지 추가
        위의 page-button 블록 전체를 복사해서
        id만 바꾸면 됩니다.
   ══════════════════════════════════════ -->
 
-</main><!-- /main -->
+    </main><!-- /main -->
 
-<script>
-/* ═══════════════════════════════════════════════════════════════
-   ✏️  TDS_CONFIG — 디자이너 수정 구역
-   ───────────────────────────────────────────────────────────────
-   여기만 수정하면 전체 사이트에 자동 반영됩니다.
-   
-   💡 팁:
-   • 컬러 추가: 배열에 { name, hex } 객체 한 줄 추가
-   • 컬러 삭제: 해당 줄 삭제 또는 주석 처리 (//)
-   • 타이포 수정: typeScale 배열에서 size, lineHeight 수정
-   • Do/Don't 수정: dodonts 객체에서 텍스트만 수정
-═══════════════════════════════════════════════════════════════ */
+    <script>
+      /* ═══════════════════════════════════════════════════════════════
+         ✏️  TDS_CONFIG — 디자이너 수정 구역
+         ───────────────────────────────────────────────────────────────
+         여기만 수정하면 전체 사이트에 자동 반영됩니다.
+         
+         💡 팁:
+         • 컬러 추가: 배열에 { name, hex } 객체 한 줄 추가
+         • 컬러 삭제: 해당 줄 삭제 또는 주석 처리 (//)
+         • 타이포 수정: typeScale 배열에서 size, lineHeight 수정
+         • Do/Don't 수정: dodonts 객체에서 텍스트만 수정
+      ═══════════════════════════════════════════════════════════════ */
 
-const TDS_CONFIG = {
+      const TDS_CONFIG = {
 
-  // ═══════════════════════════════════════════
-  // ✏️  1. BRAND COLORS (Tint)
-  // dark: true → 텍스트를 검정으로 표시 (밝은 색 배경용)
-  // ═══════════════════════════════════════════
-  brandColors: [
-    { name: 'tving.red',          hex: '#FF153C' },
-    { name: 'tving.dark.red',     hex: '#CC0028' },
-    { name: 'tving.cherry',       hex: '#FF4E6A' },
-    { name: 'tving.yellow',       hex: '#FFC93C', dark: true },
-    { name: 'tving.light.yellow', hex: '#FFE03C', dark: true },
-    { name: 'tving.blue',         hex: '#0095FF' },
-    { name: 'tving.dark.blue',    hex: '#1A4CAA' },
-    { name: 'tving.green',        hex: '#6BE477', dark: true },
-    { name: 'tving.orange',       hex: '#FF7A45' },
-    { name: 'service.primary',    hex: '#9005FF' },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  1. BRAND COLORS (Tint)
+        // dark: true → 텍스트를 검정으로 표시 (밝은 색 배경용)
+        // ═══════════════════════════════════════════
+        brandColors: [
+          { name: 'tving.red', hex: '#FF153C' },
+          { name: 'tving.dark.red', hex: '#CC0028' },
+          { name: 'tving.cherry', hex: '#FF4E6A' },
+          { name: 'tving.yellow', hex: '#FFC93C', dark: true },
+          { name: 'tving.light.yellow', hex: '#FFE03C', dark: true },
+          { name: 'tving.blue', hex: '#0095FF' },
+          { name: 'tving.dark.blue', hex: '#1A4CAA' },
+          { name: 'tving.green', hex: '#6BE477', dark: true },
+          { name: 'tving.orange', hex: '#FF7A45' },
+          { name: 'service.primary', hex: '#9005FF' },
+        ],
 
-  // 두 번째 줄 (다크 컬러 계열)
-  brandColorsRow2: [
-    { name: 'tving.dark.charcoal',  hex: '#1C1C22' },
-    { name: 'tving.charcoal',       hex: '#3C3740' },
-    { name: 'tving.light.charcoal', hex: '#4D4742' },
-    { name: 'tving.dark.coal',      hex: '#2D3338' },
-    { name: 'tving.coal',           hex: '#3C4651' },
-  ],
+        // 두 번째 줄 (다크 컬러 계열)
+        brandColorsRow2: [
+          { name: 'tving.dark.charcoal', hex: '#1C1C22' },
+          { name: 'tving.charcoal', hex: '#3C3740' },
+          { name: 'tving.light.charcoal', hex: '#4D4742' },
+          { name: 'tving.dark.coal', hex: '#2D3338' },
+          { name: 'tving.coal', hex: '#3C4651' },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  2. GRAY SCALE
-  // dark: true → 텍스트를 검정으로 표시
-  // ═══════════════════════════════════════════
-  grayScale: [
-    { name: 'white',    hex: '#FFFFFF', dark: true },
-    { name: 'gray900',  hex: '#F5F5F5', dark: true },
-    { name: 'gray800',  hex: '#CBCBCB', dark: true },
-    { name: 'gray700',  hex: '#959595', dark: true },
-    { name: 'gray600',  hex: '#686868' },
-    { name: 'gray500',  hex: '#505050' },
-    { name: 'gray400',  hex: '#3C3C3C' },
-    { name: 'gray300',  hex: '#292929' },
-    { name: 'gray200',  hex: '#1A1A1A' },
-    { name: 'gray100',  hex: '#131313' },
-    { name: 'black',    hex: '#000000' },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  2. GRAY SCALE
+        // dark: true → 텍스트를 검정으로 표시
+        // ═══════════════════════════════════════════
+        grayScale: [
+          { name: 'white', hex: '#FFFFFF', dark: true },
+          { name: 'gray900', hex: '#F5F5F5', dark: true },
+          { name: 'gray800', hex: '#CBCBCB', dark: true },
+          { name: 'gray700', hex: '#959595', dark: true },
+          { name: 'gray600', hex: '#686868' },
+          { name: 'gray500', hex: '#505050' },
+          { name: 'gray400', hex: '#3C3C3C' },
+          { name: 'gray300', hex: '#292929' },
+          { name: 'gray200', hex: '#1A1A1A' },
+          { name: 'gray100', hex: '#131313' },
+          { name: 'black', hex: '#000000' },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  3. OPACITY COLORS
-  // opacityRedBase: Red 컬러의 RGB 값 (hex 변경 시 함께 수정)
-  // ═══════════════════════════════════════════
-  opacityRedBase: '255, 21, 60',
-  opacityRed: [
-    { name: 'red·100', alpha: 1.0 },
-    { name: 'red·90',  alpha: 0.9 },
-    { name: 'red·70',  alpha: 0.7 },
-    { name: 'red·50',  alpha: 0.5 },
-    { name: 'red·30',  alpha: 0.3 },
-    { name: 'red·15',  alpha: 0.15 },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  3. OPACITY COLORS
+        // opacityRedBase: Red 컬러의 RGB 값 (hex 변경 시 함께 수정)
+        // ═══════════════════════════════════════════
+        opacityRedBase: '255, 21, 60',
+        opacityRed: [
+          { name: 'red·100', alpha: 1.0 },
+          { name: 'red·90', alpha: 0.9 },
+          { name: 'red·70', alpha: 0.7 },
+          { name: 'red·50', alpha: 0.5 },
+          { name: 'red·30', alpha: 0.3 },
+          { name: 'red·15', alpha: 0.15 },
+        ],
 
-  opacityWhite: [
-    { name: 'W·90', alpha: 0.9 },
-    { name: 'W·70', alpha: 0.7 },
-    { name: 'W·50', alpha: 0.5 },
-    { name: 'W·30', alpha: 0.3 },
-    { name: 'W·15', alpha: 0.15 },
-    { name: 'W·7',  alpha: 0.07, border: true },
-    { name: 'W·4',  alpha: 0.04, border: true },
-  ],
+        opacityWhite: [
+          { name: 'W·90', alpha: 0.9 },
+          { name: 'W·70', alpha: 0.7 },
+          { name: 'W·50', alpha: 0.5 },
+          { name: 'W·30', alpha: 0.3 },
+          { name: 'W·15', alpha: 0.15 },
+          { name: 'W·7', alpha: 0.07, border: true },
+          { name: 'W·4', alpha: 0.04, border: true },
+        ],
 
-  opacityBlack: [
-    { name: 'B·90', alpha: 0.9 },
-    { name: 'B·70', alpha: 0.7 },
-    { name: 'B·50', alpha: 0.5 },
-    { name: 'B·30', alpha: 0.3 },
-    { name: 'B·15', alpha: 0.15 },
-  ],
+        opacityBlack: [
+          { name: 'B·90', alpha: 0.9 },
+          { name: 'B·70', alpha: 0.7 },
+          { name: 'B·50', alpha: 0.5 },
+          { name: 'B·30', alpha: 0.3 },
+          { name: 'B·15', alpha: 0.15 },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  4. GRADIENTS
-  // desc: 줄바꿈은 \n 사용
-  // ═══════════════════════════════════════════
-  gradients: [
-    {
-      name: 'LINEAR 100',
-      css:  'linear-gradient(90deg, #FFF, #000)',
-      desc: '#FFFFFF → #000000\nlinear-gradient(90deg)',
-    },
-    {
-      name: 'LINEAR 50',
-      css:  'linear-gradient(90deg, transparent, #000)',
-      desc: 'transparent → #000000',
-    },
-    {
-      name: 'LINEAR_SCRIM',
-      css:  'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 60%, #000 100%)',
-      desc: 'transparent → bg\n콘텐츠 오버레이용',
-    },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  4. GRADIENTS
+        // desc: 줄바꿈은 \n 사용
+        // ═══════════════════════════════════════════
+        gradients: [
+          {
+            name: 'LINEAR 100',
+            css: 'linear-gradient(90deg, #FFF, #000)',
+            desc: '#FFFFFF → #000000\nlinear-gradient(90deg)',
+          },
+          {
+            name: 'LINEAR 50',
+            css: 'linear-gradient(90deg, transparent, #000)',
+            desc: 'transparent → #000000',
+          },
+          {
+            name: 'LINEAR_SCRIM',
+            css: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 60%, #000 100%)',
+            desc: 'transparent → bg\n콘텐츠 오버레이용',
+          },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  5. CONTRAST RATIOS (WCAG)
-  // pass: true → AA Pass / false → Fail
-  // note: 추가 설명 텍스트 (선택)
-  // ═══════════════════════════════════════════
-  contrastChips: [
-    { bg: '#FFFFFF', fg: '#000000', ratio: '21:1',  pair: 'White / Black',  pass: true  },
-    { bg: '#141414', fg: '#FFFFFF', ratio: '19:1',  pair: 'bg / White',     pass: true,  border: true },
-    { bg: '#141414', fg: '#888888', ratio: '4.8:1', pair: 'bg / Gray600',   pass: true,  border: true },
-    { bg: '#FF153C', fg: '#000000', ratio: '5.9:1', pair: 'Red / Black',    pass: true  },
-    { bg: '#FF153C', fg: '#FFFFFF', ratio: '3.5:1', pair: 'Red / White',    pass: false },
-    { bg: '#141414', fg: '#666666', ratio: '3.3:1', pair: 'bg / Gray500',   pass: false, border: true, note: ' (body)' },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  5. CONTRAST RATIOS (WCAG)
+        // pass: true → AA Pass / false → Fail
+        // note: 추가 설명 텍스트 (선택)
+        // ═══════════════════════════════════════════
+        contrastChips: [
+          { bg: '#FFFFFF', fg: '#000000', ratio: '21:1', pair: 'White / Black', pass: true },
+          { bg: '#141414', fg: '#FFFFFF', ratio: '19:1', pair: 'bg / White', pass: true, border: true },
+          { bg: '#141414', fg: '#888888', ratio: '4.8:1', pair: 'bg / Gray600', pass: true, border: true },
+          { bg: '#FF153C', fg: '#000000', ratio: '5.9:1', pair: 'Red / Black', pass: true },
+          { bg: '#FF153C', fg: '#FFFFFF', ratio: '3.5:1', pair: 'Red / White', pass: false },
+          { bg: '#141414', fg: '#666666', ratio: '3.3:1', pair: 'bg / Gray500', pass: false, border: true, note: ' (body)' },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  6. TYPOGRAPHY SCALE
-  // token: CSS 토큰명
-  // size: px 값 (숫자)
-  // style: 'bold' | 'read'
-  // lineHeight: 행간/자간 표시 문자열
-  // warning: true → 사용 금지 경고 표시
-  // ─────────────────────────────────────────── 
-  // 행 추가: 아래 배열에 객체 한 줄 추가
-  // 행 삭제: 해당 줄 삭제
-  // ═══════════════════════════════════════════
-  typeScale: [
-    { token: 'font-42',       size: 42, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-36',       size: 36, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-30',       size: 30, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-30-read',  size: 30, style: 'read', lineHeight: '130% / 4' },
-    { token: 'font-24',       size: 24, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-20',       size: 20, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-20-read',  size: 20, style: 'read', lineHeight: '130% / 2' },
-    { token: 'font-18',       size: 18, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-18-read',  size: 18, style: 'read', lineHeight: '150% / 8' },
-    { token: 'font-17',       size: 17, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-17-read',  size: 17, style: 'read', lineHeight: '150% / 8' },
-    { token: 'font-16',       size: 16, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-16-read',  size: 16, style: 'read', lineHeight: '150% / 5' },
-    { token: 'font-15',       size: 15, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-14',       size: 14, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-14-read',  size: 14, style: 'read', lineHeight: '150% / 4' },
-    { token: 'font-13',       size: 13, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-13-read',  size: 13, style: 'read', lineHeight: '150% / 5' },
-    { token: 'font-12',       size: 12, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-12-read',  size: 12, style: 'read', lineHeight: '150% / 4' },
-    { token: 'font-10',       size: 10, style: 'bold', lineHeight: 'Auto' },
-    { token: 'font-10-read',  size: 10, style: 'read', lineHeight: '150% / 3' },
-    { token: 'font-7',        size: 7,  style: 'read', lineHeight: 'Auto', warning: true },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  6. TYPOGRAPHY SCALE
+        // token: CSS 토큰명
+        // size: px 값 (숫자)
+        // style: 'bold' | 'read'
+        // lineHeight: 행간/자간 표시 문자열
+        // warning: true → 사용 금지 경고 표시
+        // ─────────────────────────────────────────── 
+        // 행 추가: 아래 배열에 객체 한 줄 추가
+        // 행 삭제: 해당 줄 삭제
+        // ═══════════════════════════════════════════
+        typeScale: [
+          { token: 'font-42', size: 42, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-36', size: 36, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-30', size: 30, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-30-read', size: 30, style: 'read', lineHeight: '130% / 4' },
+          { token: 'font-24', size: 24, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-20', size: 20, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-20-read', size: 20, style: 'read', lineHeight: '130% / 2' },
+          { token: 'font-18', size: 18, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-18-read', size: 18, style: 'read', lineHeight: '150% / 8' },
+          { token: 'font-17', size: 17, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-17-read', size: 17, style: 'read', lineHeight: '150% / 8' },
+          { token: 'font-16', size: 16, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-16-read', size: 16, style: 'read', lineHeight: '150% / 5' },
+          { token: 'font-15', size: 15, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-14', size: 14, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-14-read', size: 14, style: 'read', lineHeight: '150% / 4' },
+          { token: 'font-13', size: 13, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-13-read', size: 13, style: 'read', lineHeight: '150% / 5' },
+          { token: 'font-12', size: 12, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-12-read', size: 12, style: 'read', lineHeight: '150% / 4' },
+          { token: 'font-10', size: 10, style: 'bold', lineHeight: 'Auto' },
+          { token: 'font-10-read', size: 10, style: 'read', lineHeight: '150% / 3' },
+          { token: 'font-7', size: 7, style: 'read', lineHeight: 'Auto', warning: true },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  7. BREAKPOINTS
-  // barW: 비주얼 바 너비 (%) — 시각적 비례 표현용
-  // fontSize: 해당 뷰포트의 root font-size
-  // ═══════════════════════════════════════════
-  breakpoints: [
-    { name: 'Mobile',    range: '~ 600px',  colV: '3.2', colH: '3.2', barW: '18%',  fontSize: '2.5vw' },
-    { name: 'Tablet',    range: '600px +',  colV: '5',   colH: '3',   barW: '35%',  fontSize: '1.2vw' },
-    { name: 'Desktop S', range: '1000px +', colV: '6',   colH: '4',   barW: '55%',  fontSize: '1.5vw (portrait)' },
-    { name: 'Desktop L', range: '1400px +', colV: '7',   colH: '5',   barW: '70%',  fontSize: '1vw' },
-    { name: 'Wide',      range: '2000px +', colV: '8',   colH: '6',   barW: '85%',  fontSize: '16px' },
-    { name: '4K / TV',   range: '2400px +', colV: '8',   colH: '6',   barW: '100%', fontSize: '18px' },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  7. BREAKPOINTS
+        // barW: 비주얼 바 너비 (%) — 시각적 비례 표현용
+        // fontSize: 해당 뷰포트의 root font-size
+        // ═══════════════════════════════════════════
+        breakpoints: [
+          { name: 'Mobile', range: '~ 600px', colV: '3.2', colH: '3.2', barW: '18%', fontSize: '2.5vw' },
+          { name: 'Tablet', range: '600px +', colV: '5', colH: '3', barW: '35%', fontSize: '1.2vw' },
+          { name: 'Desktop S', range: '1000px +', colV: '6', colH: '4', barW: '55%', fontSize: '1.5vw (portrait)' },
+          { name: 'Desktop L', range: '1400px +', colV: '7', colH: '5', barW: '70%', fontSize: '1vw' },
+          { name: 'Wide', range: '2000px +', colV: '8', colH: '6', barW: '85%', fontSize: '16px' },
+          { name: '4K / TV', range: '2400px +', colV: '8', colH: '6', barW: '100%', fontSize: '18px' },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  8. DO / DON'T 가이드 텍스트
-  // ═══════════════════════════════════════════
-  dodonts: {
-    color: {
-      do:   'tving.red는 CTA 버튼, 브랜드 강조에만 단독 사용. Opacity 변형(red·15, red·10)으로 배경 표현 시 사용합니다.',
-      dont: 'tving.red를 일반 텍스트 색상으로 사용하지 않습니다. 흰 배경 위에서 red·50 이하 Opacity는 WCAG 기준 미달이므로 단독 텍스트 사용 금지.',
-    },
-    typography: {
-      do:   'Bold는 1~2줄 헤드라인에만. Read는 3줄 이상 본문 텍스트에 사용. line-height 차이를 반드시 지킬 것.',
-      dont: 'Bold 스타일을 긴 본문에 사용하거나, Read 스타일의 line-height를 임의로 줄이지 않습니다. 최소 폰트 사이즈 10px 미만 사용 금지.',
-    },
-    breakpoints: {
-      do:   '각 중단점에서 정의된 column grid를 준수합니다. root font-size는 vw 단위로 유동 적용되며 2000px 이상에서는 px 고정됩니다.',
-      dont: 'breakpoint 사이 임의의 중간 값을 추가하거나, column 수를 줄여 레이아웃을 단순화하지 않습니다.',
-    },
-  },
+        // ═══════════════════════════════════════════
+        // ✏️  8. DO / DON'T 가이드 텍스트
+        // ═══════════════════════════════════════════
+        dodonts: {
+          color: {
+            do: 'tving.red는 CTA 버튼, 브랜드 강조에만 단독 사용. Opacity 변형(red·15, red·10)으로 배경 표현 시 사용합니다.',
+            dont: 'tving.red를 일반 텍스트 색상으로 사용하지 않습니다. 흰 배경 위에서 red·50 이하 Opacity는 WCAG 기준 미달이므로 단독 텍스트 사용 금지.',
+          },
+          typography: {
+            do: 'Bold는 1~2줄 헤드라인에만. Read는 3줄 이상 본문 텍스트에 사용. line-height 차이를 반드시 지킬 것.',
+            dont: 'Bold 스타일을 긴 본문에 사용하거나, Read 스타일의 line-height를 임의로 줄이지 않습니다. 최소 폰트 사이즈 10px 미만 사용 금지.',
+          },
+          breakpoints: {
+            do: '각 중단점에서 정의된 column grid를 준수합니다. root font-size는 vw 단위로 유동 적용되며 2000px 이상에서는 px 고정됩니다.',
+            dont: 'breakpoint 사이 임의의 중간 값을 추가하거나, column 수를 줄여 레이아웃을 단순화하지 않습니다.',
+          },
+        },
 
-  // ═══════════════════════════════════════════
-  // ✏️  9. NAVIGATION — 컴포넌트 목록
-  // status: 'stable' | 'beta' | 'soon'
-  // pageId: 연결할 페이지 id (없으면 null)
-  // ─────────────────────────────────────────── 
-  // 항목 추가: 배열에 객체 한 줄 추가
-  // 항목 삭제: 해당 줄 삭제
-  // ═══════════════════════════════════════════
-  components: [
-    { name: 'Button',   status: 'stable', pageId: 'page-button' },  // ✏️ pageId 연결됨
-    { name: 'Badge',    status: 'soon',   pageId: null },            // ✏️ 페이지 만들면 여기 수정
-    { name: 'Input',    status: 'soon',   pageId: null },
-    { name: 'Modal',    status: 'soon',   pageId: null },
-    { name: 'Toast',    status: 'soon',   pageId: null },
-    { name: 'Chip',     status: 'soon',   pageId: null },
-    { name: 'Carousel', status: 'soon',   pageId: null },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  9. NAVIGATION — 컴포넌트 목록
+        // status: 'stable' | 'beta' | 'soon'
+        // pageId: 연결할 페이지 id (없으면 null)
+        // ─────────────────────────────────────────── 
+        // 항목 추가: 배열에 객체 한 줄 추가
+        // 항목 삭제: 해당 줄 삭제
+        // ═══════════════════════════════════════════
+        components: [
+          { name: 'Button', status: 'stable', pageId: 'page-button' },  // ✏️ pageId 연결됨
+          { name: 'Badge', status: 'soon', pageId: null },            // ✏️ 페이지 만들면 여기 수정
+          { name: 'Input', status: 'soon', pageId: null },
+          { name: 'Modal', status: 'soon', pageId: null },
+          { name: 'Toast', status: 'soon', pageId: null },
+          { name: 'Chip', status: 'soon', pageId: null },
+          { name: 'Carousel', status: 'soon', pageId: null },
+        ],
 
-  // ═══════════════════════════════════════════
-  // ✏️  10. NAVIGATION — 패턴 목록
-  // ═══════════════════════════════════════════
-  patterns: [
-    { name: 'Navigation', status: 'soon', pageId: null },
-    { name: 'Card Grid',  status: 'soon', pageId: null },
-    { name: 'Hero Banner',status: 'soon', pageId: null },
-  ],
+        // ═══════════════════════════════════════════
+        // ✏️  10. NAVIGATION — 패턴 목록
+        // ═══════════════════════════════════════════
+        patterns: [
+          { name: 'Navigation', status: 'soon', pageId: null },
+          { name: 'Card Grid', status: 'soon', pageId: null },
+          { name: 'Hero Banner', status: 'soon', pageId: null },
+        ],
 
-}; // ← TDS_CONFIG 끝
+      }; // ← TDS_CONFIG 끝
 
 
-/* ═══════════════════════════════════════════════════════════════
-   RENDER FUNCTIONS — 수정 불필요
-   (CONFIG 값을 읽어 HTML을 자동 생성합니다)
-═══════════════════════════════════════════════════════════════ */
+      /* ═══════════════════════════════════════════════════════════════
+         RENDER FUNCTIONS — 수정 불필요
+         (CONFIG 값을 읽어 HTML을 자동 생성합니다)
+      ═══════════════════════════════════════════════════════════════ */
 
-function renderAll() {
-  renderBrandColors();
-  renderGrayScale();
-  renderOpacityColors();
-  renderGradients();
-  renderContrastChips();
-  renderTypeScale();
-  renderBreakpoints();
-  renderDoDonts();
-  renderNavItems();
-  renderComponentsGrid();
-}
+      function renderAll() {
+        renderBrandColors();
+        renderGrayScale();
+        renderOpacityColors();
+        renderGradients();
+        renderContrastChips();
+        renderTypeScale();
+        renderBreakpoints();
+        renderDoDonts();
+        renderNavItems();
+        renderComponentsGrid();
+      }
 
-function renderBrandColors() {
-  const grid = document.getElementById('brand-colors-grid');
-  if (grid) grid.innerHTML = TDS_CONFIG.brandColors.map(c => chipHTML(c)).join('');
+      function renderBrandColors() {
+        const grid = document.getElementById('brand-colors-grid');
+        if (grid) grid.innerHTML = TDS_CONFIG.brandColors.map(c => chipHTML(c)).join('');
 
-  const grid2 = document.getElementById('brand-colors-grid-2');
-  if (grid2 && TDS_CONFIG.brandColorsRow2)
-    grid2.innerHTML = TDS_CONFIG.brandColorsRow2.map(c => chipHTML(c)).join('');
-}
+        const grid2 = document.getElementById('brand-colors-grid-2');
+        if (grid2 && TDS_CONFIG.brandColorsRow2)
+          grid2.innerHTML = TDS_CONFIG.brandColorsRow2.map(c => chipHTML(c)).join('');
+      }
 
-function chipHTML(c) {
-  const textColor = c.dark ? '#000' : '#fff';
-  return `<div class="chip" onclick="copy('${c.hex}')">
+      function chipHTML(c) {
+        const textColor = c.dark ? '#000' : '#fff';
+        return `<div class="chip" onclick="copy('${c.hex}')">
     <div class="chip-swatch" style="background:${c.hex}"></div>
     <div class="chip-meta">
       <div class="chip-name" style="color:inherit">${c.name}</div>
       <div class="chip-hex">${c.hex}</div>
     </div>
   </div>`;
-}
+      }
 
-function renderGrayScale() {
-  const grid = document.getElementById('gray-scale-grid');
-  if (!grid) return;
-  grid.innerHTML = TDS_CONFIG.grayScale.map(c => chipHTML(c)).join('');
-}
+      function renderGrayScale() {
+        const grid = document.getElementById('gray-scale-grid');
+        if (!grid) return;
+        grid.innerHTML = TDS_CONFIG.grayScale.map(c => chipHTML(c)).join('');
+      }
 
-function renderOpacityColors() {
-  const redBase = TDS_CONFIG.opacityRedBase;
+      function renderOpacityColors() {
+        const redBase = TDS_CONFIG.opacityRedBase;
 
-  const redStrip = document.getElementById('opacity-red');
-  if (redStrip) redStrip.innerHTML = TDS_CONFIG.opacityRed.map(item =>
-    `<div class="opacity-cell">
+        const redStrip = document.getElementById('opacity-red');
+        if (redStrip) redStrip.innerHTML = TDS_CONFIG.opacityRed.map(item =>
+          `<div class="opacity-cell">
       <div class="chip-swatch sm" style="background:rgba(${redBase},${item.alpha});border-radius:4px 4px 0 0"></div>
       <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
     </div>`
-  ).join('');
+        ).join('');
 
-  const whiteStrip = document.getElementById('opacity-white');
-  if (whiteStrip) whiteStrip.innerHTML = TDS_CONFIG.opacityWhite.map(item =>
-    `<div class="opacity-cell">
-      <div class="chip-swatch sm" style="background:rgba(255,255,255,${item.alpha});border-radius:4px 4px 0 0${item.border?';border:1px solid var(--border)':''}"></div>
+        const whiteStrip = document.getElementById('opacity-white');
+        if (whiteStrip) whiteStrip.innerHTML = TDS_CONFIG.opacityWhite.map(item =>
+          `<div class="opacity-cell">
+      <div class="chip-swatch sm" style="background:rgba(255,255,255,${item.alpha});border-radius:4px 4px 0 0${item.border ? ';border:1px solid var(--border)' : ''}"></div>
       <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
     </div>`
-  ).join('');
+        ).join('');
 
-  const blackStrip = document.getElementById('opacity-black');
-  if (blackStrip) blackStrip.innerHTML = TDS_CONFIG.opacityBlack.map(item =>
-    `<div class="opacity-cell">
+        const blackStrip = document.getElementById('opacity-black');
+        if (blackStrip) blackStrip.innerHTML = TDS_CONFIG.opacityBlack.map(item =>
+          `<div class="opacity-cell">
       <div class="chip-swatch sm" style="background:rgba(0,0,0,${item.alpha});border-radius:4px 4px 0 0;border:1px solid var(--border)"></div>
       <div class="chip-meta" style="border-radius:0 0 4px 4px"><div class="chip-name">${item.name}</div></div>
     </div>`
-  ).join('');
-}
+        ).join('');
+      }
 
-function renderGradients() {
-  const row = document.getElementById('gradient-row');
-  if (!row) return;
-  row.innerHTML = TDS_CONFIG.gradients.map(g =>
-    `<div class="gradient-card">
+      function renderGradients() {
+        const row = document.getElementById('gradient-row');
+        if (!row) return;
+        row.innerHTML = TDS_CONFIG.gradients.map(g =>
+          `<div class="gradient-card">
       <div class="gradient-swatch" style="background:${g.css}"></div>
       <div class="gradient-meta">
         <div class="gradient-name">${g.name}</div>
         <div class="gradient-val">${g.desc.replace(/\n/g, '<br>')}</div>
       </div>
     </div>`
-  ).join('');
-}
+        ).join('');
+      }
 
-function renderContrastChips() {
-  const grid = document.getElementById('contrast-grid');
-  if (!grid) return;
-  grid.innerHTML = TDS_CONFIG.contrastChips.map(c =>
-    `<div class="contrast-chip" style="background:${c.bg};color:${c.fg}${c.border?';border:1px solid #333':''}">
+      function renderContrastChips() {
+        const grid = document.getElementById('contrast-grid');
+        if (!grid) return;
+        grid.innerHTML = TDS_CONFIG.contrastChips.map(c =>
+          `<div class="contrast-chip" style="background:${c.bg};color:${c.fg}${c.border ? ';border:1px solid #333' : ''}">
       <div class="ratio">${c.ratio}</div>
       <div class="pair">${c.pair}</div>
-      <div class="grade ${c.pass ? 'grade-pass' : 'grade-fail'}">${c.pass ? '● AA Pass' : '✗ AA Fail'}${c.note||''}</div>
+      <div class="grade ${c.pass ? 'grade-pass' : 'grade-fail'}">${c.pass ? '● AA Pass' : '✗ AA Fail'}${c.note || ''}</div>
     </div>`
-  ).join('');
-}
+        ).join('');
+      }
 
-function renderTypeScale() {
-  const tbody = document.getElementById('type-scale-tbody');
-  if (!tbody) return;
-  const SAMPLE = '티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지';
-  tbody.innerHTML = TDS_CONFIG.typeScale.map(row => {
-    if (row.warning) return `<tr>
+      function renderTypeScale() {
+        const tbody = document.getElementById('type-scale-tbody');
+        if (!tbody) return;
+        const SAMPLE = '티빙 오리지널부터 드라마, 예능, 영화, KBO 리그까지';
+        tbody.innerHTML = TDS_CONFIG.typeScale.map(row => {
+          if (row.warning) return `<tr>
       <td><span class="t-token" style="color:#FF5050">${row.token} ⚠</span></td>
       <td><span class="t-tag read">—</span></td>
       <td><span class="t-spec">—</span></td>
       <td><span style="font-size:9px;color:var(--g50)">${row.size}px 이하 — WCAG 최소 사이즈 미달, 사용 금지</span></td>
     </tr>`;
-    const isBold = row.style === 'bold';
-    const cap = Math.min(row.size, 18);
-    const wt = isBold ? 700 : 400;
-    const cl = isBold ? '#fff' : '#e8e8e8';
-    return `<tr>
+          const isBold = row.style === 'bold';
+          const cap = Math.min(row.size, 18);
+          const wt = isBold ? 700 : 400;
+          const cl = isBold ? '#fff' : '#e8e8e8';
+          return `<tr>
       <td><span class="t-token">${row.token}</span></td>
       <td><span class="t-tag ${row.style}">${isBold ? 'Bold' : 'Read'}</span></td>
       <td><span class="t-spec">${row.lineHeight}</span></td>
       <td><span style="font-size:${cap}px;font-weight:${wt};font-family:'Pretendard Variable',Pretendard,sans-serif;color:${cl}">${SAMPLE}</span></td>
     </tr>`;
-  }).join('');
-}
+        }).join('');
+      }
 
-function renderBreakpoints() {
-  const list = document.getElementById('bp-list');
-  if (!list) return;
-  list.innerHTML = TDS_CONFIG.breakpoints.map(bp =>
-    `<div class="bp-row">
+      function renderBreakpoints() {
+        const list = document.getElementById('bp-list');
+        if (!list) return;
+        list.innerHTML = TDS_CONFIG.breakpoints.map(bp =>
+          `<div class="bp-row">
       <div><div class="bp-name">${bp.name}</div></div>
       <div class="bp-range">${bp.range}</div>
       <div class="bp-bar"><div class="bp-fill" style="width:${bp.barW}"></div></div>
@@ -1629,14 +2633,14 @@ function renderBreakpoints() {
         <span class="bp-badge">가로 ${bp.colH}</span>
       </div>
     </div>`
-  ).join('');
-}
+        ).join('');
+      }
 
-function renderDoDonts() {
-  Object.entries(TDS_CONFIG.dodonts).forEach(([page, dd]) => {
-    const el = document.getElementById(`dodont-${page}`);
-    if (!el) return;
-    el.innerHTML = `
+      function renderDoDonts() {
+        Object.entries(TDS_CONFIG.dodonts).forEach(([page, dd]) => {
+          const el = document.getElementById(`dodont-${page}`);
+          if (!el) return;
+          el.innerHTML = `
       <div class="dos-donts-card">
         <div class="dd-header do">✓ Do</div>
         <div class="dd-body">${dd.do}</div>
@@ -1645,220 +2649,221 @@ function renderDoDonts() {
         <div class="dd-header dont">✗ Don't</div>
         <div class="dd-body">${dd.dont}</div>
       </div>`;
-  });
-}
+        });
+      }
 
-/* ─────────────────── NAVIGATION ─────────────────── */
+      /* ─────────────────── NAVIGATION ─────────────────── */
 
-function renderNavItems() {
-  function navItemHTML(item) {
-    const isSoon = item.status === 'soon';
-    const disabledStyle = isSoon ? ' style="opacity:0.4;pointer-events:none"' : '';
-    const onclick = item.pageId ? ` onclick="navigate('${item.pageId}'); setNavActive(this)"` : '';
-    return `<div class="nav-item">
+      function renderNavItems() {
+        function navItemHTML(item) {
+          const isSoon = item.status === 'soon';
+          const disabledStyle = isSoon ? ' style="opacity:0.4;pointer-events:none"' : '';
+          const onclick = item.pageId ? ` onclick="navigate('${item.pageId}'); setNavActive(this)"` : '';
+          return `<div class="nav-item">
       <div class="nav-item-header"${disabledStyle}${onclick}>
         ${item.name}
         <span class="nav-status ${item.status}">${item.status.charAt(0).toUpperCase() + item.status.slice(1)}</span>
       </div>
     </div>`;
-  }
+        }
 
-  const compEl = document.getElementById('render-nav-components');
-  if (compEl) compEl.innerHTML = TDS_CONFIG.components.map(navItemHTML).join('');
+        const compEl = document.getElementById('render-nav-components');
+        if (compEl) compEl.innerHTML = TDS_CONFIG.components.map(navItemHTML).join('');
 
-  const patEl = document.getElementById('render-nav-patterns');
-  if (patEl) patEl.innerHTML = TDS_CONFIG.patterns.map(navItemHTML).join('');
-}
+        const patEl = document.getElementById('render-nav-patterns');
+        if (patEl) patEl.innerHTML = TDS_CONFIG.patterns.map(navItemHTML).join('');
+      }
 
-function renderComponentsGrid() {
-  const grid = document.getElementById('render-components-grid');
-  if (!grid) return;
-  grid.innerHTML = TDS_CONFIG.components.map(c => {
-    const isSoon = c.status === 'soon';
-    const clickable = c.pageId ? `onclick="navigate('${c.pageId}')"` : '';
-    const style = isSoon ? 'opacity:0.45;cursor:default' : 'cursor:pointer';
-    return `<div class="overview-card" ${clickable} style="${style}">
+      function renderComponentsGrid() {
+        const grid = document.getElementById('render-components-grid');
+        if (!grid) return;
+        grid.innerHTML = TDS_CONFIG.components.map(c => {
+          const isSoon = c.status === 'soon';
+          const clickable = c.pageId ? `onclick="navigate('${c.pageId}')"` : '';
+          const style = isSoon ? 'opacity:0.45;cursor:default' : 'cursor:pointer';
+          return `<div class="overview-card" ${clickable} style="${style}">
       <div class="overview-card-art" style="background:#0A0A0A;flex-direction:column;gap:6px">
         <div style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:800;font-size:28px;color:rgba(255,255,255,0.08);letter-spacing:-0.02em">${c.name[0]}</div>
         <span style="font-family:'Pretendard Variable',Pretendard,sans-serif;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:${isSoon ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,100,0.12)'};color:${isSoon ? '#555' : '#00C864'};border:1px solid ${isSoon ? 'rgba(255,255,255,0.08)' : 'rgba(0,200,100,0.2)'}">${c.status}</span>
       </div>
       <div class="overview-card-label">${c.name}</div>
     </div>`;
-  }).join('');
-}
-function navigate(pageId) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById(pageId);
-  if (target) { target.classList.add('active'); target.scrollIntoView ? window.scrollTo(0,0) : null; }
-
-  // topbar active
-  const topLinks = document.querySelectorAll('.topbar-link');
-  topLinks.forEach(l => l.classList.remove('active'));
-  if (['page-color','page-typography','page-breakpoints','page-tokens','page-foundation'].includes(pageId)) {
-    topLinks[0].classList.add('active');
-  } else if (pageId === 'page-components' || TDS_CONFIG.components.some(c => c.pageId === pageId)) {
-    topLinks[1].classList.add('active');
-  }
-
-  // draw hero canvas for page
-  setTimeout(() => drawHero(pageId), 50);
-}
-
-function setNavActive(el) {
-  document.querySelectorAll('.nav-item-header').forEach(h => h.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function toggleGroup(id) {
-  const grp = document.getElementById(id);
-  grp.classList.toggle('open');
-}
-
-/* ─────────────────── TABS ─────────────────── */
-function switchTab(btn, panelId) {
-  const bar = btn.closest('.tabs-bar');
-  const content = bar.nextElementSibling;
-  bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  content.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.getElementById(panelId);
-  if (panel) panel.classList.add('active');
-}
-
-/* ─────────────────── COPY ─────────────────── */
-function copy(val) {
-  navigator.clipboard.writeText(val).then(() => showToast('Copied ' + val));
-}
-function copyCode(btn) {
-  const text = btn.closest('.code-block').querySelector('.code-body').innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'Copied!';
-    btn.style.color = '#00C864';
-    setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 1500);
-  });
-}
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 1800);
-}
-
-/* ─────────────────── SEARCH ─────────────────── */
-function openSearch() {
-  document.getElementById('searchOverlay').classList.add('open');
-  setTimeout(() => document.getElementById('searchInput').focus(), 100);
-}
-function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('open');
-}
-document.addEventListener('keydown', e => {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
-  if (e.key === 'Escape') closeSearch();
-});
-document.getElementById('searchOverlay').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeSearch();
-});
-
-/* ─────────────────── HERO CANVAS ─────────────────── */
-function drawHero(pageId) {
-  const canvasMap = {
-    'page-foundation': 'canvas-foundation',
-    'page-color':      'canvas-color',
-    'page-typography': 'canvas-typo',
-    'page-breakpoints':'canvas-bp',
-    'page-tokens':     'canvas-tokens',
-  };
-  const canvasId = canvasMap[pageId];
-  if (!canvasId) return;
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  canvas.width = canvas.parentElement.offsetWidth;
-  canvas.height = canvas.parentElement.offsetHeight;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const W = canvas.width, H = canvas.height;
-
-  if (pageId === 'page-color') {
-    // color circles
-    const colors = ['#FF153C','#FFC93C','#0095FF','#6BE477','#9005FF'];
-    colors.forEach((c, i) => {
-      const x = 120 + i * 200 + Math.sin(i) * 40;
-      const y = H/2 + Math.cos(i*1.3) * 30;
-      const r = 60 + i * 12;
-      const grad = ctx.createRadialGradient(x,y,0,x,y,r);
-      grad.addColorStop(0, c + 'AA');
-      grad.addColorStop(1, c + '00');
-      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
-      ctx.fillStyle = grad; ctx.fill();
-    });
-    // grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-    for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-  }
-  else if (pageId === 'page-typography') {
-    // big letter skeleton
-    ctx.font = 'bold 220px Pretendard';
-    ctx.fillStyle = 'rgba(255,255,255,0.03)';
-    ctx.fillText('Aa', W*0.4, H*0.85);
-    // lines
-    for (let i = 0; i < 8; i++) {
-      const y = 30 + i * 28;
-      const len = W * (0.3 + Math.random() * 0.5);
-      ctx.strokeStyle = `rgba(255,21,60,${0.02 + i * 0.012})`;
-      ctx.lineWidth = i === 0 ? 2 : 1;
-      ctx.beginPath(); ctx.moveTo(100, y); ctx.lineTo(100 + len, y); ctx.stroke();
-    }
-  }
-  else if (pageId === 'page-breakpoints') {
-    // device outlines
-    const devices = [
-      {x:80,y:40,w:60,h:100,r:4},   // mobile
-      {x:200,y:55,w:130,h:90,r:4},  // tablet
-      {x:410,y:45,w:220,h:120,r:4}, // desktop
-      {x:700,y:30,w:380,h:160,r:4}, // large
-    ];
-    ctx.strokeStyle = 'rgba(255,21,60,0.2)';
-    ctx.lineWidth = 1.5;
-    devices.forEach(d => {
-      ctx.beginPath();
-      ctx.roundRect(d.x, d.y, d.w, d.h, d.r);
-      ctx.stroke();
-    });
-    // breakpoint lines
-    [280, 480, 700].forEach((x, i) => {
-      ctx.strokeStyle = `rgba(255,21,60,${0.08 + i*0.04})`;
-      ctx.lineWidth = 1;
-      ctx.setLineDash([4,4]);
-      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
-    });
-    ctx.setLineDash([]);
-  }
-  else {
-    // default: dot grid
-    ctx.fillStyle = 'rgba(255,255,255,0.05)';
-    for (let x = 40; x < W; x += 40) {
-      for (let y = 40; y < H; y += 40) {
-        ctx.beginPath(); ctx.arc(x, y, 1, 0, Math.PI*2); ctx.fill();
+        }).join('');
       }
-    }
-  }
-}
+      function navigate(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(pageId);
+        if (target) { target.classList.add('active'); target.scrollIntoView ? window.scrollTo(0, 0) : null; }
 
-/* ─────────────────── INIT ─────────────────── */
-window.addEventListener('DOMContentLoaded', () => {
-  renderAll();
-  navigate('page-foundation');
-  setTimeout(() => drawHero('page-foundation'), 100);
-});
+        // topbar active
+        const topLinks = document.querySelectorAll('.topbar-link');
+        topLinks.forEach(l => l.classList.remove('active'));
+        if (['page-color', 'page-typography', 'page-breakpoints', 'page-tokens', 'page-foundation'].includes(pageId)) {
+          topLinks[0].classList.add('active');
+        } else if (pageId === 'page-components' || TDS_CONFIG.components.some(c => c.pageId === pageId)) {
+          topLinks[1].classList.add('active');
+        }
 
-window.addEventListener('resize', () => {
-  const activePage = document.querySelector('.page.active');
-  if (activePage) drawHero(activePage.id);
-});
+        // draw hero canvas for page
+        setTimeout(() => drawHero(pageId), 50);
+      }
 
-</script>
-</body>
+      function setNavActive(el) {
+        document.querySelectorAll('.nav-item-header').forEach(h => h.classList.remove('active'));
+        el.classList.add('active');
+      }
+
+      function toggleGroup(id) {
+        const grp = document.getElementById(id);
+        grp.classList.toggle('open');
+      }
+
+      /* ─────────────────── TABS ─────────────────── */
+      function switchTab(btn, panelId) {
+        const bar = btn.closest('.tabs-bar');
+        const content = bar.nextElementSibling;
+        bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        content.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('active');
+      }
+
+      /* ─────────────────── COPY ─────────────────── */
+      function copy(val) {
+        navigator.clipboard.writeText(val).then(() => showToast('Copied ' + val));
+      }
+      function copyCode(btn) {
+        const text = btn.closest('.code-block').querySelector('.code-body').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = 'Copied!';
+          btn.style.color = '#00C864';
+          setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 1500);
+        });
+      }
+      function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1800);
+      }
+
+      /* ─────────────────── SEARCH ─────────────────── */
+      function openSearch() {
+        document.getElementById('searchOverlay').classList.add('open');
+        setTimeout(() => document.getElementById('searchInput').focus(), 100);
+      }
+      function closeSearch() {
+        document.getElementById('searchOverlay').classList.remove('open');
+      }
+      document.addEventListener('keydown', e => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+        if (e.key === 'Escape') closeSearch();
+      });
+      document.getElementById('searchOverlay').addEventListener('click', e => {
+        if (e.target === e.currentTarget) closeSearch();
+      });
+
+      /* ─────────────────── HERO CANVAS ─────────────────── */
+      function drawHero(pageId) {
+        const canvasMap = {
+          'page-foundation': 'canvas-foundation',
+          'page-color': 'canvas-color',
+          'page-typography': 'canvas-typo',
+          'page-breakpoints': 'canvas-bp',
+          'page-tokens': 'canvas-tokens',
+        };
+        const canvasId = canvasMap[pageId];
+        if (!canvasId) return;
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const W = canvas.width, H = canvas.height;
+
+        if (pageId === 'page-color') {
+          // color circles
+          const colors = ['#FF153C', '#FFC93C', '#0095FF', '#6BE477', '#9005FF'];
+          colors.forEach((c, i) => {
+            const x = 120 + i * 200 + Math.sin(i) * 40;
+            const y = H / 2 + Math.cos(i * 1.3) * 30;
+            const r = 60 + i * 12;
+            const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+            grad.addColorStop(0, c + 'AA');
+            grad.addColorStop(1, c + '00');
+            ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fillStyle = grad; ctx.fill();
+          });
+          // grid lines
+          ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+          ctx.lineWidth = 1;
+          for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+          for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+        }
+        else if (pageId === 'page-typography') {
+          // big letter skeleton
+          ctx.font = 'bold 220px Pretendard';
+          ctx.fillStyle = 'rgba(255,255,255,0.03)';
+          ctx.fillText('Aa', W * 0.4, H * 0.85);
+          // lines
+          for (let i = 0; i < 8; i++) {
+            const y = 30 + i * 28;
+            const len = W * (0.3 + Math.random() * 0.5);
+            ctx.strokeStyle = `rgba(255,21,60,${0.02 + i * 0.012})`;
+            ctx.lineWidth = i === 0 ? 2 : 1;
+            ctx.beginPath(); ctx.moveTo(100, y); ctx.lineTo(100 + len, y); ctx.stroke();
+          }
+        }
+        else if (pageId === 'page-breakpoints') {
+          // device outlines
+          const devices = [
+            { x: 80, y: 40, w: 60, h: 100, r: 4 },   // mobile
+            { x: 200, y: 55, w: 130, h: 90, r: 4 },  // tablet
+            { x: 410, y: 45, w: 220, h: 120, r: 4 }, // desktop
+            { x: 700, y: 30, w: 380, h: 160, r: 4 }, // large
+          ];
+          ctx.strokeStyle = 'rgba(255,21,60,0.2)';
+          ctx.lineWidth = 1.5;
+          devices.forEach(d => {
+            ctx.beginPath();
+            ctx.roundRect(d.x, d.y, d.w, d.h, d.r);
+            ctx.stroke();
+          });
+          // breakpoint lines
+          [280, 480, 700].forEach((x, i) => {
+            ctx.strokeStyle = `rgba(255,21,60,${0.08 + i * 0.04})`;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+          });
+          ctx.setLineDash([]);
+        }
+        else {
+          // default: dot grid
+          ctx.fillStyle = 'rgba(255,255,255,0.05)';
+          for (let x = 40; x < W; x += 40) {
+            for (let y = 40; y < H; y += 40) {
+              ctx.beginPath(); ctx.arc(x, y, 1, 0, Math.PI * 2); ctx.fill();
+            }
+          }
+        }
+      }
+
+      /* ─────────────────── INIT ─────────────────── */
+      window.addEventListener('DOMContentLoaded', () => {
+        renderAll();
+        navigate('page-foundation');
+        setTimeout(() => drawHero('page-foundation'), 100);
+      });
+
+      window.addEventListener('resize', () => {
+        const activePage = document.querySelector('.page.active');
+        if (activePage) drawHero(activePage.id);
+      });
+
+    </script>
+  </body>
+
 </html>
