@@ -575,7 +575,7 @@
 ───────────────────────────────────────── */
     .overview-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 14px;
       margin-bottom: 48px;
     }
@@ -1318,10 +1318,6 @@
       }
 
       .bp-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .overview-grid {
         grid-template-columns: 1fr 1fr;
       }
 
