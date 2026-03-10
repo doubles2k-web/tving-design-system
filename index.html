@@ -152,7 +152,7 @@
     }
 
     .topbar-link {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
       color: var(--g70);
       padding: 6px 14px;
@@ -430,22 +430,17 @@
       position: relative;
       z-index: 2;
       padding: 40px 48px;
-    }
-
-    .hero-breadcrumb {
-      font-family: var(--mono);
-      font-size: 15Zpx;
-      color: var(--g50);
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100%;
     }
 
-    .hero-breadcrumb .sep {
-      color: var(--g30);
+    .hero-content .hero-desc {
+      max-width: 480px;
     }
+
 
     .hero-title {
       font-family: var(--syne);
@@ -508,7 +503,7 @@
     }
 
     .tab-btn {
-      font-size: 16px;
+      font-size: 13px;
       color: var(--g50);
       padding: 14px 18px;
       border-bottom: 2px solid transparent;
@@ -1572,9 +1567,7 @@
         <!-- Hero -->
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-foundation"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation</div>
-            <div class="hero-title">Foundation</div>
+          <div class="hero-content">            <div class="hero-title">Foundation</div>
             <div class="hero-desc">컬러, 타이포그래피, 반응형 중단점. TDS를 구성하는 핵심 설계 원칙의 집합.</div>
           </div>
         </div>
@@ -1689,10 +1682,7 @@
       <div class="page" id="page-color">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-color"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Color
-            </div>
-            <div class="hero-title">Color <span class="hero-badge stable">Stable</span></div>
+          <div class="hero-content">            <div class="hero-title">Color <span class="hero-badge stable">Stable</span></div>
             <div class="hero-desc">tving.red를 중심으로 한 단일 브랜드 컬러 전략. Opacity 변형을 통해 다양한 UI 상태를 표현합니다.</div>
           </div>
         </div>
@@ -1782,10 +1772,7 @@
       <div class="page" id="page-typography">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-typo"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Typography
-            </div>
-            <div class="hero-title">Typography <span class="hero-badge stable">Stable</span></div>
+          <div class="hero-content">            <div class="hero-title">Typography <span class="hero-badge stable">Stable</span></div>
             <div class="hero-desc">Pretendard Variable 기반의 이중 타이포 시스템. Bold는 헤드라인·스캔용, Read는 본문·가독성용으로 구분됩니다.</div>
           </div>
         </div>
@@ -1862,10 +1849,7 @@
       <div class="page" id="page-breakpoints">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-bp"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span>
-              Breakpoints</div>
-            <div class="hero-title">Breakpoints <span class="hero-badge stable">Stable</span></div>
+          <div class="hero-content">            <div class="hero-title">Breakpoints <span class="hero-badge stable">Stable</span></div>
             <div class="hero-desc">모바일 ~ 4K TV를 아우르는 6단계 반응형 중단점. root font-size를 vw로 유동 제어합니다.</div>
           </div>
         </div>
@@ -1926,10 +1910,7 @@
       <div class="page" id="page-tokens">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-tokens"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Foundation <span class="sep">›</span> Design
-              Tokens</div>
-            <div class="hero-title">Design Tokens <span class="hero-badge beta">Beta</span></div>
+          <div class="hero-content">            <div class="hero-title">Design Tokens <span class="hero-badge beta">Beta</span></div>
             <div class="hero-desc">DTCG(Design Tokens Community Group) 포맷 기반. Style Dictionary로 CSS / JS / iOS / Android
               멀티플랫폼 자동 변환.</div>
           </div>
@@ -2079,9 +2060,7 @@
       <div class="page" id="page-components">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-components"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components</div>
-            <div class="hero-title">Components</div>
+          <div class="hero-content">            <div class="hero-title">Components</div>
             <div class="hero-desc">재사용 가능한 UI 컴포넌트 목록. 각 컴포넌트는 Usage · Specs 탭으로 구성됩니다.</div>
           </div>
         </div>
@@ -2097,10 +2076,7 @@
       <div class="page" id="page-button">
         <div class="hero">
           <canvas class="hero-canvas" id="canvas-button"></canvas>
-          <div class="hero-content">
-            <div class="hero-breadcrumb">TDS <span class="sep">›</span> Components <span class="sep">›</span> Button
-            </div>
-            <div class="hero-title">Button <span class="hero-badge stable">Stable</span></div>
+          <div class="hero-content">            <div class="hero-title">Button <span class="hero-badge stable">Stable</span></div>
             <div class="hero-desc">사용자 액션을 트리거하는 기본 인터랙션 컴포넌트. Primary, Secondary, Ghost 3가지 변형을 제공합니다.</div>
           </div>
         </div>
