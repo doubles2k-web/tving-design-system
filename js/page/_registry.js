@@ -1,0 +1,1 @@
+const TDS_PAGES = {};
